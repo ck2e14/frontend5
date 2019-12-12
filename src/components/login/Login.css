@@ -1,0 +1,70 @@
+.grid {
+   height: vh;
+ }
+
+ .page-login {
+   padding : 35vh;
+ }
+
+ .login-container {
+    height: 100vh;
+    background-color: rgb(22, 41, 54);
+
+ }
+
+ .text {  
+   font-family: 'Audiowide', cursive;
+   padding: 0 20px;
+   font-size: 20px;
+   color: white;
+
+ }
+
+ .title-text {
+    color: white;
+    font-size: 40px;
+    font-family: 'Audiowide', cursive;
+    text-shadow: 15px 3px 75px white
+
+ }
+
+ .register-link {
+    color: white;
+    position: relative
+
+ }
+
+ .submit {
+    background-color:white;
+    color: black;
+ }
+
+ input[type=text], select {
+   width: 15%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 3px solid grey;
+   border-radius: 4px;
+   box-sizing: border-box;
+ }
+
+ input[type=password], select {
+   width: 15%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 3px solid grey;
+   border-radius: 4px;
+   box-sizing: border-box;
+ }
+
+ input[type=submit], select {
+   width: 10%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   box-sizing: border-box;
+ }
