@@ -6,6 +6,8 @@ import { Route, Redirect, Switch, useHistory, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import paths from './paths';
 import API from './adapters/API'
+import Home from './components/home/Home'
+  
 
 
 
@@ -13,16 +15,16 @@ function App() {
   const [user, setUser] = useState(null);
   const history = useHistory()
 
+
   useEffect(() => {
     API.validate()
       .then(user => {
         setUser(user);
-        history.push('/');
-        console.log('yes')
-      })
-      .catch(() => {
+        // history.push('/');
+        console.log('validated user')
+      }).catch(() => {
         history.push(paths.LOGIN);
-        console.log('no')
+        console.log('user not validated')
       });
   }, []);
 
@@ -34,12 +36,27 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path='/' component={props => <Login {...props} setUser={setUser}/>} />
-        <Route path="/login" component={props => <Login {...props} setUser={setUser} />} />
-        <Route path="/signup" component={props => <Signup {...props} setUser={setUser}/>} />
+    {user ? <Route exact path="/home" component={props => 
+          <Home {...props} user={user} logout={logout} />} 
+        /> :  <Route path="/login" component={props => 
+          <Login user={user} {...props} setUser={setUser} />} 
+        />
+      }
+        
 
+        <Route exact path='/' component={props => 
+          <Login user={user}{...props} setUser={setUser}/>} 
+        />
 
+        <Route path="/login" component={props => 
+          <Login user={user} {...props} setUser={setUser} />} 
+        />
 
+        <Route path="/signup" component={props => 
+          <Signup user={user} {...props} setUser={setUser}
+        />} />
+
+        
       </Switch>
     </div>
   );

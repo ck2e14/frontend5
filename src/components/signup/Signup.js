@@ -33,8 +33,8 @@ import {
        });
    };
    return (
-      <div classNamee="login-container">
-        <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet"></link>
+      <div className="login-container">
+        <link href="https://fonts.googleapis.com/css?family=Cinzel|Lobster&display=swap" rel="stylesheet"></link>
          <div className="login-container">
          <div className="ui centered grid container">
          <div className="nine wide column">
