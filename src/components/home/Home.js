@@ -13,7 +13,7 @@ import EstabContainer from '../establishments/EstabContainer'
 import { trackPromise } from 'react-promise-tracker';
 import Loader from 'react-loader-spinner';
 import Navbar from '../NavBar/Navbar'
-// import { promisify } from 'es6-promisify'
+import ShowMap from '../map/ShowMap'
 
 // const getCurrentPosition = promisify(navigator.geolocation.getCurrentPosition)
 
@@ -121,6 +121,7 @@ import Navbar from '../NavBar/Navbar'
                {this.state.finishedFetch ? 
                <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.state.establishments} /> 
                : null }
+               {/* <ShowMap /> */}
             </div>
       )
    }
