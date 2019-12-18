@@ -9,11 +9,11 @@ import API from './adapters/API'
 import Home from './components/home/Home'
   
 
-
-
 function App() {
   const [user, setUser] = useState(null);
   const history = useHistory()
+
+  
 
 
   useEffect(() => {

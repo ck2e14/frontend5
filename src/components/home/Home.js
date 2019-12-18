@@ -23,9 +23,64 @@ import Navbar from '../NavBar/Navbar'
       super()
       this.state = { 
          establishments: [],
-         finishedFetch: false
+         blacklist: [],
+         finishedFetch: false,
+         currentUserId: ''
       }
    }
+
+
+
+   handleEstabClick = (estabObject, userID) => {
+      API.newEstab(estabObject, this.state.currentUserId)
+      
+   }
+
+   //  the below method was kinda wrong since it was saving to state. Now, instead, the right response from blacklist click is to persist a new estab, then save that new id and current user id to the blacklist join table, then need to trigger a GET request to blacklists to fill where the user_id in the blacklist entry matches the current user ID
+   // handleEstabClick = (estabObject) => {
+   //    if(!this.state.blacklist.includes(estabObject.id)) {
+   //       this.setState({
+   //          blacklist: [...this.state.blacklist, 
+   //             {
+   //                establishment: {
+   //                   id: estabObject.id,
+   //                   name: estabObject.name,
+   //                   localAuth: estabObject.localAuth,
+   //                   ratingValue: estabObject.ratingValue,
+   //                   hygieneRating: estabObject.hygieneRating,
+   //                   latitiude: estabObject.latitude,
+   //                   longitude: estabObject.longitude,
+   //                   postcode: estabObject.postcode,
+   //                   FSAid: estabObject.FSAid,
+   //                   type_of: estabObject.type_of
+   //                }
+   //             }]
+               
+   //       })
+   //       // invoke API.newEstab here and pass in the details above as an object for persisting locally.
+   //    }
+   // }
+
+   // handleEstabClick = (estabObject) => {
+   //    if(!this.state.blacklist.includes(estabObject.id)) {
+   //       this.setState({
+   //          blacklist: [...this.state.blacklist, 
+   //             {
+   //                estabObject.id: {
+   //                   name: estabObject.name,
+   //                   localAuth: estabObject.localAuth,
+   //                   ratingValue: estabObject.RatingValue.toString(),
+   //                   hygieneRating: estabObject.scores.Hygiene,
+   //                   latitiude: estabObject.Geocode.Latitude.toString(),
+   //                   longitude: estabObject.Geocode.Longitude.toString(),
+   //                   postcode: estabObject.Postcode,
+   //                   FSAid: estabObject.FHRSID
+   //                }
+   //             }
+   //       })
+   //       // invoke API.newEstab here and pass in the details above as an object for persisting locally.
+   //    }
+   // }
 
 
 
@@ -49,18 +104,10 @@ import Navbar from '../NavBar/Navbar'
 
 
    componentDidMount(){
+      this.setState({
+         currentUserId: this.props.user.id
+      })
       this.setEstablishments()
-      // if (!navigator.geolocation) {
-      //    console.log('Geolocation is not supported by your browser');
-      //  } else {
-      //    console.log('locating')
-      //    navigator.geolocation.getCurrentPosition(API.getEstabs).then(resp => this.setState({ 
-      //           establishments: resp,
-      //          finishedFetch: true }))
-      // }
-      // //  API.getEstabs().then(resp => this.setState({ 
-      // //     establishments: resp,
-      // //    finishedFetch: true }))
    }
 
       
@@ -72,7 +119,7 @@ import Navbar from '../NavBar/Navbar'
             <div>
                {this.props.user && <Navbar user={this.props.user} logout={this.props.logout}/>}
                {this.state.finishedFetch ? 
-               <EstabContainer user={this.props.user} establishments={this.state.establishments} /> 
+               <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.state.establishments} /> 
                : null }
             </div>
       )

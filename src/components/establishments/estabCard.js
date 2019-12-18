@@ -14,7 +14,7 @@ const estabCard = props => {
             <div className="details">
               <h5>{props.establishment.name}</h5>
             </div>
-            <div className="tooltip" onClick={() => console.log(props.establishment.id)} className="blacklist"><img className="blacklist-icon" src="https://static.thenounproject.com/png/429749-200.png"/>
+            <div className="tooltip" onClick={() => props.handleBlacklistClick(props.establishment)} className="blacklist"><img className="blacklist-icon" src="https://static.thenounproject.com/png/429749-200.png"/>
             <span className="tooltiptext">Click to Blacklist</span>
             </div>
           </div>

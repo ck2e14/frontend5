@@ -9,14 +9,7 @@ import {
   useHistory
 } from "react-router-dom";
 import './Login.css'
-import {
-   Button,
-   Form,
-   Grid,
-   Header,
-   Message,
-   Segment,
- } from 'semantic-ui-react';
+
 
 
 const Login = props => {
@@ -34,8 +27,8 @@ const Login = props => {
         history.push("/home");
       })
       .catch(errors => {
-        setErrors(errors);
-        console.error(errors);
+        setErrors(errors[errors]);
+        console.log(errors);
 
 
       });
@@ -50,18 +43,16 @@ const Login = props => {
                      <div className="content">
                         <h1 className="title-text" align="center"> _Hygenik.com</h1> 
                            <div className="header">
-                              {!errors ? 'Login failed!' : null}
+                              {!errors ? 'Incorrect username or password - please try again.' : null}
                            </div>
                            <p className="text">{errors ? '' : null}</p>
                      </div>
                </div>
                   <div className="ui-card">
                      <div className="content">
-
                         <form onSubmit={handleSubmit} className="ui form">
                            <div className="field">
-                              <p>{errors.join(', ')}</p>
-
+                           {errors?.join(', ')}
                               <input
                                  type="text"
                                  placeholder="USERNAME"
@@ -69,7 +60,6 @@ const Login = props => {
                                  value={username}
                                  onChange={e => setUsername(e.target.value)}
                               />
-
                               <div className="field">
                                  <input
                                     type="password"
@@ -79,7 +69,6 @@ const Login = props => {
                                     onChange={e => setPassword(e.target.value)}
                                  />
                               </div>
-
                               <input className="submit" type="submit" value="LOG IN"/>
                            </div>
                      </form>
