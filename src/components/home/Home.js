@@ -15,7 +15,7 @@ import Loader from 'react-loader-spinner';
 import Navbar from '../NavBar/Navbar'
 import ShowMap from '../map/ShowMap'
 
-// const getCurrentPosition = promisify(navigator.geolocation.getCurrentPosition)
+
 
  export default class Home extends React.Component {
 
@@ -25,7 +25,9 @@ import ShowMap from '../map/ShowMap'
          establishments: [],
          blacklist: [],
          finishedFetch: false,
-         currentUserId: ''
+         currentUserId: '',
+         longitude: '',
+         latitude: ''
       }
    }
 
@@ -95,6 +97,8 @@ import ShowMap from '../map/ShowMap'
             API.getEstabs(location)
                .then(estabs => this.setState({
                   establishments: estabs,
+                  currentLatitude: location.coords.latitude,
+                  currentLongitude: location.coords.longitude,
                   finishedFetch: true 
                }))
          )})   
@@ -121,7 +125,9 @@ import ShowMap from '../map/ShowMap'
                {this.state.finishedFetch ? 
                <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.state.establishments} /> 
                : null }
-               {/* <ShowMap /> */}
+               {this.state.finishedFetch ? 
+               <ShowMap estabs={this.state.establishments} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude}/>
+               : null }
             </div>
       )
    }

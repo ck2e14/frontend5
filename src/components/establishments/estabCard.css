@@ -73,7 +73,7 @@
    transition: transform 0.5s;
  }
  .wrapper .container .bottom .left .blacklist:hover {
-   background: rgb(194, 46, 20);
+   background: rgb(214, 14, 14);
  }
  .wrapper .container .bottom .left .blacklist:hover i {
    transform: translateY(5px);

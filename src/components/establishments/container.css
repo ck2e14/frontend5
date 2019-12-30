@@ -1,4 +1,6 @@
-.estabs-div {
-   width: 45%;
+.estabs-div, .main-map-div  {
+   width: 35%;
    overflow: scroll;
+   float: left;
 }
+
