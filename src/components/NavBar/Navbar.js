@@ -11,9 +11,9 @@ import {
  } from "react-router-dom";
 
 const dashStyle = {
-   width: '100px',
+   width: '10px',
    padding: '0px',
-   align: 'center',
+   align: 'left',
    margin: '0 25px 25px',
    textdecoration: 'none',
    color: 'black'
@@ -33,11 +33,7 @@ const Navbar = (props) => {
         style={dashStyle}
         >User Dashboard</NavLink>
        {props.user.id ? <button onClick={props.logout}>Log Out</button> : null}
-
   </div>
-// flesh out the navbar so that the method is passed down here as a prop and check that it clear tshte clocal auth token correctrly
-
-
    )
 }
 

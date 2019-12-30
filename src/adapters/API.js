@@ -90,8 +90,6 @@ const validate = () =>
     // .then(estabData => console.log(estabData, userID))
   
 
-    
-
 
   const addToBlacklist = (estabData, userID) => {
       fetch(BLACKLISTS_URL, {
@@ -109,6 +107,17 @@ const validate = () =>
       }).then(jsonify)
       .then(data => console.log(data))
     }
+
+    // const blacklistFetch = (userID) => {
+    //   return fetch(`${BLACKLISTS_URL}, {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Accept: "application/json"
+    //     }
+    //   }).then(jsonify)
+    //   .then(data => console.log(data))
+    // }
     
 
 
@@ -165,6 +174,7 @@ const validate = () =>
       logout,
       getEstabs,
       newEstab,
+      // blacklistFetch,
       // addToBlacklist,
       // success,
       // error,

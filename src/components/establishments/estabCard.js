@@ -47,22 +47,22 @@ const estabCard = props => {
             </tr>
             <tr>
               <th>Premises Type</th>
-              <th>Local Authority</th>
+              <th>Authority</th>
             </tr>
             <tr>
               <td>{props.establishment.type_of}</td>
               <td>{props.establishment.localAuth}</td>
             </tr>
             <tr>
-              <th>Local Authority Contact</th>
-              <th>Address</th>
+              <th>Authority Contact</th>
+              <th></th>
             </tr>
             <tr>
               <td>{props.establishment.localAuthEmail}</td>
               <td>{props.establishment.addressLine1}</td>
             </tr>
             <tr>
-              <th>placehold1 </th>
+              <th>Address </th>
               <td>{props.establishment.addressLine2}</td>
             </tr> 
             <tr>

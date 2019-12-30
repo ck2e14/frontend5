@@ -118,7 +118,7 @@ import ShowMap from '../map/ShowMap'
    
 
    render(){
-     
+      
       return(
             <div>
                {this.props.user && <Navbar user={this.props.user} logout={this.props.logout}/>}

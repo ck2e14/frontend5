@@ -7,9 +7,11 @@ import React, { useState, useEffect } from "react";
 import paths from './paths';
 import API from './adapters/API'
 import Home from './components/home/Home'
+import UserDash from './components/UserDash/UserDash';
+import BlacklistDisplay from './components/UserDash/BlacklistDisplay'
   
 
-function App() {
+const App = () => {
   const [user, setUser] = useState(null);
   const history = useHistory()
 
@@ -33,16 +35,26 @@ function App() {
     setUser(null);
     history.push(paths.LOGIN);
   };
+
+
   return (
     <div className="App">
       <Switch>
-    {user ? <Route exact path="/home" component={props => 
+
+        {user ? <Route exact path="/home" component={props => 
           <Home {...props} user={user} logout={logout} />} 
         /> :  <Route path="/login" component={props => 
           <Login user={user} {...props} setUser={setUser} />} 
         />
       }
         
+        <Route exact path="/dashboard" component={props =>
+          <UserDash {...props} user={user} logout={logout} /> }
+          />
+
+        <Route exact path="/blacklist" component={props =>
+          <BlacklistDisplay user={user} logout={logout} /> }
+        />  
 
         <Route exact path='/' component={props => 
           <Login user={user}{...props} setUser={setUser}/>} 
