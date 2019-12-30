@@ -13,7 +13,6 @@ export default class EstabContainer extends React.Component {
       const cards = this.buildCards()
       return( 
          <div>
-            <h1 className="title" > <strong>Nearby Food-serving Premises (LATER INTERPOLATE CURRENT LOCATION SEARCHED OR CURRENT GEOLOCATION) </strong></h1>
             <div className="estabs-div"> 
                {cards}
             </div>

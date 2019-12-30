@@ -43,7 +43,7 @@ import {
                      <div className="header">
                      {!errors ? 'Signup failed!' : null}
                   </div>
-                  <p className="text" >{errors ? 'Please choose your login credentials.' : null}</p>
+                  <p className="text" >{errors ? 'Please choose your login credentials' : null}</p>
                </div>
                </div>
             <div className="ui-card">
