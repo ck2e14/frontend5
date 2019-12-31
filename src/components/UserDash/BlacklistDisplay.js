@@ -1,7 +1,8 @@
 import React from 'react'
 import API from '../../adapters/API'
 import BlacklistCard from '../UserDash/BlacklistCard'
-
+import BlacklistStyle from './BlacklistStyle.css'
+import NewNavBar from '../NavBar/NewNavBar'
 export default class BlacklistDisplay extends React.Component {
 
    constructor(){
@@ -54,14 +55,18 @@ rebuildEstabs = (objects) => {
       
 
       return(
-         <div>
-            {/* {this.truthyCheck() && this.state.readyToRender ? this.state.userInfo.blacklists.map(estab => {
-            return(<p>{estab.id}</p>)})  : null} */}
-            {this.state.readyToRender ? this.state.userInfo.blacklists.map(estab => {
-            return(<p>{estab.id}</p>)}) : null }
-            {/* {this.state.readyToRender ? this.buildCards() : null } */}
-            {this.buildCards()}
-
+         <div className='main-div'>
+            <NewNavBar user={this.props.user} logout={this.props.logout} />
+               <div className='border-box'>
+                  <div className='display-cards-div'>     
+                     {/* {this.truthyCheck() && this.state.readyToRender ? this.state.userInfo.blacklists.map(estab => {
+                     return(<p>{estab.id}</p>)})  : null} */}
+                     {this.state.readyToRender ? this.state.userInfo.blacklists.map(estab => {
+                     return(<p>{estab.id}</p>)}) : null }
+                     {/* {this.state.readyToRender ? this.buildCards() : null } */}
+                     {this.buildCards()}
+                  </div>
+               </div>
          </div>
       )
    }

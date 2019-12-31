@@ -1,6 +1,6 @@
 import React from 'react';
 import paths from '../../paths';
-import cardStyle from '../establishments/estabCard.css'
+import BlacklistStyle from './BlacklistStyle.css'
 
 
 const estabCard = props => {

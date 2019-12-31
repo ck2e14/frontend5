@@ -15,6 +15,7 @@ import Loader from 'react-loader-spinner';
 // import Navbar from '../NavBar/Navbar'
 import ShowMap from '../map/ShowMap'
 import NewNavbar from '../NavBar/NewNavBar'
+import { Button, Input, Footer, Card, CardBody, CardImage, CardTitle, CardText } from 'mdbreact'
 
 
 
@@ -28,8 +29,13 @@ import NewNavbar from '../NavBar/NewNavBar'
          finishedFetch: false,
          currentUserId: '',
          longitude: '',
-         latitude: ''
+         latitude: '',
+         search: "",
       }
+   }
+
+   onChange = e => {
+      this.setState({ search: e.target.value })
    }
 
 
@@ -39,51 +45,6 @@ import NewNavbar from '../NavBar/NewNavBar'
       
    }
 
-   //  the below method was kinda wrong since it was saving to state. Now, instead, the right response from blacklist click is to persist a new estab, then save that new id and current user id to the blacklist join table, then need to trigger a GET request to blacklists to fill where the user_id in the blacklist entry matches the current user ID
-   // handleEstabClick = (estabObject) => {
-   //    if(!this.state.blacklist.includes(estabObject.id)) {
-   //       this.setState({
-   //          blacklist: [...this.state.blacklist, 
-   //             {
-   //                establishment: {
-   //                   id: estabObject.id,
-   //                   name: estabObject.name,
-   //                   localAuth: estabObject.localAuth,
-   //                   ratingValue: estabObject.ratingValue,
-   //                   hygieneRating: estabObject.hygieneRating,
-   //                   latitiude: estabObject.latitude,
-   //                   longitude: estabObject.longitude,
-   //                   postcode: estabObject.postcode,
-   //                   FSAid: estabObject.FSAid,
-   //                   type_of: estabObject.type_of
-   //                }
-   //             }]
-               
-   //       })
-   //       // invoke API.newEstab here and pass in the details above as an object for persisting locally.
-   //    }
-   // }
-
-   // handleEstabClick = (estabObject) => {
-   //    if(!this.state.blacklist.includes(estabObject.id)) {
-   //       this.setState({
-   //          blacklist: [...this.state.blacklist, 
-   //             {
-   //                estabObject.id: {
-   //                   name: estabObject.name,
-   //                   localAuth: estabObject.localAuth,
-   //                   ratingValue: estabObject.RatingValue.toString(),
-   //                   hygieneRating: estabObject.scores.Hygiene,
-   //                   latitiude: estabObject.Geocode.Latitude.toString(),
-   //                   longitude: estabObject.Geocode.Longitude.toString(),
-   //                   postcode: estabObject.Postcode,
-   //                   FSAid: estabObject.FHRSID
-   //                }
-   //             }
-   //       })
-   //       // invoke API.newEstab here and pass in the details above as an object for persisting locally.
-   //    }
-   // }
 
 
 
@@ -100,7 +61,9 @@ import NewNavbar from '../NavBar/NewNavBar'
                   establishments: estabs,
                   currentLatitude: location.coords.latitude,
                   currentLongitude: location.coords.longitude,
-                  finishedFetch: true 
+                  finishedFetch: true,
+                  currentUserId: this.props.user.id
+ 
                }))
          )})   
 
@@ -109,27 +72,33 @@ import NewNavbar from '../NavBar/NewNavBar'
 
 
    componentDidMount(){
-      this.setState({
-         currentUserId: this.props.user.id
-      })
+  
       this.setEstablishments()
    }
 
-      
+  filteredEstabs = (search) => this.state.establishments.filter(estab => {
+      if(!estab.name) return
+      return estab.name.toLowerCase().includes(search.toLowerCase()) 
+   })
+   
    
 
    render(){
+      const {search} = this.state
       
       return(
             <div>
                {this.props.user ? <NewNavbar user={this.props.user} logout={this.props.logout}/> : null}
 
-               {this.state.finishedFetch ? 
-               <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.state.establishments} /> 
-               : null }
+               <Input label="Search Premises" icon="search" value={search} onChange={this.onChange} />
 
                {this.state.finishedFetch ? 
-               <ShowMap estabs={this.state.establishments} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude}/>
+               <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.filteredEstabs(search)} /> 
+               : null }
+
+
+               {this.state.finishedFetch ? 
+               <ShowMap estabs={this.filteredEstabs(search)} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude}/>
                : null }
                
             </div>
