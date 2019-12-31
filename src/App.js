@@ -8,7 +8,8 @@ import paths from './paths';
 import API from './adapters/API'
 import Home from './components/home/Home'
 import UserDash from './components/UserDash/UserDash';
-import BlacklistDisplay from './components/UserDash/BlacklistDisplay'
+import BlacklistDisplay from './components/UserDash/BlacklistDisplay';
+import 'bootstrap/dist/css/bootstrap.min.css';
   
 
 const App = () => {

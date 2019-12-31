@@ -23,12 +23,12 @@ const dashStyle = {
 const Navbar = (props) => {
    return(
   <div className='nav-div'>
-        <NavLink className="links"
+        <NavLink
         to='/home'
         exact
         style={dashStyle}
         >Premises Lookup</NavLink>
-        <NavLink className="links"
+        <NavLink 
         to='/dashboard'
         exact
         style={dashStyle}
