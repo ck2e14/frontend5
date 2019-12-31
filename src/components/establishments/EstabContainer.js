@@ -4,6 +4,7 @@ import EstabCard from './estabCard'
 import container from '../establishments/container.css'
 
 export default class EstabContainer extends React.Component {
+   
 
    buildCards = () => this.props.establishments.map(estab => {
       return <EstabCard handleBlacklistClick={this.props.handleBlacklistClick} establishment={estab} user={this.props.user} />

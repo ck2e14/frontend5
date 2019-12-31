@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 export default class MenuExampleBasic extends Component {
@@ -11,6 +11,7 @@ export default class MenuExampleBasic extends Component {
     const { activeItem } = this.state
 
     return (
+   <Segment>
       <Menu>
          <Link to='/home'>
             <Menu.Item
@@ -22,13 +23,13 @@ export default class MenuExampleBasic extends Component {
             </Menu.Item>
          </Link>
 
-         <Link to='/dashboard'>
+         <Link to='/blacklist'>
             <Menu.Item
-               name='User Dash'
-               active={activeItem === 'User Dash'}
+               name='My Blacklisted Sites'
+               active={activeItem === 'My Blacklisted Sites'}
                onClick={this.handleItemClick}
             >
-               User Dash
+               Blacklisted and Visited Places
             </Menu.Item>
          </Link>
 
@@ -42,6 +43,7 @@ export default class MenuExampleBasic extends Component {
             </Menu.Item>
          </Link>
          </Menu>
+         </Segment>
     )
   }
 }

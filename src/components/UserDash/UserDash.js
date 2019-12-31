@@ -3,6 +3,7 @@ import API from '../../adapters/API'
 import Navbar from '../NavBar/Navbar'
 import { trackPromise } from 'react-promise-tracker';
 import BlacklistDisplay from './BlacklistDisplay'
+import NewNavBar from '../NavBar/NewNavBar'
 
 export default class UserDash extends React.Component{
 
@@ -22,25 +23,10 @@ export default class UserDash extends React.Component{
 
    render(){
       return(
-         <div>
-         <button onClick={this.showMenu}>
-           Show menu
-         </button>
-         
-         {
-           this.state.showMenu
-             ? (
-               <div className="menu">
-                <a href="/home" ><button> Premises Lookup </button> </a>
-                <a href="/blacklist"> <button> Blacklist </button> </a>
-                
-               </div>
-             )
-             : (
-               null
-             )
-         }
-       </div>
+      <div>
+         <NewNavBar logout={this.props.logout} user={this.props.user} />
+         <BlacklistDisplay />
+      </div>
       )
    }
 }

@@ -27,6 +27,14 @@ class ShowMap extends React.Component {
       })
    }
 
+   componentDidUpdate(prevProps){
+      if(prevProps === this.props) return
+      this.setState({
+         establishments: this.props.estabs,
+         finishedSetState: true
+
+      })
+   }
 
    onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -74,7 +82,7 @@ class ShowMap extends React.Component {
          {this.state.finishedSetState ?
             <Map
               google={this.props.google}
-              zoom={14}
+              zoom={15.5}
               style={mapStyles}
               initialCenter={{ lat: this.props.latitude, lng: this.props.longitude }}
            >

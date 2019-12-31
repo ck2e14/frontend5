@@ -51,9 +51,9 @@ const App = () => {
         />
       }
         
-        <Route exact path="/dashboard" component={props =>
+        {/* <Route exact path="/blacklist" component={props =>
           <UserDash {...props} user={user} logout={logout} /> }
-          />
+          /> */}
 
         <Route exact path="/blacklist" component={props =>
           <BlacklistDisplay {...props} userID={userID} user={user} logout={logout} /> }
