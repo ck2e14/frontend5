@@ -12,8 +12,9 @@ import { render } from "react-dom";
 import EstabContainer from '../establishments/EstabContainer'
 import { trackPromise } from 'react-promise-tracker';
 import Loader from 'react-loader-spinner';
-import Navbar from '../NavBar/Navbar'
+// import Navbar from '../NavBar/Navbar'
 import ShowMap from '../map/ShowMap'
+import NewNavbar from '../NavBar/NewNavBar'
 
 
 
@@ -121,13 +122,16 @@ import ShowMap from '../map/ShowMap'
       
       return(
             <div>
-               {this.props.user && <Navbar user={this.props.user} logout={this.props.logout}/>}
+               {this.props.user ? <NewNavbar user={this.props.user} logout={this.props.logout}/> : null}
+
                {this.state.finishedFetch ? 
                <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.state.establishments} /> 
                : null }
+
                {this.state.finishedFetch ? 
                <ShowMap estabs={this.state.establishments} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude}/>
                : null }
+               
             </div>
       )
    }
