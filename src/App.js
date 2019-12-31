@@ -14,6 +14,7 @@ import BlacklistDisplay from './components/UserDash/BlacklistDisplay'
 const App = () => {
   const [user, setUser] = useState(null);
   const history = useHistory()
+  const [userID, setUserID] = useState(null)
 
   
 
@@ -22,6 +23,7 @@ const App = () => {
     API.validate()
       .then(user => {
         setUser(user);
+        setUserID(user.id);
         // history.push('/');
         console.log('validated user')
       }).catch(() => {
@@ -53,7 +55,7 @@ const App = () => {
           />
 
         <Route exact path="/blacklist" component={props =>
-          <BlacklistDisplay user={user} logout={logout} /> }
+          <BlacklistDisplay {...props} userID={userID} user={user} logout={logout} /> }
         />  
 
         <Route exact path='/' component={props => 

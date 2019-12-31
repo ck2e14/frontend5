@@ -74,7 +74,7 @@ class ShowMap extends React.Component {
          {this.state.finishedSetState ?
             <Map
               google={this.props.google}
-              zoom={15.5}
+              zoom={14}
               style={mapStyles}
               initialCenter={{ lat: this.props.latitude, lng: this.props.longitude }}
            >

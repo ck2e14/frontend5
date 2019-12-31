@@ -26,7 +26,7 @@ import {
          history.push("/home");
        })
        .catch(errors => {
-         setErrors(errors);
+         setErrors(errors[errors]);
          console.error(errors);
  
        });
