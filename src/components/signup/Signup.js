@@ -41,7 +41,7 @@ import {
                      <div className="content">
                         <h1 className="title-text" align="center">  _Hygenik.com</h1>
                      <div className="header">
-                     {!errors ? 'Signup failed!' : null}
+                     {!errors ? 'Sign up failed. Your password must be at least 6 characters.' : null}
                   </div>
                   <p className="text" >{errors ? 'Please choose your login credentials' : null}</p>
                </div>

@@ -9,6 +9,7 @@ import {
    Link,
    NavLink
  } from "react-router-dom";
+ import NavStyling from './NavBar.css'
 
 const dashStyle = {
    width: '10px',
@@ -21,13 +22,13 @@ const dashStyle = {
 
 const Navbar = (props) => {
    return(
-  <div>
-        <NavLink
+  <div className='nav-div'>
+        <NavLink className="links"
         to='/home'
         exact
         style={dashStyle}
         >Premises Lookup</NavLink>
-        <NavLink
+        <NavLink className="links"
         to='/dashboard'
         exact
         style={dashStyle}
