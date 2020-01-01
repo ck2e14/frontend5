@@ -75,7 +75,7 @@ html {
   transform: rotateZ(0);
   min-width: 1em !important;
   min-height: 2.71428571em;
-  background: rgb(91, 151, 136) !important;
+  background: rgb(210, 219, 217) !important;
   display: inline-block;
   padding: .78571429em 2.1em .78571429em 1em;
   color: rgba(0,0,0,.87);
@@ -85,13 +85,13 @@ html {
   transition: box-shadow .1s ease,width .1s ease;
 }
 .ui.selection.dropdown .menu>.item {
-  border-top: 1px solid #c89898 !important;
+  border-top: 1px solid #98c8b0 !important;
   padding: .78571429rem 1.14285714rem!important;
   white-space: normal;
   word-wrap: normal;
 }
 .ui.selection.dropdown .menu>.item {
-  border-top: 1px solid #9cc2c5 !important;
+  border-top: 1px solid #91bdc08e !important;
   padding: .78571429rem 1.14285714rem!important;
   white-space: normal;
   word-wrap: normal;
@@ -106,7 +106,7 @@ html {
   min-width: 40px !important;
   margin: 0;
   padding: 0 0;
-  background: #c1d8d5 !important;
+  background: #7fb1aab7 !important;
   font-size: 1em;
   text-shadow: none;
   text-align: left;
