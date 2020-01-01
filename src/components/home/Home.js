@@ -44,7 +44,8 @@ import homeStyle from './home.css'
 
 
    handleEstabClick = (estabObject, userID) => {
-      API.newEstab(estabObject, this.state.currentUserId)
+      API.newEstab(estabObject, this.state.currentUserId);
+      alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`)
       
    }
 

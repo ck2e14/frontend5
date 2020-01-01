@@ -9,7 +9,7 @@ const estabCard = props => {
       <div className="wrapper" id=''>
       <div className="container">
         <div className="top">
-        <h5>{props.establishment.name}</h5>
+        <h5 className="estab-name-display">{props.establishment.name}</h5>
         
         <div className="tooltip" onClick={() => props.handleBlacklistClick(props.establishment)} className="blacklist"><img className="blacklist-icon" src="https://static.thenounproject.com/png/429749-200.png"/>
             <span className="tooltiptext">Click to Blacklist</span>

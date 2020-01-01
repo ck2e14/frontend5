@@ -32,7 +32,7 @@ export default class MenuExampleBasic extends Component {
                active={activeItem === 'My Blacklisted Sites'}
                onClick={this.handleItemClick}
             >
-               Blacklisted and Visited Places
+               Blacklist
             </Menu.Item>
          </Link>
 
