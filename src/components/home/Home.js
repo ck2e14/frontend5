@@ -12,10 +12,12 @@ import { render } from "react-dom";
 import EstabContainer from '../establishments/EstabContainer'
 import { trackPromise } from 'react-promise-tracker';
 import Loader from 'react-loader-spinner';
-// import Navbar from '../NavBar/Navbar'
 import ShowMap from '../map/ShowMap'
 import NewNavbar from '../NavBar/NewNavBar'
 import { Button, Input, Footer, Card, CardBody, CardImage, CardTitle, CardText } from 'mdbreact'
+import Popup from '../BlacklistPopup/FeedbackPopup'
+import DropDownExampleSelection from '../DropdownSelector/Dropdown'
+import homeStyle from './home.css'
 
 
 
@@ -31,6 +33,7 @@ import { Button, Input, Footer, Card, CardBody, CardImage, CardTitle, CardText }
          longitude: '',
          latitude: '',
          search: "",
+
       }
    }
 
@@ -87,10 +90,17 @@ import { Button, Input, Footer, Card, CardBody, CardImage, CardTitle, CardText }
       const {search} = this.state
       
       return(
-            <div>
-               {this.props.user ? <NewNavbar user={this.props.user} logout={this.props.logout}/> : null}
+            <div className='big-div'>
+               {this.props.user ? <NewNavbar user={this.props.user} logout={this.props.logout}/> 
+               : null}
+               <div className='drop-down-div'>
+                  <DropDownExampleSelection />
+               </div>
 
-               <Input label="Search Premises" icon="search" value={search} onChange={this.onChange} />
+                  <input className='filter-search' type="text" placeholder="Filter Results" position="left" float="left" value={search} onChange={this.onChange} />
+
+
+            <div>
 
                {this.state.finishedFetch ? 
                <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.filteredEstabs(search)} /> 
@@ -102,6 +112,10 @@ import { Button, Input, Footer, Card, CardBody, CardImage, CardTitle, CardText }
                : null }
                
             </div>
+            </div>
       )
    }
  }
+
+
+//  <input type="search" placeholder="Filter Results" align="left"  value={search} onChange={this.onChange} />

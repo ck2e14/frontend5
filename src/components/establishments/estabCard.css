@@ -1,7 +1,7 @@
  .wrapper {
    width: 250px;
    height: 200px;
-   background: rgb(166, 239, 241);
+   background: rgb(149, 179, 180);
    margin: auto;
    position: relative;
    overflow: hidden;
@@ -13,7 +13,7 @@
  }
  .wrapper:hover {
    transform: scale(1);
-   box-shadow: 5px 20px 30px rgba(94, 164, 167, 0.2);
+   box-shadow: 5px 20px 30px rgba(69, 134, 136, 0.479);
  }
  .wrapper .container {
    width: 100%;
@@ -23,7 +23,7 @@
    padding-top: 30%;
    height: 80%;
    width: 100%;
-   color: white;
+   color: rgb(255, 255, 255);
    /* background: url(https://images.squarespace-cdn.com/content/v1/55cda908e4b0513a93e99588/1559768475510-KDO6QXL5ZL763YIS37ZV/ke17ZwdGBToddI8pDm48kC9qu2gvgDc1fHZgGjPXHQ5Zw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVGjw91RGhfjj5evWzHqs9oJjjqC-iiVlxKn7g29su4hW2bSd6kfRtgWHgNMDgGnmDY/hygiene-icon.png?format=300w) no-repeat center center;
    -webkit-background-size: 100%;
    -moz-background-size: 100%;
@@ -199,7 +199,7 @@
    visibility: hidden;
    width: 120px;
    background-color: black;
-   color: #fff;
+   color: rgb(173, 43, 43);
    text-align: center;
    padding: 5px 0;
    border-radius: 6px;
