@@ -25,7 +25,7 @@
  }
  .wrapper .container .top {
    padding-top: 30%;
-   height: 80%;
+   height: 100%;
    width: 100%;
    color: rgb(255, 255, 255);
    /* background: url(https://images.squarespace-cdn.com/content/v1/55cda908e4b0513a93e99588/1559768475510-KDO6QXL5ZL763YIS37ZV/ke17ZwdGBToddI8pDm48kC9qu2gvgDc1fHZgGjPXHQ5Zw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVGjw91RGhfjj5evWzHqs9oJjjqC-iiVlxKn7g29su4hW2bSd6kfRtgWHgNMDgGnmDY/hygiene-icon.png?format=300w) no-repeat center center;
@@ -134,11 +134,11 @@
    color: white;
  }
  .wrapper .container .bottom .right:hover .remove, .wrapper .container .bottom .right:hover .done {
-   transform: translateY(-100%);
+   transform: translateY(-100%)  !important;
  }
  .wrapper .inside {
    z-index: 9;
-   background: rgb(255, 255, 255);
+   background: rgb(46, 38, 38);
    width: 140px;
    height: 140px;
    position: absolute;
@@ -160,7 +160,7 @@
    right: 0;
    top: 0;
    border-radius: 0;
-   height: 80%;
+   height: 100% !important;
  }
  .wrapper .inside:hover .icon {
    opacity: 0;
@@ -169,7 +169,7 @@
  }
  .wrapper .inside:hover .contents {
    opacity: 1;
-   transform: scale(1.5);
+   transform: scale(1);
    transform: translateY(0);
  }
  .wrapper .inside .contents {
@@ -185,20 +185,22 @@
    width: 200px;
  }
  .wrapper .inside .contents h1, .wrapper .inside .contents p, .wrapper .inside .contents table {
-   color: rgb(0, 0, 0);
+   color: rgb(0, 0, 0) !important;
    font-size: 19px
  }
  .wrapper .inside .contents p {
-   font-size: 19px;
+   font-size: 19px !important;
  }
 
  .blacklist-icon {
-    position: relative;
+   z-index: 1199 !important;
+    position: absolute;
     float: left;
-    padding-top: 20%;
+    padding-top: 0%;
     height: 17%;
     width: 17%;
  }
+
 
  .tooltiptext {
    visibility: hidden;

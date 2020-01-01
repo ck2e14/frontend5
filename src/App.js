@@ -36,6 +36,7 @@ const App = () => {
   const logout = () => {
     API.logout();
     setUser(null);
+    setUserID(null)
     history.push(paths.LOGIN);
   };
 

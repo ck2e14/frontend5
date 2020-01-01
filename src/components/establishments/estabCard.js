@@ -9,11 +9,14 @@ const estabCard = props => {
       <div className="wrapper" id=''>
       <div className="container">
         <div className="top">
-        <h5 className="estab-name-display">{props.establishment.name}</h5>
         
-        <div className="tooltip" onClick={() => props.handleBlacklistClick(props.establishment)} className="blacklist"><img className="blacklist-icon" src="https://static.thenounproject.com/png/429749-200.png"/>
+        <h5 className="estab-name-display">{props.establishment.name}</h5>
+       
+        
+        <div>
+         
             <span className="tooltiptext">Click to Blacklist</span>
-            </div>
+        </div>
           </div>
 
         </div>
@@ -36,6 +39,12 @@ const estabCard = props => {
       <div className="inside">
         <div className="icon"><i className="material-icons">More Info</i></div>
         <div className="contents">
+        <img className="tooltip"
+            onClick={() => props.handleBlacklistClick(props.establishment)} 
+            className="blacklist"
+            className="blacklist-icon" 
+            src="https://static.thenounproject.com/png/429749-200.png"
+          />
           <table>
             <tr>
               <th><strong>Overall Rating</strong></th>
