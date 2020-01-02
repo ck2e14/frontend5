@@ -5,10 +5,10 @@
  .login-container {
     height: 100vh;
     /* background: linear-gradient(233deg, #a3ca9e, #91f1d1, #93bd88); */
-    background: linear-gradient(233deg, #64d9e9, #c1f3ff, #64d9e9);
+    background: linear-gradient(233deg, #095d72, #45a8a8, #0a4749);
     background-size: 600% 600%;
     animation-name: background-anim;
-    animation-duration: 8s;
+    animation-duration: 15s;
     animation-iteration-count: infinite;
  }
  @keyframes background-anim {
@@ -97,15 +97,15 @@
 
  .login-border-box {
    position: relative;
-   padding-top: 15px;
+   padding-top: 75px;
    width: 40vh;
    height: 40vh;
    display: inline-block;
    border-radius: 6px;
    border: 2px solid white;
-   background: linear-gradient(233deg, #64d9e9, #c1f3ff, #64d9e9);
+   background: linear-gradient(233deg, #57e6b6, #46a39b, #92eb82);
    background-size: 600% 600%;
    animation-name: background-anim;
-   animation-duration: 8s;
+   animation-duration: 15;
    animation-iteration-count: infinite;
  }

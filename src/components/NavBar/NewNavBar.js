@@ -3,7 +3,9 @@ import { Menu, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 export default class MenuExampleBasic extends Component {
-  state = {}
+  state = {
+     activeItem: ''
+  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -11,7 +13,7 @@ export default class MenuExampleBasic extends Component {
     const { activeItem } = this.state
 
     return (
-   <Segment>
+
       <Menu>
          <Link to='/home'>
             <Menu.Item
@@ -26,10 +28,11 @@ export default class MenuExampleBasic extends Component {
          <Link to='/blacklist'>
             <Menu.Item
                name='My Blacklisted Sites'
+               background-color="black"
                active={activeItem === 'My Blacklisted Sites'}
                onClick={this.handleItemClick}
             >
-               Blacklisted and Visited Places
+               Blacklist
             </Menu.Item>
          </Link>
 
@@ -43,7 +46,7 @@ export default class MenuExampleBasic extends Component {
             </Menu.Item>
          </Link>
          </Menu>
-         </Segment>
+
     )
   }
 }

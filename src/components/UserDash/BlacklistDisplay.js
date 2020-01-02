@@ -59,6 +59,8 @@ rebuildEstabs = (objects) => {
             <NewNavBar user={this.props.user} logout={this.props.logout} />
                <div className='border-box'>
                   <div className='display-cards-div'>     
+                     <h1> My Blacklisted Sites</h1>
+
                      {/* {this.truthyCheck() && this.state.readyToRender ? this.state.userInfo.blacklists.map(estab => {
                      return(<p>{estab.id}</p>)})  : null} */}
                      {this.state.readyToRender ? this.state.userInfo.blacklists.map(estab => {
@@ -66,6 +68,8 @@ rebuildEstabs = (objects) => {
                      {/* {this.state.readyToRender ? this.buildCards() : null } */}
                      {this.buildCards()}
                   </div>
+
+                  
                </div>
          </div>
       )
