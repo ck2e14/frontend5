@@ -1,6 +1,6 @@
 import React from "react";
 // import { compose, withProps, lifecycle } from "recompose";
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, InfoWindow, Marker, MarkerCluster } from 'google-maps-react';
 import container from '../establishments/container.css'
 
 
@@ -73,6 +73,7 @@ class ShowMap extends React.Component {
 
   
     render(){
+
 
       const mapStyles = {
          width: '65%',

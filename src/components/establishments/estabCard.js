@@ -43,11 +43,11 @@ const estabCard = props => {
             onClick={() => props.handleBlacklistClick(props.establishment)} 
             className="blacklist"
             className="blacklist-icon" 
-            src="https://static.thenounproject.com/png/429749-200.png"
+            src="http://www.myiconfinder.com/uploads/iconsets/256-256-fb707410a020d77346fcd2dc2f6cc93e-cross.png"
           />
           <table>
             <tr>
-              <th><strong>Overall Rating</strong></th>
+              <th><strong>Overall Rating:</strong></th>
               <th><strong>When?</strong></th>
             </tr>
             <tr>
@@ -55,15 +55,15 @@ const estabCard = props => {
               <td>{props.establishment.ratingDate}</td>
             </tr>
             <tr>
-              <th>Premises Type</th>
-              <th>Authority</th>
+              <th>Premises Type:</th>
+              <th>Authority:</th>
             </tr>
             <tr>
               <td>{props.establishment.type_of}</td>
               <td>{props.establishment.localAuth}</td>
             </tr>
             <tr>
-              <th>Authority Contact</th>
+              <th>Authority Contact:</th>
               <th></th>
             </tr>
             <tr>
@@ -71,13 +71,11 @@ const estabCard = props => {
               <td>{props.establishment.addressLine1}</td>
             </tr>
             <tr>
-              <th>Address </th>
+              <th>Address: </th>
               <td>{props.establishment.addressLine2}</td>
+              {/* <td>{props.establishment.postcode}</td> */}
+
             </tr> 
-            <tr>
-              <td>palceholder</td>
-              <td>{props.establishment.postcode}</td>
-            </tr>
           </table>
         </div>
       </div>

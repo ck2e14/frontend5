@@ -21,8 +21,10 @@
  }
 
  .estab-name-display {
-   padding-top: 10%;
-   font-size: 40px;
+   font-size: 35px;
+   padding-bottom: 10%;
+   padding-right: 10%;
+   float: center;
  }
  .wrapper .container .top {
    padding-top: 30%;
