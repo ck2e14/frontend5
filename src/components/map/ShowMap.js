@@ -14,6 +14,7 @@ class ShowMap extends React.Component {
       activeMarker: {},
       selectedPlace: {},
       selectedPlaceRating: '',
+      selectedPlaceType: '',
       finishedSetState: false,
 
    }
@@ -40,6 +41,7 @@ class ShowMap extends React.Component {
     this.setState({
       selectedPlace: props,
       selectedPlaceRating: props.rating,
+      selectedPlaceType: props.type_of,
       activeMarker: marker,
       showingInfoWindow: true
     });
@@ -62,6 +64,7 @@ class ShowMap extends React.Component {
          onClick={this.onMarkerClick}
          name={estab.name}
          rating={estab.ratingValue}
+         typeOf={estab.type_of}
          // onClick={() => console.log(estab.id, estab.name)} 
          />
       })
@@ -93,8 +96,9 @@ class ShowMap extends React.Component {
           onClose={this.onClose}
         >
           <div>
-            <h4>{this.state.selectedPlace.name}</h4>
+            <h1>{this.state.selectedPlace.name}</h1>
             <h4>Hygiene Rating: {this.state.selectedPlaceRating}</h4>
+            <h5>Type: {this.state.selectedPlace.typeOf}</h5>
           </div>
         </InfoWindow>
         </Map> 

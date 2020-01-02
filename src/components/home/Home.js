@@ -95,12 +95,11 @@ import homeStyle from './home.css'
                {this.props.user ? <NewNavbar user={this.props.user} logout={this.props.logout}/> 
                : null}
                <div className='drop-down-div'>
-                  <DropDownExampleSelection />
+                  {/* <DropDownExampleSelection /> */}
                </div>
 
                   <input className='filter-search' type="text" placeholder="Filter Results" position="left" float="left" value={search} onChange={this.onChange} />
 
-                  {console.log(this.props.user.id)}
 
 
             <div>
