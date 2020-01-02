@@ -38,13 +38,13 @@ import homeStyle from './home.css'
    }
 
    onChange = e => {
-      this.setState({ search: e.target.value })
+      this.setState({ search: e.target.value }) 
    }
 
 
 
    handleEstabClick = (estabObject, userID) => {
-      API.newEstab(estabObject, this.state.currentUserId);
+      API.newEstab(estabObject, this.props.user.id);
       alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`)
       
    }
@@ -99,6 +99,8 @@ import homeStyle from './home.css'
                </div>
 
                   <input className='filter-search' type="text" placeholder="Filter Results" position="left" float="left" value={search} onChange={this.onChange} />
+
+                  {console.log(this.props.user.id)}
 
 
             <div>

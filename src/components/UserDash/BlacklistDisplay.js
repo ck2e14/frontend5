@@ -18,7 +18,7 @@ export default class BlacklistDisplay extends React.Component {
    // abstract the below function into the API file. 
 componentDidMount(){
    if(this.props.userID){
-   fetch(`http://localhost:3000/api/v1/users/${this.props.userID}`, {
+   fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}`, {
       method: "GET",
       headers: {
          "Content-Type": "application/json",
@@ -58,6 +58,7 @@ rebuildEstabs = (objects) => {
          <div className='main-div'>
             <NewNavBar user={this.props.user} logout={this.props.logout} />
                <div className='border-box'>
+                  {/* {console.log(this.props.user.id)} */}
                   <div className='display-cards-div'>     
                      <h1> My Blacklisted Sites</h1>
 
