@@ -189,7 +189,7 @@
  }
  .wrapper .inside .contents h1, .wrapper .inside .contents p, .wrapper .inside .contents table {
    color: rgb(0, 0, 0) !important;
-   font-size: 19px
+   font-size: 9px
  }
  .wrapper .inside .contents p {
    font-size: 19px !important;

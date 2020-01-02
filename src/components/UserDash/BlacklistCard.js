@@ -10,10 +10,11 @@ const estabCard = props => {
       <div className="container">
         <div className="top">
         <h5 className="title-h5">{props.establishment.name}</h5>
-        {/* change the below blacklist onCLick to be a REMOVE FROM BLACKLIST */}
-        <div className="tooltip"  className="blacklist"><img         onClick={() => props.remove(props.establishment.blacklists[0].id)}
+        
+       <div className="tooltip"  className="blacklist">
+        {/* <img         onClick={() => props.remove(props.establishment.blacklists[0].id)}
 
- className="blacklist-icon" src="https://img.icons8.com/cotton/2x/checkmark.png"/>
+ className="blacklist-iconBL" src="https://img.icons8.com/cotton/2x/checkmark.png"/>  */}
             <span className="tooltiptext">Click to Blacklist</span>
             </div>
           </div>
@@ -38,6 +39,9 @@ const estabCard = props => {
       <div className="inside">
         <div className="icon"><i className="material-icons">More Info</i></div>
         <div className="contents">
+        <img         onClick={() => props.remove(props.establishment.blacklists[0].id)}
+
+className="blacklist-iconBL" src="https://img.icons8.com/cotton/2x/checkmark.png"/>
           <table>
             <tr>
               <th><strong>Overall Rating</strong></th>
