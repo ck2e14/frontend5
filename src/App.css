@@ -55,7 +55,7 @@ html {
   background: 0 0;
   padding: .92857143em 1.14285714em;
   text-transform: none;
-  color: rgb(69, 187, 118) !important;
+  color: rgb(0, 0, 0) !important;
   font-weight: 400;
   transition: background .1s ease,box-shadow .1s ease,color .1s ease;
 }
