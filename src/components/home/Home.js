@@ -98,7 +98,7 @@ import homeStyle from './home.css'
                   {/* <DropDownExampleSelection /> */}
                </div>
 
-                  <input className='filter-search' type="text" placeholder="Filter Results" position="left" float="left" value={search} onChange={this.onChange} />
+                  <input className='filter-search' type="text" placeholder="Filter by Name" position="left" float="left" value={search} onChange={this.onChange} />
 
 
 
