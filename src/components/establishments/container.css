@@ -1,6 +1,16 @@
-.estabs-div, .main-map-div  {
+.estabs-div {
+   width: 35%;
+   overflow: scroll;
+   float: left;
+   border: 5px solid rgb(248, 248, 248);
+   border-radius: 4px;
+   box-sizing: border-box;
+   background-color: rgba(255, 255, 255, 0);
+ 
+}
+
+.main-map-div {
    width: 35%;
    overflow: scroll;
    float: left;
 }
-

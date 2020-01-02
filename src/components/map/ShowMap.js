@@ -81,6 +81,7 @@ class ShowMap extends React.Component {
 
 
       return(
+         <div className='map-border'>
          <div className='main-map-div'>  
          {this.state.finishedSetState ?
             <Map
@@ -105,7 +106,7 @@ class ShowMap extends React.Component {
         : null }
           
        </div>
-      
+      </div>
       )
    }
 }
