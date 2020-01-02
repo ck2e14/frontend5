@@ -68,7 +68,7 @@ const estabCard = props => {
               <td>{props.establishment.addressLine2}</td>
             </tr> 
             <tr>
-              <td>palceholder</td>
+              {/* <td>palceholder</td> */}
               <td>{props.establishment.postcode}</td>
             </tr>
           </table>
