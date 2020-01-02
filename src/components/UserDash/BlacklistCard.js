@@ -6,10 +6,10 @@ import BlacklistStyle from './BlacklistStyle.css'
 const estabCard = props => {
    
    return (
-      <div className="wrapper" id=''>
+      <div className="wrapperBL" id=''>
       <div className="container">
         <div className="top">
-        <h5>{props.establishment.name}</h5>
+        <h5 className="title-h5">{props.establishment.name}</h5>
         {/* change the below blacklist onCLick to be a REMOVE FROM BLACKLIST */}
         <div className="tooltip"  className="blacklist"><img         onClick={() => props.remove(props.establishment.blacklists[0].id)}
 
