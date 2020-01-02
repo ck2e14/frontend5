@@ -36,7 +36,6 @@ const App = () => {
   const logout = () => {
     API.logout();
     setUser(null);
-    setUserID(null)
     history.push(paths.LOGIN);
   };
 
@@ -46,7 +45,7 @@ const App = () => {
       <Switch>
 
         {user ? <Route exact path="/home" component={props => 
-          <Home {...props} user={user} logout={logout} />} 
+          <Home {...props} userID={userID} user={user} logout={logout} />} 
         /> :  <Route path="/login" component={props => 
           <Login user={user} {...props} setUser={setUser} />} 
         />
