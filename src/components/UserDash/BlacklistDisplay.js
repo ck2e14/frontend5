@@ -3,6 +3,8 @@ import API from '../../adapters/API'
 import BlacklistCard from '../UserDash/BlacklistCard'
 import BlacklistStyle from './BlacklistStyle.css'
 import NewNavBar from '../NavBar/NewNavBar'
+
+
 export default class BlacklistDisplay extends React.Component {
 
    constructor(){
@@ -63,9 +65,10 @@ rebuildEstabs = (objects) => {
          <div className='main-div'>
             <NewNavBar user={this.props.user} logout={this.props.logout} />
                <div className='border-box'>
+               <h1> My Blacklisted Sites</h1>
                   {/* {console.log(this.props.user.id)} */}
                   <div className='display-cards-div'>     
-                     <h1> My Blacklisted Sites</h1>
+                     {/* <h1> My Blacklisted Sites</h1> */}
 
                      {/* {this.truthyCheck() && this.state.readyToRender ? this.state.userInfo.blacklists.map(estab => {
                      return(<p>{estab.id}</p>)})  : null} */}
