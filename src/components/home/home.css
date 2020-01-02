@@ -7,10 +7,10 @@ input[type=text], select {
    width: 8%;
    float: left;
    text-align: center;
-   padding: 12px 20px;
-   margin: 8px 0;
+   /* padding: p 20px; */
+   /* margin: px 0; */
    display: inline-block;
-   border: 3px solid rgb(91, 151, 136);
+   border: 3px solid rgb(141, 218, 198);
    border-radius: 4px;
    box-sizing: border-box;
 }
