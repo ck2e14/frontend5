@@ -295,13 +295,22 @@ h5 {
  .wrapper .inside .contents table {
    text-align: left;
    width: 200px;
+
  }
+ .wrapperBL .inside .contents table {
+  text-align: left;
+  width: 200px;
+}
  .wrapper .inside .contents h1, .wrapper .inside .contents p, .wrapper .inside .contents table {
    color: rgb(129, 27, 27);
-   font-size: 9px
+   font-size: 9px !important
  }
+ .wrapperBL .inside .contents h1, .wrapper .inside .contents p, .wrapper .inside .contents table {
+  color: rgb(129, 27, 27);
+  font-size: 9px
+}
  .wrapper .inside .contents p {
-   font-size: 9px;
+   font-size: 9px !important;
  }
 
  .blacklist-icon {
@@ -311,6 +320,13 @@ h5 {
     height: 17%;
     width: 17%;
  }
+ .blacklist-iconBL {
+  position: relative;
+  float: left;
+  padding-top: 20%;
+  height: 17%;
+  width: 17%;
+}
 
  .tooltiptext {
    visibility: hidden;
