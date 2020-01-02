@@ -235,6 +235,8 @@ h5 {
   overflow: auto
  }
 
+
+
  .estabs-div {
     height: 100vh;
     background-color: #fff;
@@ -247,7 +249,7 @@ h5 {
 }
 
 .estab-name {
-  color:white;
+  color:rgb(141, 65, 65);
 }
 @keyframes background-anim {
   0%{background-position:92% 0%}

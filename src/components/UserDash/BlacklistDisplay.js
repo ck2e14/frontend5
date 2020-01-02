@@ -31,9 +31,14 @@ componentDidMount(){
  };
 }
 
+handleRemoveEstab = (id) => {
+   API.removeBlacklist(id);
+   alert(`Removed premises from your blacklist.`);
+   window.location.reload()
+}
 
 buildCards = () => this.state.rebuilt.map(estab => {
-   return <BlacklistCard establishment={estab} user={this.props.user} />
+   return <BlacklistCard  remove={this.handleRemoveEstab} establishment={estab} user={this.props.user} />
 })
 
 rebuildEstabs = (objects) => {

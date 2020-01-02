@@ -49,6 +49,11 @@ import homeStyle from './home.css'
       
    }
 
+   // handleRemoveEstab = (estabObject, userID) => {
+   //    API.removeBlacklist(estabObject, this.props.user.id);
+   //    alert(`${estabObject.name} has been removed from your blacklist.`)
+   // }
+
 
 
 
@@ -74,9 +79,12 @@ import homeStyle from './home.css'
       }
    }
 
+   interpolateMarkerToFilter = (searchTerm) => {
+      this.setState({ search: searchTerm })
+   }
+
 
    componentDidMount(){
-  
       this.setEstablishments()
    }
 
@@ -110,7 +118,7 @@ import homeStyle from './home.css'
 
 
                {this.state.finishedFetch ? 
-               <ShowMap estabs={this.filteredEstabs(search)} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude}/>
+               <ShowMap  estabs={this.filteredEstabs(search)} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude} />
                : null }
                
             </div>

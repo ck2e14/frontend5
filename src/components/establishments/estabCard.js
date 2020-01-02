@@ -9,6 +9,12 @@ const estabCard = props => {
       <div className="wrapper" id=''>
       <div className="container">
         <div className="top">
+        <img className="tooltip"
+            onClick={() => props.handleBlacklistClick(props.establishment)} 
+            className="blacklist"
+            className="blacklist-icon" 
+            src="http://www.myiconfinder.com/uploads/iconsets/256-256-fb707410a020d77346fcd2dc2f6cc93e-cross.png"
+          />
         
         <h5 className="estab-name-display">{props.establishment.name}</h5>
        
@@ -39,12 +45,12 @@ const estabCard = props => {
       <div className="inside">
         <div className="icon"><i className="material-icons">More Info</i></div>
         <div className="contents">
-        <img className="tooltip"
+        {/* <img className="tooltip"
             onClick={() => props.handleBlacklistClick(props.establishment)} 
             className="blacklist"
             className="blacklist-icon" 
-            src="https://static.thenounproject.com/png/429749-200.png"
-          />
+            src="http://www.myiconfinder.com/uploads/iconsets/256-256-fb707410a020d77346fcd2dc2f6cc93e-cross.png"
+          /> */}
           <table>
             <tr>
               <th><strong>Overall Rating</strong></th>

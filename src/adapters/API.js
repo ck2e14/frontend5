@@ -33,8 +33,13 @@ const jsonify = res => {
      return data.user  
    });
 
+const removeBlacklist = (id) => 
+   fetch(`${BLACKLISTS_URL}/${id}`, {
+     method: "DELETE"
+     })
+  //  .then(jsonify)
 
-
+  
 
 const login = userDetails =>
   fetch(LOGIN_URL, {
@@ -174,6 +179,7 @@ const validate = () =>
       logout,
       getEstabs,
       newEstab,
+      removeBlacklist,
       // blacklistFetch,
       // addToBlacklist,
       // success,

@@ -11,7 +11,9 @@ const estabCard = props => {
         <div className="top">
         <h5>{props.establishment.name}</h5>
         {/* change the below blacklist onCLick to be a REMOVE FROM BLACKLIST */}
-        <div className="tooltip" onClick={() => console.log('HOOK UP TO REMOVE FROM BLACKLIST FETCH')} className="blacklist"><img className="blacklist-icon" src="https://static.thenounproject.com/png/429749-200.png"/>
+        <div className="tooltip"  className="blacklist"><img         onClick={() => props.remove(props.establishment.blacklists[0].id)}
+
+ className="blacklist-icon" src="https://img.icons8.com/cotton/2x/checkmark.png"/>
             <span className="tooltiptext">Click to Blacklist</span>
             </div>
           </div>
