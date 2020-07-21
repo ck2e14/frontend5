@@ -1,0 +1,11 @@
+.map-border {
+   border-radius: 10px !important;
+   overflow: visible;
+}
+
+.main-map-div {
+   padding-left: 2% !important;
+   padding-right: 2% !important;
+   padding-top: 2.5% !important;
+   overflow: hidden;
+}

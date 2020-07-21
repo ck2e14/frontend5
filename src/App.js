@@ -17,9 +17,6 @@ const App = () => {
   const history = useHistory()
   const [userID, setUserID] = useState(null)
 
-  
-
-
   useEffect(() => {
     API.validate()
       .then(user => {
@@ -39,12 +36,10 @@ const App = () => {
     history.push(paths.LOGIN);
   };
 
-
-
   return (
     <div className="App">
+      
       <Switch>
-
         {user ? <Route exact path="/home" component={props => 
           <Home {...props} userID={userID} user={user} logout={logout} />} 
         /> :  <Route path="/login" component={props => 

@@ -1,7 +1,8 @@
  .wrapper {
    width: 250px;
    height: 200px;
-   background: rgb(149, 179, 180);
+   background: rgb(56, 153, 160) !important;
+   /* background: rgb(74, 185, 185) !important; */
    margin: auto;
    position: relative;
    overflow: hidden;
@@ -13,7 +14,7 @@
  }
  .wrapper:hover {
    transform: scale(1);
-   box-shadow: 5px 20px 30px rgba(69, 134, 136, 0.479);
+   box-shadow: 5px 20px 30px rgb(69, 134, 136);
  }
  .wrapper .container {
    width: 100%;
@@ -141,12 +142,13 @@
  }
  .wrapper .inside {
    z-index: 9;
-   background: rgb(46, 38, 38);
+   background: rgb(71, 71, 71) !important;
    width: 140px;
    height: 140px;
    position: absolute;
    top: -70px;
    right: -70px;
+   color: white !important;
    border-radius: 0px 0px 200px 200px;
    transition: all 0.5s, border-radius 2s, top 1s;
    overflow: auto;
@@ -155,7 +157,7 @@
    position: relative;
    right: 20%;
    top: 85px;
-   color: rgb(0, 0, 0);
+   color: rgb(255, 255, 255) !important;
    opacity: 1;
  }
  .wrapper .inside:hover {
@@ -179,21 +181,25 @@
    padding: 0%;
    opacity: 0;
    transform: scale(0.5);
+   font-size: 290px !important; 
    transform: translateY(-200%);
    transition: opacity 0.2s, transform 0.8s;
  }
  .wrapper .inside .contents table {
    text-align: left;
-   font-size: 19px; 
    width: 200px;
  }
  .wrapper .inside .contents h1, .wrapper .inside .contents p, .wrapper .inside .contents table {
-   color: rgb(0, 0, 0) !important;
-   font-size: 9px
+   color: rgb(255, 255, 255) !important;
+   font-size: 122px !important;
  }
  .wrapper .inside .contents p {
-   font-size: 19px !important;
+   /* font-size: 19px !important; */
  }
+
+ th, td {
+  font-size: 11px;
+}
 
  .blacklist-icon {
    z-index: 1199 !important;
@@ -204,6 +210,10 @@
     width: 17%;
  }
 
+ .card-table {
+   font-size: 40px !important
+   ;
+ }
 
  .tooltiptext {
    visibility: hidden;
@@ -222,24 +232,13 @@
  .title {
   height: 50px;
   color: rgb(0, 0, 0);
-  background: linear-gradient(233deg, rgb(173, 219, 194), #fdfdfd, rgb(109, 194, 182));
+  background-color: #1eb461;
   background-size: 600% 600%;
   animation-name: background-anim;
   animation-duration: 3s;
   animation-iteration-count: infinite;
   overflow: auto
  }
-
- .estabs-div {
-    height: 100vh;
-    background-color: #fff;
-    /* background: linear-gradient(233deg, rgb(152, 216, 238), #fdfdfd, #86dae6); */
-    /* background-size: 600% 600%;
-    animation-name: background-anim;
-    animation-duration: 8s;
-    animation-iteration-count: infinite;
-    overflow: scroll */
-}
 
 .estab-name {
   color:white;

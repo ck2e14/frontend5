@@ -45,7 +45,7 @@ const estabCard = props => {
             className="blacklist-icon" 
             src="http://www.myiconfinder.com/uploads/iconsets/256-256-fb707410a020d77346fcd2dc2f6cc93e-cross.png"
           />
-          <table>
+          <table className='card-table'>
             <tr>
               <th><strong>Overall Rating:</strong></th>
               <th><strong>When?</strong></th>

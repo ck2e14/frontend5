@@ -1,16 +1,21 @@
 .estabs-div {
-   width: 25%;
+   width: 35%;
    overflow: scroll;
    float: left;
-   border: 5px solid rgb(248, 248, 248);
+   margin-top: 2.5%;
+   scrollbar-width: 0;
    border-radius: 4px;
    box-sizing: border-box;
-   background-color: rgba(255, 255, 255, 0);
- 
+   background-color: rgb(63, 63, 63) !important;
+}
+
+.estabs-div::-webkit-scrollbar {
+   display: none;
 }
 
 .main-map-div {
-   width: 55% !important;
+   width: 55% !important;  
    overflow: scroll;
    float: left;
+   border-radius: 10px !important;
 }

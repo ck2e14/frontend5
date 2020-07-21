@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import EstabCard from './estabCard'
 import container from '../establishments/container.css'
 
-
-
 export default class EstabContainer extends React.Component {
    
 
@@ -17,7 +15,6 @@ export default class EstabContainer extends React.Component {
       return( 
          <div>
             <div className="estabs-div"> 
-
                {cards}
             </div>
          </div>

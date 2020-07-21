@@ -4,21 +4,12 @@ html {
 
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -31,16 +22,19 @@ html {
 .App-link {
   color: #61dafb;
 }
+
 .ui.menu {
   display: flex;
   margin: 1rem 0;
-  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
-  background: rgb(253, 253, 253) !important;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;  
   font-weight: 400;
   border: 1px solid rgba(34,36,38,.15);
   box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
-  border-radius: .28571429rem;
+  border-radius: 0 !important;
   min-height: 2.85714286em;
+  background-color: #303030 !important;
+
+  
 }
 
 .ui.menu .item {
@@ -53,11 +47,16 @@ html {
   -webkit-user-select: none;
   user-select: none;
   background: 0 0;
-  padding: .92857143em 1.14285714em;
+  /* padding: .92857143em 1.14285714em; */
   text-transform: none;
-  color: rgb(0, 0, 0) !important;
+  color: rgb(192, 192, 192) !important;
   font-weight: 400;
-  transition: background .1s ease,box-shadow .1s ease,color .1s ease;
+  font-size: 1.2vw;
+  transition: all .2s !important;
+}
+
+.ui.menu .item:hover {
+  color: cyan !important;
 }
 
 .ui.fluid.dropdown {
@@ -84,12 +83,14 @@ html {
   border-radius: .28571429rem;
   transition: box-shadow .1s ease,width .1s ease;
 }
+
 .ui.selection.dropdown .menu>.item {
   border-top: 1px solid #98c8b0 !important;
   padding: .78571429rem 1.14285714rem!important;
   white-space: normal;
   word-wrap: normal;
 }
+
 .ui.selection.dropdown .menu>.item {
   border-top: 1px solid #91bdc08e !important;
   padding: .78571429rem 1.14285714rem!important;
@@ -117,7 +118,8 @@ html {
   z-index: 11;
   will-change: transform,opacity;
 }
-.ui.default.dropdown:not(.button)>.text, .ui.dropdown:not(.button)>.default.text {
+
+  .ui.default.dropdown:not(.button)>.text, .ui.dropdown:not(.button)>.default.text {
   color: rgba(255, 255, 255, 0.87) !important;
 }
 

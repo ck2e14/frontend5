@@ -3,12 +3,14 @@
    background-color: aqua;
 }
 
-input[type=text], select {
-   width: 8%;
+.filter-search {
+   width: 18% !important   ;
+   top: 6.5vh;
+   left: 7%;
+   z-index: 9;
+   position: absolute;
    float: left;
    text-align: center;
-   /* padding: p 20px; */
-   /* margin: px 0; */
    display: inline-block;
    border: 3px solid rgb(141, 218, 198);
    border-radius: 4px;

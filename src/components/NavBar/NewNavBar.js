@@ -18,7 +18,7 @@ export default class MenuExampleBasic extends Component {
          <Link to='/home'>
             <Menu.Item
                name='Premises Lookup'
-               active={activeItem === 'Premises Lookup'}
+               // active={activeItem === 'Premises Lookup'}
                onClick={this.handleItemClick}
             >
                Premises Lookup
@@ -29,10 +29,10 @@ export default class MenuExampleBasic extends Component {
             <Menu.Item
                name='My Blacklisted Sites'
                background-color="black"
-               active={activeItem === 'My Blacklisted Sites'}
+               // active={activeItem === 'My Blacklisted Sites'}
                onClick={this.handleItemClick}
             >
-               Blacklist
+               My Blacklist
             </Menu.Item>
          </Link>
 

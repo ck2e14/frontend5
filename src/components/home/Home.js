@@ -19,12 +19,10 @@ import Popup from '../BlacklistPopup/FeedbackPopup'
 import DropDownExampleSelection from '../DropdownSelector/Dropdown'
 import homeStyle from './home.css'
 
+export default class Home extends React.Component {
 
-
- export default class Home extends React.Component {
-
-   constructor(){
-      super()
+   constructor(props){
+      super(props)
       this.state = { 
          establishments: [],
          blacklist: [],
@@ -33,15 +31,12 @@ import homeStyle from './home.css'
          longitude: '',
          latitude: '',
          search: "",
-
       }
    }
 
    onChange = e => {
       this.setState({ search: e.target.value }) 
    }
-
-
 
    handleEstabClick = (estabObject, userID) => {
       API.newEstab(estabObject, this.props.user.id);
@@ -54,14 +49,11 @@ import homeStyle from './home.css'
    //    alert(`${estabObject.name} has been removed from your blacklist.`)
    // }
 
-
-
-
 // trackPromise is an async promise tracker that allows me to put loading icons up for the duration of the async resolution. 
    async setEstablishments() {
       if (!navigator.geolocation) {
          console.log('Geolocation is not supported by your browser');
-       } else {
+      } else {
          console.log('Locating...')       
          window.navigator.geolocation.getCurrentPosition(location => {   
             trackPromise(
@@ -83,49 +75,49 @@ import homeStyle from './home.css'
       this.setState({ search: searchTerm })
    }
 
-
    componentDidMount(){
       this.setEstablishments()
    }
 
-  filteredEstabs = (search) => this.state.establishments.filter(estab => {
+   filteredEstabs = (search) => this.state.establishments.filter(estab => {
       if(!estab.name) return
       return estab.name.toLowerCase().includes(search.toLowerCase()) 
    })
    
-   
-
    render(){
       const {search} = this.state
       
       return(
-            <div className='big-div'>
-               {this.props.user ? <NewNavbar user={this.props.user} logout={this.props.logout}/> 
-               : null}
+            <div className='big-div'> 
+               {
+               this.props.user ? 
+                  <NewNavbar user={this.props.user} logout={this.props.logout}/> 
+               : 
+                  null
+               }
                <div className='drop-down-div'>
                   {/* <DropDownExampleSelection /> */}
                </div>
 
                   <input className='filter-search' type="text" placeholder="Filter by Name" position="left" float="left" value={search} onChange={this.onChange} />
 
-
-
             <div>
-
-               {this.state.finishedFetch ? 
-               <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.filteredEstabs(search)} /> 
-               : null }
+               {
+               this.state.finishedFetch ? 
+                  <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.filteredEstabs(search)} /> 
+               : 
+                  null 
+               }
 
 
                {this.state.finishedFetch ? 
                <ShowMap  estabs={this.filteredEstabs(search)} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude} />
                : null }
-               
             </div>
             </div>
       )
    }
- }
+}
 
 
 //  <input type="search" placeholder="Filter Results" align="left"  value={search} onChange={this.onChange} />
