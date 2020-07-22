@@ -13,7 +13,7 @@
  }
 
  .wrapper:hover {
-   transform: scale(1.1) !important;
+   transform: scale(1.05) !important;
    /* box-shadow: 5px 20px 30px rgb(69, 134, 136); */
    z-index: 999;
    border: 2px solid rgb(0, 0, 0);
@@ -269,7 +269,7 @@
 
  .blacklist:hover {
    color: rgb(216, 22, 22);
-   padding-right: 1%;
+   /* padding-right: 1%; */
 
  }
 

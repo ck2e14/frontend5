@@ -42,7 +42,7 @@ const estabCard = props => {
           <div className="card-contents-inside">
             <span>Composite Rating: </span>{props.establishment.ratingValue} <br/><br/>
             <span>Last Assessed: </span> {props.establishment.ratingDate} <br/><br/>
-            <span>Premises Address: </span><br/>{props.establishment.addressLine1}<br/  > 
+            <span>Premises Address: </span><br/>{props.establishment.addressLine1}<br/> 
                               {props.establishment.addressLine2} <br/>
                               {props.establishment.postcode}<br/><br/>
             <span>Premises Type: </span>{props.establishment.type_of} <br/><br/>
