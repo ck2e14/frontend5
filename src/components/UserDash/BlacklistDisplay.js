@@ -16,11 +16,10 @@ export default class BlacklistDisplay extends React.Component {
       }
    }
 
-
    // abstract the below function into the API file. 
 componentDidMount(){
    if(this.props.userID){
-   fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}`, {
+   fetch(`https://mod5-api.herokuapp.com/api/v1/users/${this.props.user.id}`, {
       method: "GET",
       headers: {
          "Content-Type": "application/json",
@@ -45,7 +44,7 @@ buildCards = () => this.state.rebuilt.map(estab => {
 
 rebuildEstabs = (objects) => {
       objects.blacklists.map(object => {
-         fetch(`http://localhost:3000/api/v1/establishments/${object.establishment_id}`, {
+         fetch(` https://mod5-api.herokuapp.com/api/v1/establishments/${object.establishment_id}`, {
             method: "GET",
             headers: {
                "Content-Type": "application/json",
