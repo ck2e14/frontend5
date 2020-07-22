@@ -39,13 +39,24 @@ const estabCard = props => {
       <div className="inside">
         <div className="icon"><i className="material-icons">More Info</i></div>
         <div className="contents">
-        <img className="tooltip"
+          <div className="card-contents-inside">
+            <span>Composite Rating: </span>{props.establishment.ratingValue} <br/><br/>
+            <span>Last Assessed: </span> {props.establishment.ratingDate} <br/><br/>
+            <span>Premises Address: </span><br/>{props.establishment.addressLine1}<br/> 
+                              {props.establishment.addressLine2} <br/>
+                              {props.establishment.postcode}<br/><br/>
+            <span>Premises Type: </span>{props.establishment.type_of} <br/><br/>
+            <span>Local Authority: </span> {props.establishment.localAuth} <br/><br/>
+            <span>Authority Contact: </span>{props.establishment.localAuthEmail.toLowerCase()}
+          </div>
+          <div className="tooltip"
             onClick={() => props.handleBlacklistClick(props.establishment)} 
             className="blacklist"
-            className="blacklist-icon" 
-            src="http://www.myiconfinder.com/uploads/iconsets/256-256-fb707410a020d77346fcd2dc2f6cc93e-cross.png"
-          />
-          <table className='card-table'>
+            >BLACKLIST SITE</div>
+            {/* // className="blacklist-icon"  */}
+            {/* src="./Assets/blacklist-icon.png" */}
+
+          {/* <table className='card-table'>
             <tr>
               <th><strong>Overall Rating:</strong></th>
               <th><strong>When?</strong></th>
@@ -73,10 +84,10 @@ const estabCard = props => {
             <tr>
               <th>Address: </th>
               <td>{props.establishment.addressLine2}</td>
-              {/* <td>{props.establishment.postcode}</td> */}
+              <td>{props.establishment.postcode}</td>
 
             </tr> 
-          </table>
+          </table> */}
         </div>
       </div>
     </div>

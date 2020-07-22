@@ -7,18 +7,34 @@
    position: relative;
    overflow: hidden;
    display: inline-block;
-   border-radius: 10px 10px 10px 10px;
-   box-shadow: 0;
-   transform: scale(0.95);
-   transition: box-shadow 0.5s, transform 0.5s;
+   border-radius: 10px;
+   transition: box-shadow 0.5s, transform 0.5s, color 1s !important
  }
+
  .wrapper:hover {
-   transform: scale(1);
-   box-shadow: 5px 20px 30px rgb(69, 134, 136);
+   transform: scale(1.2) !important;
+   /* box-shadow: 5px 20px 30px rgb(69, 134, 136); */
+   z-index: 999;
  }
+ 
  .wrapper .container {
    width: 100%;
    height: 100%;
+ }
+
+ .card-contents-inside {
+   font-size: .68vw;
+   margin-top: -10px !important;
+   padding-left: 2%;
+   width: 95%;
+   padding-right: 2%;
+   text-align: left;
+   overflow: hidden;
+ }
+
+ .card-contents-inside span {
+   color: rgb(0, 238, 255);
+   font-size: .75vw;
  }
 
  .estab-name-display {
@@ -27,6 +43,7 @@
    padding-right: 10%;
    float: center;
  }
+
  .wrapper .container .top {
    padding-top: 30%;
    height: 100%;
@@ -38,22 +55,27 @@
    -o-background-size: 100%;
    background-size: 100%; */
  }
+
  .wrapper .container .bottom {
    width: 200%;
    height: 20%;
    transition: transform 0.5s;
  }
+ 
  .wrapper .container .bottom.clicked {
    transform: translateX(-50%);
  }
+ 
  .wrapper .container .bottom h1 {
    margin: 0;
    padding: 0;
  }
+ 
  .wrapper .container .bottom p {
    margin: 0;
    padding: 0;
  }
+ 
  .wrapper .container .bottom .left {
    height: 100%;
    width: 50%;
@@ -61,6 +83,7 @@
    position: relative;
    float: left;
  }
+ 
  .wrapper .container .bottom .left .details {
    font-size: 9px;
    padding: 20px;
@@ -77,19 +100,23 @@
    transition: background 0.5s;
    border-left: solid thin rgba(0, 0, 0, 0.1);
  }
+
  .wrapper .container .bottom .left .blacklist i {
    font-size: 9px;
    padding: 30px;
    color: #254053;
    transition: transform 0.5s;
  }
+
  .wrapper .container .bottom .left .blacklist:hover {
    background: rgb(0, 0, 0);
  }
+
  .wrapper .container .bottom .left .blacklist:hover i {
    transform: translateY(5px);
    color: #00394B;
  }
+
  .wrapper .container .bottom .right {
    width: 50%;
    background: #A6CDDE;
@@ -98,6 +125,7 @@
    height: 200%;
    overflow: hidden;
  }
+ 
  .wrapper .container .bottom .right .details {
    font-size: 9px;
    color: white;
@@ -105,6 +133,7 @@
    float: right;
    width: calc(70% - 40px);
  }
+
  .wrapper .container .bottom .right .done {
    width: calc(30% - 2px);
    float: left;
@@ -112,11 +141,13 @@
    border-right: solid thin rgba(255, 255, 255, 0.3);
    height: 50%;
  }
+ 
  .wrapper .container .bottom .right .done i {
    font-size: 15px;
    padding: 30px;
    color: white;
  }
+
  .wrapper .container .bottom .right .remove {
    width: calc(30% - 1px);
    clear: both;
@@ -125,21 +156,26 @@
    background: rgb(0, 0, 0);
    transition: transform 0.5s, background 0.5s;
  }
+
  .wrapper .container .bottom .right .remove:hover {
    background: rgb(0, 0, 0);
  }
+ 
  .wrapper .container .bottom .right .remove:hover i {
    transform: translateY(5px);
  }
- .wrapper .container .bottom .right .remove i {
+ 
+.wrapper .container .bottom .right .remove i {
    transition: transform 0.5s;
    font-size: 9px;
    padding: 30px;
    color: white;
  }
+
  .wrapper .container .bottom .right:hover .remove, .wrapper .container .bottom .right:hover .done {
    transform: translateY(-100%)  !important;
  }
+
  .wrapper .inside {
    z-index: 9;
    background: rgb(71, 71, 71) !important;
@@ -151,8 +187,9 @@
    color: white !important;
    border-radius: 0px 0px 200px 200px;
    transition: all 0.5s, border-radius 2s, top 1s;
-   overflow: auto;
+   overflow: hidden !important;
  }  
+
  .wrapper .inside .icon {
    position: relative;
    right: 20%;
@@ -160,6 +197,7 @@
    color: rgb(255, 255, 255) !important;
    opacity: 1;
  }
+
  .wrapper .inside:hover {
    width: 100%;
    right: 0;
@@ -167,16 +205,19 @@
    border-radius: 0;
    height: 100% !important;
  }
+
  .wrapper .inside:hover .icon {
    opacity: 0;
    right: 15px;
    top: 15px;
  }
+
  .wrapper .inside:hover .contents {
    opacity: 1;
    transform: scale(1);
    transform: translateY(0);
  }
+
  .wrapper .inside .contents {
    padding: 0%;
    opacity: 0;
@@ -185,14 +226,17 @@
    transform: translateY(-200%);
    transition: opacity 0.2s, transform 0.8s;
  }
+
  .wrapper .inside .contents table {
    text-align: left;
    width: 200px;
  }
+
  .wrapper .inside .contents h1, .wrapper .inside .contents p, .wrapper .inside .contents table {
    color: rgb(255, 255, 255) !important;
    font-size: 122px !important;
  }
+
  .wrapper .inside .contents p {
    /* font-size: 19px !important; */
  }
@@ -201,13 +245,28 @@
   font-size: 11px;
 }
 
- .blacklist-icon {
+ .blacklist {
    z-index: 1199 !important;
     position: absolute;
-    float: left;
+    transition: all .25s;
     padding-top: 0%;
-    height: 17%;
-    width: 17%;
+    font-size: .9vw;;
+    right: 0;
+    top: 50%;
+    padding-right: 2%;
+    transform: translateY(-50%);
+    /* width: 100%; */
+    text-align: center;
+    cursor: pointer;
+    writing-mode: vertical-rl;
+    /* text-orientation: mixed; */
+   color: rgb(197, 106, 106);
+ }
+
+ .blacklist:hover {
+   color: rgb(216, 22, 22);
+   padding-right: 1%;
+
  }
 
  .card-table {
@@ -239,10 +298,11 @@
   animation-iteration-count: infinite;
   overflow: auto
  }
-
+ 
 .estab-name {
   color:white;
 }
+
 @keyframes background-anim {
   0%{background-position:92% 0%}
   50%{background-position:9% 100%}
