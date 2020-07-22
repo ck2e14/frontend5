@@ -1,6 +1,6 @@
 .estabs-div {
    width: 35%;
-   /* overflow: scroll; */
+   overflow: scroll;
    float: left;
    margin-top: 2.5%;
    scrollbar-width: 0;
