@@ -46,8 +46,8 @@ const estabCard = props => {
                               {props.establishment.addressLine2} <br/>
                               {props.establishment.postcode}<br/><br/>
             <span>Premises Type: </span>{props.establishment.type_of} <br/><br/>
-            <span>Local Authority: </span> {props.establishment.localAuth} <br/><br/>
-            <span>Authority Contact: </span>{props.establishment.localAuthEmail.toLowerCase()}
+            <span>Local Authority & Contact </span><br/> {props.establishment.localAuth} <br/>
+                              {props.establishment.localAuthEmail.toLowerCase()}
           </div>
           <div className="tooltip"
             onClick={() => props.handleBlacklistClick(props.establishment)} 
@@ -55,39 +55,7 @@ const estabCard = props => {
             >BLACKLIST SITE</div>
             {/* // className="blacklist-icon"  */}
             {/* src="./Assets/blacklist-icon.png" */}
-
-          {/* <table className='card-table'>
-            <tr>
-              <th><strong>Overall Rating:</strong></th>
-              <th><strong>When?</strong></th>
-            </tr>
-            <tr>
-              <td>{props.establishment.ratingValue}</td> 
-              <td>{props.establishment.ratingDate}</td>
-            </tr>
-            <tr>
-              <th>Premises Type:</th>
-              <th>Authority:</th>
-            </tr>
-            <tr>
-              <td>{props.establishment.type_of}</td>
-              <td>{props.establishment.localAuth}</td>
-            </tr>
-            <tr>
-              <th>Authority Contact:</th>
-              <th></th>
-            </tr>
-            <tr>
-              <td>{props.establishment.localAuthEmail}</td>
-              <td>{props.establishment.addressLine1}</td>
-            </tr>
-            <tr>
-              <th>Address: </th>
-              <td>{props.establishment.addressLine2}</td>
-              <td>{props.establishment.postcode}</td>
-
-            </tr> 
-          </table> */}
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"></link>
         </div>
       </div>
     </div>

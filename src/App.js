@@ -67,8 +67,8 @@ const App = () => {
           <Signup user={user} {...props} setUser={setUser}
         />} />
 
-        
       </Switch>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"></link>
     </div>
   );
 }
