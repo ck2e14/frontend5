@@ -143,6 +143,7 @@ export default class Home extends React.Component {
                      null }
                </div>
             </div>
+
             <div className="bot-bar">
                <a href="https://chriskennedy.live" target="_blank" rel="noopener noreferrer"className="portfolio-link">Christopher Kennedy</a> | Full-stack web development | JavaScript ES6, React | Ruby on Rails | NoSQl | SQLite/PostgreSQL | CD | Git   
             </div>
@@ -152,4 +153,4 @@ export default class Home extends React.Component {
 }
 
 
-//  <input type="search" placeholder="Filter Results" align="left"  value={search} onChange={this.onChange} />
+//  <input t   ype="search" placeholder="Filter Results" align="left"  value={search} onChange={this.onChange} />

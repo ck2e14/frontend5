@@ -113,6 +113,7 @@ body {
   font-size: 1.25vw;
   line-height: 1.5;
   z-index: 99;
+  animation: fade-in 2s ease-in-out both;
 }
 
 .explanation-and-welcome span {
@@ -140,5 +141,14 @@ body {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
