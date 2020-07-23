@@ -138,7 +138,7 @@ export default class Home extends React.Component {
                   }
 
                   { this.state.finishedFetch ? 
-                     <ShowMap  estabs={this.filteredEstabs(search)} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude} />
+                     <ShowMap  estabs={this.filteredEstabs(search)} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude} interpolateMarker={this.interpolateMarkerToFilter}/>
                   : 
                      null }
                </div>

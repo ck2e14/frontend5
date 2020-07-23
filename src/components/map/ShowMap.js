@@ -38,18 +38,21 @@ class ShowMap extends React.Component {
       })
    }
 
-   onMarkerClick = (props, marker, e) =>
-      this.setState({
+   onMarkerClick = (props, marker, e) => {
+      this.props.interpolateMarker(marker.name)
+      return this.setState({
       selectedPlace: props,
       selectedPlaceRating: props.rating,
       selectedPlaceType: props.type_of,
       activeMarker: marker,
       showingInfoWindow: true
    });
+}
 
    onClose = props => {
       if (this.state.showingInfoWindow) {
-      this.setState({
+         this.props.interpolateMarker('')
+         return this.setState({
          showingInfoWindow: false,
          activeMarker: null
       });
@@ -103,7 +106,7 @@ class ShowMap extends React.Component {
                   </div>
                </InfoWindow>
             </Map> 
-        : 
+         : 
             null 
          }
    
