@@ -1,6 +1,6 @@
 import React from "react";
 // import { compose, withProps, lifecycle } from "recompose";
-import { Map, GoogleApiWrapper, InfoWindow, Marker, MarkerCluster } from 'google-maps-react';
+import { Map, GoogleApiWrapper, InfoWindow, Marker, MarkerCluster } from 'google-maps-react';   
 import container from '../establishments/container.css'
 import './ShowMap.css'
 
@@ -87,20 +87,21 @@ class ShowMap extends React.Component {
                google={this.props.google}
                zoom={15.5}
                style={mapStyles}
-               initialCenter={{ lat: this.props.latitude, lng: this.props.longitude }}
+               mapTypeId='satellite'
+               initialCenter={{ lat: this.props.latitude, lng: this.props.longitude}}
             >
          {this.displayMarkers()}
-            <InfoWindow
-               marker={this.state.activeMarker}
-               visible={this.state.showingInfoWindow}
-               onClose={this.onClose}
-            >
-               <div>
-                  <h1>{this.state.selectedPlace.name}</h1>
-                  <h4>Hygiene Rating: {this.state.selectedPlaceRating}</h4>
-                  <h5>Type: {this.state.selectedPlace.typeOf}</h5>
-               </div>
-            </InfoWindow>
+               <InfoWindow
+                  marker={this.state.activeMarker}
+                  visible={this.state.showingInfoWindow}
+                  onClose={this.onClose}
+               >
+                  <div>
+                     <h1>{this.state.selectedPlace.name}</h1>
+                     <h4>Hygiene Rating: {this.state.selectedPlaceRating}</h4>
+                     <h5>Type: {this.state.selectedPlace.typeOf}</h5>
+                  </div>
+               </InfoWindow>
             </Map> 
         : 
             null 
