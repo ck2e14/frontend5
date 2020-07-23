@@ -32,8 +32,8 @@ export default class Home extends React.Component {
          latitude: '',
          search: "",
          geolocationFailure: false,
-         displayWelcomeMessage: true,
-         displayShader: true
+         displayWelcomeMessage: this.props.displayWelcome,
+         displayShader: this.props.displayShader
       }
    }
 
@@ -46,26 +46,23 @@ export default class Home extends React.Component {
       this.setState({ displayShader: false, displayWelcomeMessage: false })
    }
 
+   handlePremisesLookupClick = () => {
+
+   }
+
    handleEstabClick = (estabObject, userID) => {
       API.newEstab(estabObject, this.props.user.id);
       alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`)
       
    }
 
-   // handleRemoveEstab = (estabObject, userID) => {
-   //    API.removeBlacklist(estabObject, this.props.user.id);
-   //    alert(`${estabObject.name} has been removed from your blacklist.`)
-   // }
-
-// trackPromise is an async promise tracker that allows me to put loading icons up for the duration of the async resolution. 
-
    async setEstablishments() {
       if (!navigator.geolocation) {
          console.log('Geolocation is not supported by your browser');
+         alert('Geolocation is not supported by your browser. Please enable location services to use &nbsp; _Hygenik.')
       } else {
          console.log('Locating...')       
          window.navigator.geolocation.getCurrentPosition(location => {   
-            trackPromise(
             API.getEstabs(location)
                .then(estabs => this.setState({
                   establishments: estabs,
@@ -75,7 +72,7 @@ export default class Home extends React.Component {
                   currentUserId: this.props.user.id
  
                }))
-         )})   
+         }, () => alert('Geolocation failure. Please refresh the page and ensure _Hygenik has access to locations services.'))   
 
       }
    }
@@ -83,9 +80,11 @@ export default class Home extends React.Component {
    interpolateMarkerToFilter = (searchTerm) => {
       this.setState({ search: searchTerm })
    }
+   // the above method needs to be finished, to take values from the marker thats clicked and plug it into the filter (i.e. state.search)
 
    componentDidMount(){
-      this.setEstablishments()
+      this.setEstablishments();
+
    }
 
    filteredEstabs = (search) => this.state.establishments.filter(estab => {
@@ -102,23 +101,25 @@ export default class Home extends React.Component {
             { displayShader ? <div className="shader-layer" onClick={this.shaderClick}></div> : null }
 
             <div className='big-div'> 
-
+            
                { displayWelcomeMessage ?  
                   <div className="explanation-and-welcome">
                   <span> Welcome to  &nbsp;  _Hygenik!</span> <br/><br/>
 
                   <span className='highlight-this'>I hope you find this app useful for exploring the FSA-assessed hygiene ratings of places to eat near you - particularly considering the current situation. <br/><br/>
 
-                  On that note - this app makes use of Food Standards Agency's APIs. Since March, they have experienced a surge, as you might expect, in the number of requests that are made to their resources. This means that at peak usage, the FSA are throttling requests. <br/><br/>Unfortunately this may mean waiting a few seconds longer than normal to load.
+                  On that note - this app makes use of Food Standards Agency's APIs. Since March, they have experienced a surge, as you might expect, in the number of requests that are made to their resources. At peak usage, the FSA are throttling requests. <br/><br/>Unfortunately this may mean waiting a few seconds longer than normal to load.
                   <br/><br/>
                   More information can be found <a href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here</a></span> 
                </div> 
                :
                   null }
+
                { this.props.user ? 
                   <NewNavbar user={this.props.user} logout={this.props.logout}/> 
                : 
                   null }
+
                {/* <div className='drop-down-div'>
                   <DropDownExampleSelection />
                </div> */}
@@ -129,7 +130,8 @@ export default class Home extends React.Component {
                   { this.state.finishedFetch ? 
                      <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.filteredEstabs(search)} /> 
                   :
-                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                     // loading spinner 
                   }
 
                   { this.state.finishedFetch ? 

@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import API from '../../adapters/API';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-  Link,
-  useHistory
+   BrowserRouter as Router,
+   Switch,
+   Route,
+   Redirect,
+   Link,
+   useHistory
 } from "react-router-dom";
 import './Login.css'
 
 
 
 const Login = props => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
-  const history = useHistory();
+   const [username, setUsername] = useState("");
+   const [password, setPassword] = useState("");
+   const [errors, setErrors] = useState([]);
+   const history = useHistory();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -41,7 +41,7 @@ const Login = props => {
                <div>
                   <div>
                      <div className="content">
-                        <h1 className="title-text" align="center"> _Hygenik.com</h1> 
+                        <h1 className="title-text" align="center"> _Hygenik<span>.</span>com</h1> 
                            <div className="header">
                               {!errors ? 'Incorrect username or password - please try again.' : null}
                            </div>

@@ -8,8 +8,8 @@ import {
    Redirect,
    Link,
    NavLink
- } from "react-router-dom";
- import NavStyling from './NavBar.css'
+} from "react-router-dom";
+import NavStyling from './NavBar.css'
 
 const dashStyle = {
    width: '10px',
@@ -22,19 +22,19 @@ const dashStyle = {
 
 const Navbar = (props) => {
    return(
-  <div className='nav-div'>
-        <NavLink
-        to='/home'
-        exact
-        style={dashStyle}
-        >Premises Lookup</NavLink>
-        <NavLink 
-        to='/dashboard'
-        exact
-        style={dashStyle}
-        >User Dashboard</NavLink>
-       {props.user.id ? <button onClick={props.logout}>Log Out</button> : null}
-  </div>
+   <div className='nav-div'>
+      <NavLink
+      to='/'
+      exact
+      style={dashStyle}
+      >Premises Lookup</NavLink>
+      <NavLink 
+      to='/dashboard'
+      exact
+      style={dashStyle}
+      >User Dashboard</NavLink>
+      {props.user.id ? <button onClick={props.logout}>Log Out</button> : null}
+   </div>
    )
 }
 

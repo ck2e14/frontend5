@@ -3,50 +3,48 @@ import { Menu, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 export default class MenuExampleBasic extends Component {
-  state = {
-     activeItem: ''
-  }
+   state = {
+      activeItem: ''
+   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  render() {
-    const { activeItem } = this.state
+   render() {
+      const { activeItem } = this.state
 
-    return (
+      return (
+         <Menu>
+            <Link to='/find-premises'>
+               <Menu.Item
+                  name='Premises Lookup'
+                  // active={activeItem === 'Premises Lookup'}
+                  onClick={this.handleItemClick}
+               >
+                  Premises Lookup
+               </Menu.Item>
+            </Link>
 
-      <Menu>
-         <Link to='/home'>
-            <Menu.Item
-               name='Premises Lookup'
-               // active={activeItem === 'Premises Lookup'}
-               onClick={this.handleItemClick}
-            >
-               Premises Lookup
-            </Menu.Item>
-         </Link>
+            <Link to='/blacklist'>
+               <Menu.Item
+                  name='My Blacklisted Sites'
+                  background-color="black"
+                  // active={activeItem === 'My Blacklisted Sites'}
+                  onClick={this.handleItemClick}
+               >
+                  My Blacklist
+               </Menu.Item>
+            </Link>
 
-         <Link to='/blacklist'>
-            <Menu.Item
-               name='My Blacklisted Sites'
-               background-color="black"
-               // active={activeItem === 'My Blacklisted Sites'}
-               onClick={this.handleItemClick}
-            >
-               My Blacklist
-            </Menu.Item>
-         </Link>
-
-         <Link to='/'>
-            <Menu.Item
-               name='Log Out'
-               active={activeItem === 'Log Out'}
-               onClick={this.props.logout}
-            >
-               Log Out
-            </Menu.Item>
-         </Link>
-         </Menu>
-
-    )
-  }
+            <Link to='/'>
+               <Menu.Item
+                  name='Log Out'
+                  active={activeItem === 'Log Out'}
+                  onClick={this.props.logout}
+               >
+                  Log Out
+               </Menu.Item>
+            </Link>
+            </Menu>
+      )
+   }
 }

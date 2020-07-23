@@ -6,7 +6,7 @@
     height: 100vh;
     /* background: linear-gradient(233deg, #a3ca9e, #91f1d1, #93bd88); */
     /* background: linear-gradient(233deg, #29a096, #d8d8d8, #397d80); */
-    background-color: #23617a;
+    background-color: #292929;
     background-size: 600% 600%;
     animation-name: background-anim;
     animation-duration: 15s;
@@ -32,40 +32,47 @@
 
  .title-text {
     color: white;
-    font-size: 40px;
+    font-size: 70px;
     font-family: 'Saira Semi Condensed', sans-serif;
-    text-shadow: 15px 3px 75px white;
+    /* text-shadow: 15px 3px 15px white; */
+ }
 
+ .title-text span {
+   color: cyan;
  }
 
  .register-link {
     color: white;
-    width: 27%;
+    /* width: 27%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none !important;
+    font-size: .75vw !important;
    padding: 12px 20px;
    margin: 8px 0;
    display: inline-block;
-   border: 1px solid rgb(255, 255, 255);
    border-radius: 4px;
    box-sizing: border-box;
    background-color: rgba(255, 255, 255, 0);
  }
 
  .signin-link {
+  /* width: 75%; */
+  padding: 12px 20px;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 8px 0;
+  display: inline-block;
+  /* border: 1px solid rgb(255, 254, 254); */
+  border-radius: 4px;
+  box-sizing: border-box;
   color: white;
-  width: %;
- /* padding: 12px 20px; */
- margin: 8px 0;
- display: inline-block;
- border: 1px solid rgb(255, 255, 255);
- border-radius: 4px;
- box-sizing: border-box;
- background-color: rgba(255, 255, 255, 0);
 }
 
  input[type=text], select {
-   width: 3%;
    text-align: center;
    padding: 12px 20px;
+   transform: scaleX(1.25) scaleY(1.1) !important;
    margin: 8px 0;
    display: inline-block;
    border: 3px solid rgb(255, 252, 252);
@@ -74,27 +81,32 @@
  }
 
  input[type=password], select {
-   width: 3%;
+   transform: scaleX(1.25) scaleY(1.1) !important;
+   margin-top: 15px !important;
    text-align: center;
    padding: 12px 20px;
    margin: 8px 0;
    display: inline-block;
-   border: 3px solid rgb(255, 253, 253);
+   border: none !important;
    border-radius: 4px;
    box-sizing: border-box;
  }
 
  input[type=submit], select {
-   width: 75%;
-   padding: 12px 20px;
-   background-color: rgba(255, 255, 255, 0);
-   margin: 8px 0;
-   display: inline-block;
-   border: 1px solid rgb(255, 254, 254);
-   border-radius: 4px;
-   box-sizing: border-box;
-   color: white;
- }
+    /* width: 75%; */
+    padding: 12px 20px;
+    background-color: rgba(255, 255, 255, 0);
+    margin: 8px 0;
+    display: inline-block;
+    padding-left: 24%;
+    padding-right: 24%;
+    border: none !important;
+    border-radius: 4px;
+    font-size: .8vw !important;
+
+    box-sizing: border-box;
+    color: white;
+  }
 
  .login-border-box {
    position: relative;
