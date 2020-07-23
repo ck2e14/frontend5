@@ -146,6 +146,7 @@ const validate = () =>
     const getEstabs = (position) => {
       console.log(position.coords.longitude.toString())
       console.log(position.coords.latitude.toString())
+      console.log('fetching from FSA API...')
       return fetch(`https://cors-anywhere.herokuapp.com/https://ratings.food.gov.uk/enhanced-search/en-GB/%5e/%5e/DISTANCE/0/%5e/${position.coords.longitude}/${position.coords.latitude}/1/150/json`).then(res => res.json()).then(data => {
         return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
           return { 

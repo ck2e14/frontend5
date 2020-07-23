@@ -31,11 +31,19 @@ export default class Home extends React.Component {
          longitude: '',
          latitude: '',
          search: "",
+         geolocationFailure: false,
+         displayWelcomeMessage: true,
+         displayShader: true
       }
    }
 
    onChange = e => {
       this.setState({ search: e.target.value }) 
+   }
+
+   shaderClick = () => {
+      console.log('yeah')
+      this.setState({ displayShader: false, displayWelcomeMessage: false })
    }
 
    handleEstabClick = (estabObject, userID) => {
@@ -50,6 +58,7 @@ export default class Home extends React.Component {
    // }
 
 // trackPromise is an async promise tracker that allows me to put loading icons up for the duration of the async resolution. 
+
    async setEstablishments() {
       if (!navigator.geolocation) {
          console.log('Geolocation is not supported by your browser');
@@ -86,35 +95,50 @@ export default class Home extends React.Component {
    
    render(){
       const {search} = this.state
-      
+      const {displayShader} = this.state
+      const {displayWelcomeMessage} = this.state
       return(
+         <> 
+            { displayShader ? <div className="shader-layer" onClick={this.shaderClick}></div> : null }
+
             <div className='big-div'> 
-               {
-               this.props.user ? 
+
+               { displayWelcomeMessage ?  
+                  <div className="explanation-and-welcome">
+                  <span> Welcome to _Hygenik!</span> <br/><br/>
+
+                  <span className='highlight-this'>I hope you find this app useful for exploring the FSA-assessed hygiene ratings of places to eat near you - particularly considering the current situation. <br/><br/>
+
+                  On that note - this app makes use of Food Standards Agency's APIs. Since March, they have experienced a surge, as you might expect, in the number of requests that are made to their resources. This means that, variably and unpredictably, the FSA have opted to throttle requests. <br/><br/>Unfortunately this may mean waiting a few seconds longer than normal to load.
+                  <br/><br/>
+                  More information can be found <a href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here</a></span> 
+               </div> 
+               :
+                  null }
+               { this.props.user ? 
                   <NewNavbar user={this.props.user} logout={this.props.logout}/> 
                : 
-                  null
-               }
-               <div className='drop-down-div'>
-                  {/* <DropDownExampleSelection /> */}
-               </div>
+                  null }
+               {/* <div className='drop-down-div'>
+                  <DropDownExampleSelection />
+               </div> */}
 
                   <input className='filter-search' type="text" placeholder="Filter by Name" position="left" float="left" value={search} onChange={this.onChange} />
 
-            <div>
-               {
-               this.state.finishedFetch ? 
-                  <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.filteredEstabs(search)} /> 
-               : 
-                  null 
-               }
+               <div>
+                  { this.state.finishedFetch ? 
+                     <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.filteredEstabs(search)} /> 
+                  :
+                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                  }
 
-
-               {this.state.finishedFetch ? 
-               <ShowMap  estabs={this.filteredEstabs(search)} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude} />
-               : null }
+                  { this.state.finishedFetch ? 
+                     <ShowMap  estabs={this.filteredEstabs(search)} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude} />
+                  : 
+                     null }
+               </div>
             </div>
-            </div>
+         </>
       )
    }
 }

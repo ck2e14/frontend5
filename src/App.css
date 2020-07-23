@@ -26,7 +26,7 @@ html {
 
 .ui.menu {
   display: flex;
-  margin: 1rem 0;
+  margin: 0 !important;
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;  
   font-weight: 400;
   border: 1px solid rgba(34,36,38,.15);

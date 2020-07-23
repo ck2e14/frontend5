@@ -1,18 +1,96 @@
 .search-div {
-   float: left;
-   background-color: aqua;
+  float: left;
+  background-color: aqua;
 }
 
 .filter-search {
-   width: 18% !important   ;
-   top: 6.5vh;
-   left: 7%;
-   z-index: 9;
-   position: absolute;
-   float: left;
-   text-align: center;
-   display: inline-block;
-   border: 3px solid rgb(141, 218, 198);
-   border-radius: 4px;
-   box-sizing: border-box;
+  width: 14% !important   ;
+  top: 5.75vh;
+  left: 1%;
+  height: 3vh;
+  z-index: 9;
+  position: absolute;
+  float: left;
+  text-align: center;
+  display: inline-block;
+  border: 3px solid rgb(141, 218, 198);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: fixed;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+.explanation-and-welcome {
+  width: 60vw;
+  padding: 1%;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.63);
+  backdrop-filter: blur(5px);
+  color: rgb(121, 218, 224) !important;
+  font-size: 1.25vw;
+  line-height: 1.5;
+  z-index: 99;
+}
+
+.explanation-and-welcome span {
+  font-size: 1.75vw;
+}
+
+.highlight-this {
+  color: white;
+  font-size: 1.25vw !important;
+}
+
+.shader-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
