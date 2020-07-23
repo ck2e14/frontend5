@@ -74,6 +74,10 @@ export default class Home extends React.Component {
       }
    }
 
+   escapeClick = () => {
+      this.setState({ displayWelcomeMessage: false, displayShader: false})
+   }
+
    interpolateMarkerToFilter = (searchTerm) => {
       this.setState({ search: searchTerm })
    }
@@ -100,6 +104,7 @@ export default class Home extends React.Component {
 
                { displayWelcomeMessage ?  
                   <div className="explanation-and-welcome">
+                     <div className="escape-key" onClick={this.escapeClick}>X</div>
                   <span> Welcome to  &nbsp;  _Hygenik!</span> <br/><br/>
 
                   <span className='highlight-this'>I hope you find this app useful for exploring the FSA-assessed hygiene ratings of places to eat near you - particularly considering the current situation. <br/><br/>

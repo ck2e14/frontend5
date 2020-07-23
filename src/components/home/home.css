@@ -47,6 +47,24 @@ body {
   color: greenyellow
 }
 
+.escape-key {
+  position: absolute;
+  padding: .5%;
+  padding-left: 1.25%;
+  padding-right: 1.25%;
+  border: 1px solid white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .25s;
+  right: 5%;
+  top: 5%;
+}
+
+.escape-key:hover {
+  color: grey;
+  border-color: cyan;
+}
+
 .lds-ring {
   display: inline-block;
   position: relative;

@@ -75,7 +75,7 @@ class ShowMap extends React.Component {
       
       const mapStyles = {
          width: '60%',
-         height: '85%',
+         height: '83%',
          borderRadius: '20px',
          border: '5px solid #524632'
       };
