@@ -44,7 +44,7 @@ export default class MenuExampleBasic extends Component {
                   Log Out
                </Menu.Item>
             </Link>
-            </Menu>
+         </Menu>
       )
    }
 }

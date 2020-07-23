@@ -101,14 +101,14 @@ export default class Home extends React.Component {
             { displayShader ? <div className="shader-layer" onClick={this.shaderClick}></div> : null }
 
             <div className='big-div'> 
-            
+
                { displayWelcomeMessage ?  
                   <div className="explanation-and-welcome">
                   <span> Welcome to  &nbsp;  _Hygenik!</span> <br/><br/>
 
                   <span className='highlight-this'>I hope you find this app useful for exploring the FSA-assessed hygiene ratings of places to eat near you - particularly considering the current situation. <br/><br/>
 
-                  On that note - this app makes use of Food Standards Agency's APIs. Since March, they have experienced a surge, as you might expect, in the number of requests that are made to their resources. At peak usage, the FSA are throttling requests. <br/><br/>Unfortunately this may mean waiting a few seconds longer than normal to load.
+                  On that note - this app makes use of Food Standards Agency's APIs. Since March, they have experienced a surge, as you might expect, in the number of requests that are made to their resources. At peak usage, the FSA are throttling requests. <br/><br/>Unfortunately this may mean waiting a few seconds longer than normal to load, or the service may be made temporarily unavailable entirely.
                   <br/><br/>
                   More information can be found <a href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here</a></span> 
                </div> 
