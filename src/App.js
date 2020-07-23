@@ -10,7 +10,6 @@ import Home from './components/home/Home'
 import UserDash from './components/UserDash/UserDash';
 import BlacklistDisplay from './components/UserDash/BlacklistDisplay';
 import 'bootstrap/dist/css/bootstrap.min.css';
-  
 
 const App = () => {
   const [user, setUser] = useState(null);
