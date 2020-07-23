@@ -37,7 +37,7 @@ const estabCard = props => {
           </div>
       </div>
       <div className="inside">
-        <div className="icon"><i className="material-icons">More Info</i></div>
+        <div className="icon"><i className="material-icons">Details</i></div>
         <div className="contents">
           <div className="card-contents-inside">
             <span>Composite Rating: </span>{props.establishment.ratingValue} <br/><br/>
