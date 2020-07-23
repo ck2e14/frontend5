@@ -42,12 +42,10 @@ export default class Home extends React.Component {
    }
 
    shaderClick = () => {
-      console.log('yeah')
       this.setState({ displayShader: false, displayWelcomeMessage: false })
    }
 
    handlePremisesLookupClick = () => {
-
    }
 
    handleEstabClick = (estabObject, userID) => {
@@ -55,7 +53,7 @@ export default class Home extends React.Component {
       alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`)
       
    }
-
+   
    async setEstablishments() {
       if (!navigator.geolocation) {
          console.log('Geolocation is not supported by your browser');
@@ -70,7 +68,6 @@ export default class Home extends React.Component {
                   currentLongitude: location.coords.longitude,
                   finishedFetch: true,
                   currentUserId: this.props.user.id
- 
                }))
          }, () => alert('Geolocation failure. Please refresh the page and ensure _Hygenik has access to locations services.'))   
 
@@ -84,7 +81,6 @@ export default class Home extends React.Component {
 
    componentDidMount(){
       this.setEstablishments();
-
    }
 
    filteredEstabs = (search) => this.state.establishments.filter(estab => {
@@ -108,9 +104,11 @@ export default class Home extends React.Component {
 
                   <span className='highlight-this'>I hope you find this app useful for exploring the FSA-assessed hygiene ratings of places to eat near you - particularly considering the current situation. <br/><br/>
 
-                  On that note - this app makes use of Food Standards Agency's APIs. Since March, they have experienced a surge, as you might expect, in the number of requests that are made to their resources. At peak usage, the FSA are throttling requests. <br/><br/>Unfortunately this may mean waiting a few seconds longer than normal to load, or the service may be made temporarily unavailable entirely.
+                  On that note - since March, the FSA have experienced a big surge in the number of requests made to their resources. At peak usage requests are being throttled. <br/><br/>Unfortunately this may mean waiting longer than usual to load, or the service may be made temporarily unavailable entirely.
                   <br/><br/>
                   More information can be found <a href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here</a></span> 
+                  <br/><br/>
+                  {/* Please also note that Heroku unloads apps from its servers when they haven't been very recently accessed - you may have experienced longer loading times of the website itself because of this upon initial visit.  */}
                </div> 
                :
                   null }
@@ -139,6 +137,9 @@ export default class Home extends React.Component {
                   : 
                      null }
                </div>
+            </div>
+            <div className="bot-bar">
+               <a href="https://chriskennedy.live" target="_blank" rel="noopener noreferrer"className="portfolio-link">Christopher Kennedy</a> | Full-stack web development | JavaScript ES6, React | Ruby on Rails | NoSQl | SQLite/PostgreSQL | CD/CI | Git   
             </div>
          </>
       )

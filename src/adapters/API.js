@@ -98,10 +98,9 @@ const addToBlacklist = (estabData, userID) => {
   }
 
 const getEstabs = (position) => {
-  console.log(position.coords.longitude.toString())
-  console.log(position.coords.latitude.toString())
+  console.log(position.coords.longitude.toString(), position.coords.latitude.toString())
   console.log('fetching from FSA API...')
-  return fetch(`https://cors-anywhere.herokuapp.com/https://ratings.food.gov.uk/enhanced-search/en-GB/%5e/%5e/DISTANCE/0/%5e/${position.coords.longitude}/${position.coords.latitude}/1/150/json`).then(handleErrors).then(res => res.json()).then(data => {
+  return fetch(`https://cors-anywhere.herokuapp.com/https://ratings.food.gov.uk/enhanced-search/en-GB/%5e/%5e/DISTANCE/0/%5e/${position.coords.longitude}/${position.coords.latitude}/1/150/json`).then(handleErrors).then(response => response.json()).then(data => {
     return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
       return { 
           id: obj.LocalAuthorityBusinessID,
@@ -126,11 +125,12 @@ const getEstabs = (position) => {
     })
 }
 
-
 const handleErrors = response => {
   if (!response.ok) {
-    console.log('reached')
-    alert('We apologise for the inconvenience - the FSA API service is unavailable owing to high volume-led throttling of requests. Please try again in a couple of minutes.')
+    console.log(response)
+    console.log(`FSA response status: ${response.statusText}. FSA response code: ${response.status}`)
+    alert(`We apologise for the inconvenience - the FSA API service is unavailable owing to high volume-led throttling of requests. Please refresh the page, or try again in a couple of minutes.
+    > FSA response status: ${response.statusText}. FSA response code: ${response.status}`)
       // throw Error(response.statusText);
       
   }
