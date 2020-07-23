@@ -33,9 +33,7 @@ body {
   height: 5vh !important;
   text-align: left;
   width: 100%;
-  background-color: rgb(46, 46, 46);
-  /* font-weight: bold; */
-  height: 2.8vh;
+  background-color: rgb(46, 46, 46);  
   font-size: 1vw;
   z-index: 9;
 }
