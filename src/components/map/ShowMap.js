@@ -82,7 +82,7 @@ class ShowMap extends React.Component {
          width: '60%',
          height: '83%',
          borderRadius: '20px',
-         border: '5px solid #93c572 '
+         border: '5px solid #444444; '
       };
 
       return(

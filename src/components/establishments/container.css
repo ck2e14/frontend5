@@ -4,14 +4,10 @@
    float: left;
    margin-top: 2.5%;
    scrollbar-width: 0;
-   border-radius: 4px;
+   border-radius: 4px;;
    box-sizing: border-box;
    background-color: rgb(63, 63, 63) !important;
 }
-
-/* .estabs-div::-webkit-scrollbar {
-   display: none;
-} */
 
 .wrapper:hover {
    transform: none !important;
@@ -34,4 +30,17 @@
    overflow: scroll;
    float: left;
    border-radius: 10px !important;
+}
+
+.estabs-div::-webkit-scrollbar {
+   width: 10px;
+}
+.estabs-div::-webkit-scrollbar-track {
+   background: #444444;
+}
+.estabs-div::-webkit-scrollbar-thumb {
+   background: rgb(30, 182, 182);
+}
+.estabs-div::-webkit-scrollbar-thumb:hover {
+   background: rgb(30, 182, 182);
 }

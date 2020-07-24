@@ -4,7 +4,6 @@ import  './estabCard.css'
 
 const EstabCard = props => {
 
-  const cardClick = establishment => console.log(establishment)
   return (
     <div className="card-wrapper" onClick={() => props.handleEstabCardClick(props.establishment)}>
 
@@ -12,10 +11,10 @@ const EstabCard = props => {
         
         <div className="info-pane">
 
-          <span>Rating: </span> {props.establishment.ratingValue} &nbsp;&nbsp; <span>Assessment Date: </span> {props.establishment.ratingDate}<br/>
-          <span>Type: </span> {props.establishment.type_of}<br/>
-          <span>Address </span><br/>{props.establishment.addressLine1}<br/>{props.establishment.addressLine2}<br/>{props.establishment.postcode}<br/>
-          <span>Responsible Authority: </span> {props.establishment.localAuth} ({props.establishment.localAuthEmail})
+          <span>FSA Hygiene Rating: </span> {props.establishment.ratingValue}/5 &nbsp; <span>Assessment Date: </span> {props.establishment.ratingDate}<br/><br/>
+          <span>Type: </span> <br/>{props.establishment.type_of}<br/><br/>
+          <span>Address: </span><br/>{props.establishment.addressLine2}<br/>{props.establishment.postcode}<br/><br/>
+          <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} ({props.establishment.localAuthEmail})
           
           <div className="blacklist-button"
             onClick={() => props.handleBlacklistClick(props.establishment)} 

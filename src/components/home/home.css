@@ -13,15 +13,20 @@ body {
   max-width: 11%;
   min-width: 11%;
   top: 5.75vh;
-  left: 1%;
+  left: 2.5%;
   height: 3vh;
+  max-height: 3vh;
+  min-height: 3vh;;
   z-index: 9;
   position: fixed;
   text-align: center;
   display: inline-block;
-  border: 3px solid rgb(141, 218, 198);
-  border-radius: 4px;
-  box-sizing: border-box;
+  border: none;
+  color: rgb(85, 85, 85);
+}
+
+.filter-search:focus {
+  outline: none;
 }
 
 .clear-search-button {
