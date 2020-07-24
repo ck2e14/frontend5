@@ -4,11 +4,10 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker, MarkerCluster } from 'google
 import container from '../establishments/container.css'
 import './ShowMap.css'
 
-
 class ShowMap extends React.Component {
 
-   constructor(){
-      super()
+   constructor(props){
+      super(props)
       this.state = {
       establishments: [],
       showingInfoWindow: false,
@@ -17,15 +16,15 @@ class ShowMap extends React.Component {
       selectedPlaceRating: '',
       selectedPlaceType: '',
       finishedSetState: false,
-      recenterToHere: {}
+      // recenterToHere: { latitude: this.props.latitude, longitude: this.props.longitude }
+      }
    }
-}
 
    componentDidMount(){
       this.setState({
          establishments: this.props.estabs,
          finishedSetState: true,
-
+         // recenterToHere: {}
       })
    }
 
@@ -47,7 +46,7 @@ class ShowMap extends React.Component {
       activeMarker: marker,
       showingInfoWindow: true
    });
-}
+   }
 
    onClose = props => {
       if (this.state.showingInfoWindow) {
@@ -86,8 +85,7 @@ class ShowMap extends React.Component {
       // const recenterMapIfActiveMarker = () => {
       //    return 
       // }
-      let recenterLatitude = this.state.recenterToHere.latitude
-      let recenterLongitude = this.state.recenterToHere.longitude
+      
 
       return(
          <div className='main-map-div'>  
@@ -98,7 +96,7 @@ class ShowMap extends React.Component {
                style={mapStyles}
                mapTypeId='satellite'
                initialCenter={{ lat: this.props.latitude, lng: this.props.longitude}}
-               center={{lat: recenterLatitude, lng: recenterLongitude }}
+               // center={{lat: this.state.recenterToHere.latitude, lng: this.state.recenterToHere.longitude }}
             >
          {this.displayMarkers()}
                <InfoWindow 
@@ -116,7 +114,6 @@ class ShowMap extends React.Component {
          : 
             null 
          }
-   
          </div>
       )
    }
