@@ -51,9 +51,9 @@ export default class Home extends React.Component {
 
    handleEstabCardClick = estabObject => {
       // console.log(estabObject)
-     return this.setState({ 
-        search: estabObject.name, 
-        selectedEstabToSendToMapCenter: estabObject 
+      return this.setState({ 
+         search: estabObject.name, 
+         selectedEstabToSendToMapCenter: estabObject 
       })
       // this method interpolates the name of the clicked establishment into 'search' state 
       // key. the filterEstabs method is always controlling which establishment objects
@@ -89,6 +89,8 @@ export default class Home extends React.Component {
    escapeClick = () => {
       this.setState({ displayWelcomeMessage: false, displayShader: false})
    }
+
+   clearSearchWithClick = () => this.setState({ search: '' })
 
    interpolateMarkerToFilter = (searchTerm) => {
       this.setState({ search: searchTerm })
@@ -142,9 +144,14 @@ export default class Home extends React.Component {
                {/* <div className='drop-down-div'>
                   <DropDownExampleSelection />
                </div> */}
-
+               <div className="filter-elements">
                   <input className='filter-search' type="text" placeholder="Filter by Name" position="left" float="left" value={search} onChange={this.onChange} />
 
+                  <div className="clear-search-button" onClick={this.clearSearchWithClick}>
+                     Clear Filter
+                  </div>
+               </div>
+               
                <div>
                   { this.state.finishedFetch ? 
                      <EstabContainer 

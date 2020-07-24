@@ -82,13 +82,8 @@ class ShowMap extends React.Component {
          width: '60%',
          height: '83%',
          borderRadius: '20px',
-         border: '5px solid #524632'
+         border: '5px solid #93c572 '
       };
-
-      // const recenterMapIfActiveMarker = () => {
-      //    return 
-      // }
-      
 
       return(
          <div className='main-map-div'>  
@@ -97,7 +92,8 @@ class ShowMap extends React.Component {
                google={this.props.google}
                zoom={14.5}
                style={mapStyles}
-               mapTypeId='satellite'
+               yesIWantToUseGoogleMapApiInternals
+               mapTypeId='terrain'
                initialCenter={{ lat: this.props.latitude, lng: this.props.longitude}}
                center={this.state.recenterToHere}
             >

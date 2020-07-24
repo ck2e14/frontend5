@@ -9,18 +9,41 @@ body {
 }
 
 .filter-search {
-  width: 14% !important   ;
+  /* width: 14% !important   ; */
+  max-width: 11%;
+  min-width: 11%;
   top: 5.75vh;
   left: 1%;
   height: 3vh;
   z-index: 9;
-  position: absolute;
-  float: left;
+  position: fixed;
   text-align: center;
   display: inline-block;
   border: 3px solid rgb(141, 218, 198);
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.clear-search-button {
+  color: rgb(156, 156, 156);
+  font-style: italic;
+  position: absolute;
+  top: 6.5vh;
+  max-height: 4vh;
+  font-size: .75vw; 
+  left: 15%;  
+  z-index: 9;
+  cursor: pointer;
+  border: 2px solid rgba(0, 255, 255, 0);
+  border-radius: 5px;
+  padding: .25%;
+  transition: all .25s;
+}
+
+.clear-search-button:hover {
+  /* border: 2px solid rgb(0, 255, 255); */
+  color: white;
+
 }
 
 .bot-bar {
