@@ -48,7 +48,13 @@ export default class Home extends React.Component {
    handlePremisesLookupClick = () => {
    }
 
-   handleEstabClick = (estabObject, userID) => {
+   handleEstabCardClick = estabObject => {
+      // in here, expect to be passed a whole estab object from a card click
+      // then push the name value into the search key in state
+      this.setState({ search: estabObject.name })
+   }
+
+   handleBlacklistClick = (estabObject, userID) => {
       API.newEstab(estabObject, this.props.user.id);
       alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`)
       
@@ -64,13 +70,12 @@ export default class Home extends React.Component {
             API.getEstabs(location)
                .then(estabs => this.setState({
                   establishments: estabs,
-                  currentLatitude: location.coords.latitude,
+                  currentLatitude: location.coords.latitude, 
                   currentLongitude: location.coords.longitude,
                   finishedFetch: true,
                   currentUserId: this.props.user.id
                }))
          }, () => alert('Geolocation failure. Please refresh the page and ensure _Hygenik has access to locations services.'))   
-
       }
    }
 
@@ -81,15 +86,20 @@ export default class Home extends React.Component {
    interpolateMarkerToFilter = (searchTerm) => {
       this.setState({ search: searchTerm })
    }
-
-   componentDidMount(){
-      this.setEstablishments();
-   }
+   // ^ method is responsible for taking the marker click and pushing it into the search 
+   // (controlled component) which in turn filters the establishments that are in state from
+   // the initial fetch (in the below method)
 
    filteredEstabs = (search) => this.state.establishments.filter(estab => {
       if(!estab.name) return
       return estab.name.toLowerCase().includes(search.toLowerCase()) 
    })
+
+   componentDidMount(){
+      this.setEstablishments();
+   }
+   // put an event listener on the whole document on load for keypress. Then in the 
+   // escapeClick method above put a check for esc keycode and if so trigger the setState
    
    render(){
       const {search} = this.state
@@ -130,7 +140,7 @@ export default class Home extends React.Component {
 
                <div>
                   { this.state.finishedFetch ? 
-                     <EstabContainer user={this.props.user} handleBlacklistClick={this.handleEstabClick} establishments={this.filteredEstabs(search)} /> 
+                     <EstabContainer user={this.props.user} handleEstabClick={this.handleEstabCardClick} handleBlacklistClick={this.handleBlacklistClick} establishments={this.filteredEstabs(search)} /> 
                   :
                      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                      // loading spinner 

@@ -5,7 +5,7 @@ import container from '../establishments/container.css'
 export default class EstabContainer extends React.Component {
    
    buildCards = () => this.props.establishments.map(estab => {
-      return <EstabCard handleBlacklistClick={this.props.handleBlacklistClick} establishment={estab} user={this.props.user} />
+      return <EstabCard handleEstabCardClick={this.props.handleEstabClick} handleBlacklistClick={this.props.handleBlacklistClick} establishment={estab} user={this.props.user} />
    })
 
    render(){   

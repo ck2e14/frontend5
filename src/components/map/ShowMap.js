@@ -61,7 +61,7 @@ class ShowMap extends React.Component {
 
    displayMarkers = () => {
       return this.state.establishments.map((estab, index) => {
-         return <Marker key={index} id={index} position={{
+         return <Marker key={index} id={estab.name} position={{
             lat: estab.latitude,
             lng: estab.longitude
          }}
