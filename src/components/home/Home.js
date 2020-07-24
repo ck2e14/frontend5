@@ -34,7 +34,7 @@ export default class Home extends React.Component {
          geolocationFailure: false,
          displayWelcomeMessage: this.props.displayWelcome,
          displayShader: this.props.displayShader,
-         selectedEstabToSendToMapCenter: null
+         selectedEstabToSendToMapCenter: {}
       }
    }
 

@@ -16,7 +16,7 @@ class ShowMap extends React.Component {
       selectedPlaceRating: '',
       selectedPlaceType: '',
       finishedSetState: false,
-      // recenterToHere: { latitude: this.props.latitude, longitude: this.props.longitude }
+      recenterToHere: { lat: this.props.latitude, lng: this.props.longitude}
       }
    }
 
@@ -33,7 +33,10 @@ class ShowMap extends React.Component {
       this.setState({
          establishments: this.props.estabs,
          finishedSetState: true,
-         recenterToHere: this.props.recenterMapUponEstabClick
+         recenterToHere: { 
+            lat: this.props.recenterMapUponEstabClick.latitude,
+            lng: this.props.recenterMapUponEstabClick.longitude
+         }
       })
    }
 
@@ -96,7 +99,7 @@ class ShowMap extends React.Component {
                style={mapStyles}
                mapTypeId='satellite'
                initialCenter={{ lat: this.props.latitude, lng: this.props.longitude}}
-               // center={{lat: this.state.recenterToHere.latitude, lng: this.state.recenterToHere.longitude }}
+               center={this.state.recenterToHere}
             >
          {this.displayMarkers()}
                <InfoWindow 
