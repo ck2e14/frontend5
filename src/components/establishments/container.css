@@ -13,6 +13,22 @@
    display: none;
 } */
 
+.wrapper:hover {
+   transform: none !important;
+}
+
+.top {
+   /* display: none !important */
+}
+
+.container {
+   /* display: none !important; */
+}
+
+.container:hover {
+   transform: none !important;
+}
+
 .main-map-div {
    width: 55% !important;  
    overflow: scroll;

@@ -102,7 +102,7 @@ class ShowMap extends React.Component {
                   <div>
                      <h1>{this.state.selectedPlace.name}</h1>
                      <h4>Hygiene Rating: {this.state.selectedPlaceRating}</h4>
-                     <h5>Type: {this.state.selectedPlace.typeOf}</h5>
+                     <h4>Type: {this.state.selectedPlace.typeOf}</h4>
                   </div>
                </InfoWindow>
             </Map> 

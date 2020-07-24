@@ -9,3 +9,11 @@
    padding-top: 2.5% !important;
    overflow: hidden;
 }
+
+h4, h5 {
+   color: rgb(65, 65, 65) !important;
+}
+
+h1 {
+   color: rgb(0, 172, 172);
+}

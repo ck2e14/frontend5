@@ -81,7 +81,6 @@ export default class Home extends React.Component {
    interpolateMarkerToFilter = (searchTerm) => {
       this.setState({ search: searchTerm })
    }
-   // the above method needs to be finished, to take values from the marker thats clicked and plug it into the filter (i.e. state.search)
 
    componentDidMount(){
       this.setEstablishments();
@@ -145,7 +144,7 @@ export default class Home extends React.Component {
             </div>
 
             <div className="bot-bar">
-               <a href="https://chriskennedy.live" target="_blank" rel="noopener noreferrer"className="portfolio-link">Christopher Kennedy</a> | Full-stack web development | JavaScript ES6, React | Ruby on Rails | NoSQl | SQLite/PostgreSQL | CD | Git   
+               <a href="https://chriskennedy.live" target="_blank" rel="noopener noreferrer"className="portfolio-link">Christopher Kennedy</a>, Full-stack web development | Stack: JavaScript ES6, React, JWT Auth | Ruby on Rails | PostgreSQL | CD | Git   
             </div>
          </>
       )
