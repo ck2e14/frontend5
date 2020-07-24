@@ -17,14 +17,14 @@ class ShowMap extends React.Component {
       selectedPlaceRating: '',
       selectedPlaceType: '',
       finishedSetState: false,
-
+      recenterToHere: {}
    }
 }
 
    componentDidMount(){
       this.setState({
          establishments: this.props.estabs,
-         finishedSetState: true
+         finishedSetState: true,
 
       })
    }
@@ -33,8 +33,8 @@ class ShowMap extends React.Component {
       if(prevProps === this.props) return
       this.setState({
          establishments: this.props.estabs,
-         finishedSetState: true
-
+         finishedSetState: true,
+         recenterToHere: this.props.recenterMapUponEstabClick
       })
    }
 
@@ -83,18 +83,25 @@ class ShowMap extends React.Component {
          border: '5px solid #524632'
       };
 
+      // const recenterMapIfActiveMarker = () => {
+      //    return 
+      // }
+      let recenterLatitude = this.state.recenterToHere.latitude
+      let recenterLongitude = this.state.recenterToHere.longitude
+
       return(
          <div className='main-map-div'>  
          {this.state.finishedSetState ?
             <Map
                google={this.props.google}
-               zoom={15.5}
+               zoom={14.5}
                style={mapStyles}
                mapTypeId='satellite'
                initialCenter={{ lat: this.props.latitude, lng: this.props.longitude}}
+               center={{lat: recenterLatitude, lng: recenterLongitude }}
             >
          {this.displayMarkers()}
-               <InfoWindow
+               <InfoWindow 
                   marker={this.state.activeMarker}
                   visible={this.state.showingInfoWindow}
                   onClose={this.onClose}

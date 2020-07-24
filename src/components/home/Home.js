@@ -33,7 +33,8 @@ export default class Home extends React.Component {
          search: "",
          geolocationFailure: false,
          displayWelcomeMessage: this.props.displayWelcome,
-         displayShader: this.props.displayShader
+         displayShader: this.props.displayShader,
+         selectedEstabToSendToMapCenter: null
       }
    }
 
@@ -49,9 +50,15 @@ export default class Home extends React.Component {
    }
 
    handleEstabCardClick = estabObject => {
-      // in here, expect to be passed a whole estab object from a card click
-      // then push the name value into the search key in state
-      this.setState({ search: estabObject.name })
+      // console.log(estabObject)
+     return this.setState({ 
+        search: estabObject.name, 
+        selectedEstabToSendToMapCenter: estabObject 
+      })
+      // this method interpolates the name of the clicked establishment into 'search' state 
+      // key. the filterEstabs method is always controlling which establishment objects
+      // are passed down to the map components, therefore this method isolates map markers
+      // per estab click.
    }
 
    handleBlacklistClick = (estabObject, userID) => {
@@ -140,14 +147,25 @@ export default class Home extends React.Component {
 
                <div>
                   { this.state.finishedFetch ? 
-                     <EstabContainer user={this.props.user} handleEstabClick={this.handleEstabCardClick} handleBlacklistClick={this.handleBlacklistClick} establishments={this.filteredEstabs(search)} /> 
+                     <EstabContainer 
+                        user={this.props.user} 
+                        handleEstabClick={this.handleEstabCardClick} 
+                        handleBlacklistClick={this.handleBlacklistClick} 
+                        establishments={this.filteredEstabs(search)} 
+                     /> 
                   :
                      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                      // loading spinner 
                   }
 
                   { this.state.finishedFetch ? 
-                     <ShowMap  estabs={this.filteredEstabs(search)} latitude={this.state.currentLatitude} longitude={this.state.currentLongitude} interpolateMarker={this.interpolateMarkerToFilter}/>
+                     <ShowMap  
+                        estabs={this.filteredEstabs(search)} 
+                        latitude={this.state.currentLatitude} 
+                        longitude={this.state.currentLongitude} 
+                        interpolateMarker={this.interpolateMarkerToFilter}
+                        recenterMapUponEstabClick={this.state.selectedEstabToSendToMapCenter}
+                     />
                   : 
                      null }
                </div>
