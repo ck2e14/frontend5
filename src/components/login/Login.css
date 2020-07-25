@@ -81,6 +81,10 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
+input::placeholder {
+  color: rgb(0, 0, 0) !important;;
+}
+
 input[type=password], select {
   transform: scaleX(1.25) scaleY(1.1) !important;
   margin-top: 15px !important;

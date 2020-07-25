@@ -2,7 +2,7 @@
    position: fixed;
    z-index: 999;
    right: -10vw;
-   top: -12vh;
+   top: -12.75vh;
    height: 30vh;
    transition: all .25s;
    overflow: hidden;
