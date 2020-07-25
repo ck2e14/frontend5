@@ -14,7 +14,7 @@ const jsonify = res => {
 };
 
 const signup = userDetails => {
-  fetch(SIGNUP_URL, {
+  return fetch(SIGNUP_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +25,8 @@ const signup = userDetails => {
   .then(jsonify)
   .then(data => {
     localStorage.setItem("token", data.token);
-    return data.user  
+    console.log(data.user)
+    return data.user
   })
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+   import React, { useState } from "react";
 import API from '../../adapters/API';
 import {
    BrowserRouter as Router,
@@ -18,21 +18,21 @@ const Login = props => {
    const [errors, setErrors] = useState([]);
    const history = useHistory();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    API.login({ username, password })
+   const handleSubmit = e => {
+      e.preventDefault();
+      API.login({ username, password })
       .then(user => {
-        console.log(user);
-        props.setUser(user);
-        history.push("/home");
+         console.log(user);
+         props.setUser(user);
+         history.push("/home");
       })
       .catch(errors => {
-        setErrors(errors[errors]);
-        console.log(errors);
-
-
+         setErrors(errors[errors]);
+         console.log(errors);
       });
-  };
+   }
+   
+   ;
   return (
      <div className="login-container">
       <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap" rel="stylesheet"></link>

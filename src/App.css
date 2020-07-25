@@ -54,16 +54,15 @@ html {
   -webkit-user-select: none;
   user-select: none;
   background: 0 0;
-  /* padding: .92857143em 1.14285714em; */
   text-transform: none;
-  color: rgb(192, 192, 192) !important;
+  color: rgb(255, 255, 255) !important;
   font-weight: 400;
   font-size: 1.2vw;
   transition: all .2s !important;
 }
 
 .ui.menu .item:hover {
-  color: cyan !important;
+  color: rgb(62, 193, 197) !important;
 }
 
 .ui.fluid.dropdown {

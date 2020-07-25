@@ -18,18 +18,17 @@ import {
    const history = useHistory();
  
    const handleSubmit = e => {
-     e.preventDefault();
-     API.signup({ username, password })
-       .then(user => {
-         console.log(user);
-         props.setUser(user);
-         history.push("/home");
-       })
-       .catch(errors => {
-         setErrors(errors[errors]);
-         console.error(errors);
- 
-       });
+      e.preventDefault();
+      API.signup({ username, password })
+         .then(user => {
+            console.log(user);
+            props.setUser(user);
+            history.push("/home");
+         })
+         .catch(errors => {
+            setErrors(errors[errors]);
+            console.error(errors);
+         });
    };
    return (
       <div className="login-container">
