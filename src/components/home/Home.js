@@ -67,6 +67,7 @@ export default class Home extends React.Component {
       
    }
    
+   // geolocation takes three args here - mandatory success callback, optional error callback and an object with PositionOptions
    async setEstablishments() {
       if (!navigator.geolocation) {
          console.log('Geolocation is not supported by your browser');
@@ -82,9 +83,13 @@ export default class Home extends React.Component {
                   finishedFetch: true,
                   currentUserId: this.props.user.id
                }))
-         }, () => alert('Geolocation failure. Please refresh the page and ensure _Hygenik has access to locations services.'))   
+         }, 
+         () => alert('Geolocation failure. Please refresh the page and ensure _Hygenik has access to locations services.'),
+         {'enableHighAccuracy':true,'timeout': 300,'maximumAge':0}
+         )   
       }
    }
+
 
    escapeClick = () => {
       this.setState({ displayWelcomeMessage: false, displayShader: false})
