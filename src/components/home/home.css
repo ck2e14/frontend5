@@ -31,7 +31,7 @@ body {
 
 .clear-search-button {
   color: rgb(251, 255, 0);
-  font-style: italic;
+
   position: absolute;
   margin-top: 1vh;
   max-height: 4vh;

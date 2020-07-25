@@ -1,4 +1,4 @@
-   import React, { useState } from "react";
+import React, { useState } from "react";
 import API from '../../adapters/API';
 import {
    BrowserRouter as Router,
@@ -9,8 +9,6 @@ import {
    useHistory
 } from "react-router-dom";
 import './Login.css'
-
-
 
 const Login = props => {
    const [username, setUsername] = useState("");
@@ -33,9 +31,8 @@ const Login = props => {
    }
    
    ;
-  return (
-     <div className="login-container">
-      <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap" rel="stylesheet"></link>
+   return (
+      <div className="login-container">
          <div className="page-login">
             <div className='login-border-box'>
                <div>

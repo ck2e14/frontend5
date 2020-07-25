@@ -15,7 +15,13 @@
   font-family: 'Saira Semi Condensed', sans-serif;
   padding: 0 20px;
   font-size: 20px;
-  color: white;
+  color: white !important;
+  padding-bottom: 5%;;
+}
+
+.header {
+  color: white !important;
+  font-size: 20px;
 }
 
 .ui-card {
