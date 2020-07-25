@@ -7,16 +7,15 @@ import {
    Redirect,
    Link,
    useHistory 
- } from "react-router-dom";
- import '../login/Login.css'
- 
- 
- const Signup = props => {
+} from "react-router-dom";
+import '../login/Login.css'
+
+const Signup = props => {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
    const [errors, setErrors] = useState([]);
    const history = useHistory();
- 
+
    const handleSubmit = e => {
       e.preventDefault();
       API.signup({ username, password })
@@ -30,6 +29,7 @@ import {
             console.error(errors);
          });
    };
+
    return (
       <div className="login-container">
          <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap" rel="stylesheet"></link>
@@ -75,9 +75,9 @@ import {
          </div>
          </div>
       </div>
- </div>
+</div>
    );
- };
+};
 
- export default Signup;
- 
+export default Signup;
+

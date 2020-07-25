@@ -85,11 +85,10 @@ export default class Home extends React.Component {
                }))
          }, 
          () => alert('Geolocation failure. Please refresh the page and ensure _Hygenik has access to locations services.'),
-         {'enableHighAccuracy':true,'timeout': 300,'maximumAge':0}
+         {'enableHighAccuracy':true,'timeout': 6000,'maximumAge':0}
          )   
       }
    }
-
 
    escapeClick = () => {
       this.setState({ displayWelcomeMessage: false, displayShader: false})
