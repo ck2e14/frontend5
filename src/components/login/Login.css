@@ -4,7 +4,7 @@
 
 .login-container {
   height: 100vh;
-  background-color: #292929;
+  background-color: rgba(21, 51, 76, 0.596) !important;
   background-size: 600% 600%;
   animation-name: background-anim;
   animation-duration: 15s;

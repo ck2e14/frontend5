@@ -34,10 +34,11 @@ html {
   margin-right: 0 !important;
   font-family: 'Roboto', sans-serif !important;
   font-weight: 400;
-  border: 1px solid rgba(34,36,38,.15);
+  border: none !important;
   box-shadow:  5px 5px 10px rgba(34,36,38) !important;
   border-radius: 0 !important;
   background-color: rgba(21, 51, 76, 0.596) !important;
+  /* background-color: #324f74 !important; */
 }
 
 .ui.menu .item {
