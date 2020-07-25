@@ -12,7 +12,7 @@ body {
   /* width: 14% !important   ; */
   max-width: 11%;
   min-width: 11%;
-  top: 5.75vh;
+  margin-top: 5.9vh;
   left: 2.5%;
   height: 3vh;
   max-height: 3vh;
@@ -33,9 +33,9 @@ body {
   color: rgb(156, 156, 156);
   font-style: italic;
   position: absolute;
-  top: 6.5vh;
+  margin-top: 1vh;
   max-height: 4vh;
-  font-size: .75vw; 
+  font-size: 2vh; 
   left: 15%;  
   z-index: 9;
   cursor: pointer;

@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import './NavBar.css'
 
 export default class MenuExampleBasic extends Component {
    state = {
       activeItem: ''
    }
 
-   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+   handleItemClick = (e, { name }) => {
+      this.setState({ activeItem: name })
+   }
 
    render() {
       const { activeItem } = this.state

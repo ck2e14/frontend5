@@ -4,19 +4,27 @@ import BlacklistCard from '../UserDash/BlacklistCard'
 import BlacklistStyle from './BlacklistStyle.css'
 import NewNavBar from '../NavBar/NewNavBar'
 
-
 export default class BlacklistDisplay extends React.Component {
 
-   constructor(){
-      super()
+   constructor(props){
+      super(props)
       this.state = {
-         userInfo: '',
+         userInfo: this.props.user,
          readyToRender: false,
          rebuilt: []
       }
    }
 
-   // abstract the below function into the API file. 
+   // The blacklist fetch works like this:
+   //  1) fetches user object from /users endpoint, using logged-in user's ID. This returns 
+   //     a blacklist key (an array of objects). Each object contains an 'establishment
+   //     ID. This is a reference to the local copy of FSA-returned establishments that
+   //     takes place when user clicks 'blacklist' on estabCard.
+   //  2) calls rebuildEstabs, which enumerates over the blacklists array, and for each 
+   //     object it fetches the local versions of estabs (protecting against request 
+   //     throttling by FSA)
+   //  3) pushes reconstructed estabs (from their local IDs) into BlacklistDisplay state
+   //     NOTE: use of spread operator, otherwise each enumeration will wipe the previous
 componentDidMount(){
    if(this.props.userID){
    fetch(`https://mod5-api.herokuapp.com/api/v1/users/${this.props.user.id}`, {
@@ -27,8 +35,25 @@ componentDidMount(){
       }
    })
    .then(res => res.json())
-   .then(objects => this.rebuildEstabs(objects)
-   )};
+   .then(userObject => this.rebuildEstabs(userObject))
+   .then(this.setState({ readyToRender: true }) )
+}
+   }
+
+rebuildEstabs = (objects) => {
+   console.log(objects)
+   objects.blacklists.map(object => {
+      fetch(` https://mod5-api.herokuapp.com/api/v1/establishments/${object.establishment_id}`, {
+         method: "GET",
+         headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+         }
+      }).then(res => res.json())
+      .then(data => this.setState({
+         rebuilt: [...this.state.rebuilt, data]
+      }))
+})
 }
 
 handleRemoveEstab = (id) => {
@@ -38,46 +63,32 @@ handleRemoveEstab = (id) => {
 }
 
 buildCards = () => this.state.rebuilt.map(estab => {
-   return <BlacklistCard  remove={this.handleRemoveEstab} establishment={estab} user={this.props.user} />
+   return <BlacklistCard remove={this.handleRemoveEstab} establishment={estab} user={this.props.user} />
 })
 
-rebuildEstabs = (objects) => {
-      objects.blacklists.map(object => {
-         fetch(` https://mod5-api.herokuapp.com/api/v1/establishments/${object.establishment_id}`, {
-            method: "GET",
-            headers: {
-               "Content-Type": "application/json",
-               Accept: "application/json"
-            }
-         }).then(res => res.json())
-         .then(data => this.setState({
-            rebuilt: [...this.state.rebuilt, data]
-         }))
-   })
-}
-
    render(){
-      
-
       return(
          <div className='main-div'>
-            <NewNavBar user={this.props.user} logout={this.props.logout} />
-               <div className='border-box'>
-               <h1> My Blacklisted Sites</h1>
-                  {/* {console.log(this.props.user.id)} */}
-                  <div className='display-cards-div'>     
-                     {/* <h1> My Blacklisted Sites</h1> */}
 
-                     {/* {this.truthyCheck() && this.state.readyToRender ? this.state.userInfo.blacklists.map(estab => {
-                     return(<p>{estab.id}</p>)})  : null} */}
-                     {this.state.readyToRender ? this.state.userInfo.blacklists.map(estab => {
-                     return(<p>{estab.id}</p>)}) : null }
-                     {/* {this.state.readyToRender ? this.buildCards() : null } */}
+            <NewNavBar user={this.props.user} logout={this.props.logout} />
+
+               <div className='border-box'>
+
+               <h1> My Blacklisted Sites</h1>
+
+                  <div className='display-cards-div'>     
+
+
+                     { this.state.readyToRender ?
+                        console.log(this.state.userInfo.blacklists)
+                     : null }
+
                      {this.buildCards()}
+
                   </div>
 
-                  
                </div>
+
          </div>
       )
    }

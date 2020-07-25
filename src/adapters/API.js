@@ -3,7 +3,9 @@ const LOGIN_URL = `${API_URL}login`;
 const VALIDATE_URL = `${API_URL}validate`;
 const SIGNUP_URL = `${API_URL}users`;
 const ESTABS_URL = `${API_URL}establishments`;
-const BLACKLISTS_URL = `${API_URL}blacklists`
+const BLACKLISTS_URL = `${API_URL}blacklists`;
+const CORS_ANYWHERE_PREFIX = 'https://cors-anywhere.herokuapp.com/'
+const FSA_ENH_SEARCH = 'https://ratings.food.gov.uk/enhanced-search/en-GB/%5e/%5e/DISTANCE/0/%5e/';
 
 const jsonify = res => {
   if (!res.ok) throw res;
@@ -49,7 +51,7 @@ const login = userDetails => {
       localStorage.setItem("token", data.token);
       return data.user;
     });
-  }
+}
 
 const logout = () => {
   localStorage.removeItem("token");
@@ -67,7 +69,7 @@ const validate = () => {
       localStorage.setItem("token", data.token);
       return data.user;
     })
-  };
+};
 
 const newEstab = (estabDetails, userID) =>
   fetch(ESTABS_URL, {
@@ -96,12 +98,17 @@ const addToBlacklist = (estabData, userID) => {
     })
     }).then(jsonify)
     .then(data => console.log(data))
-  }
+}
 
 const getEstabs = (position) => {
-  console.log(position.coords.longitude.toString(), position.coords.latitude.toString())
+  const latLong = `${position.coords.longitude}/${position.coords.latitude}/`
+  console.log(`Latitude + Longitude returned by geolocation services: ${latLong}`)
   console.log('fetching from FSA API...')
-  return fetch(`https://cors-anywhere.herokuapp.com/https://ratings.food.gov.uk/enhanced-search/en-GB/%5e/%5e/DISTANCE/0/%5e/${position.coords.longitude}/${position.coords.latitude}/1/150/json`).then(handleErrors).then(response => response.json()).then(data => {
+
+  return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_ENH_SEARCH}${latLong}1/150/json`)
+    .then(handleErrors)
+    .then(response => response.json())
+    .then(data => {
     return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
       return { 
           id: obj.LocalAuthorityBusinessID,
@@ -130,44 +137,24 @@ const handleErrors = response => {
   if (!response.ok) {
     console.log(response)
     console.log(`FSA response status: ${response.statusText}. FSA response code: ${response.status}`)
-    alert(`We apologise for the inconvenience - the FSA API service is unavailable owing to high volume-led throttling of requests. Please refresh the page, or try again in a couple of minutes.
-    > FSA response status: ${response.statusText}. FSA response code: ${response.status}`)
+    alert(`Hygenik apologises for the inconvenience - the FSA API service is unavailable owing to high volume-led throttling of requests. Please refresh the page, or try again in a couple of minutes. Response status: ${response.statusText}. FSA response code: ${response.status}`)
       // throw Error(response.statusText);
       
   }
   return response;
 }
-    // const blacklistFetch = (userID) => {
-    //   return fetch(`${BLACKLISTS_URL}, {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Accept: "application/json"
-    //     }
-    //   }).then(jsonify)
-    //   .then(data => console.log(data))
-    // }
-  
-// **********************************************************
-    // function success(position) {
-    //   console.log(position.coords.longitude.toString())
-    //   console.log(position.coords.latitude.toString())
-    //   console.log('made it to success function')
-    //   return getEstabs(position)
-    // }
-    // the above function is preliminarily desgined to offer the user feedback on when geolocation is unavailable - otherwise they are met with a blank and unresponsive white screen NOPOG. Currently the fetch isn't first routed through this function - meaning there is no error catching if geolocation fails or is unavailable
-// **********************************************************
-    export default {
-      login,
-      signup,
-      validate,
-      logout,
-      getEstabs,
-      newEstab,
-      removeBlacklist,
-      // blacklistFetch,
-      // addToBlacklist,
-      // success,
-      // error,
-    };
+
+export default {
+  login,
+  signup,
+  validate,
+  logout,
+  getEstabs,
+  newEstab,
+  removeBlacklist,
+  // blacklistFetch,
+  // addToBlacklist,
+  // success,
+  // error,
+};
 

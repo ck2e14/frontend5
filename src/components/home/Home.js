@@ -99,7 +99,7 @@ export default class Home extends React.Component {
    interpolateMarkerToFilter = (searchTerm) => {
       this.setState({ search: searchTerm })
    }
-   // ^ method is responsible for taking the marker click and pushing it into the search 
+   // Above method is responsible for taking the marker click and pushing it into the search 
    // (controlled component) which in turn filters the establishments that are in state from
    // the initial fetch (in the below method)
 
@@ -151,9 +151,12 @@ export default class Home extends React.Component {
                <div className="filter-elements">
                   <input className='filter-search' type="text" placeholder="Filter by Name" position="left" float="left" value={search} onChange={this.onChange} />
 
-                  <div className="clear-search-button" onClick={this.clearSearchWithClick}>
-                     Clear Filter
-                  </div>
+                  { this.state.search.length >= 1 ? 
+                     <div className="clear-search-button" onClick={this.clearSearchWithClick}>
+                        X 
+                     </div>
+                  : null }
+               
                </div>
                
                <div>
@@ -189,6 +192,3 @@ export default class Home extends React.Component {
       )
    }
 }
-
-
-//  <input t   ype="search" placeholder="Filter Results" align="left"  value={search} onChange={this.onChange} />

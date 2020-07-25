@@ -3,7 +3,7 @@
   margin: 2%;
   width: 32vw;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.336);
+  background-color: rgb(48, 48, 48);
   position: relative;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -14,8 +14,8 @@
 }
 
 .card-wrapper:hover {
-  background-color: rgb(19, 19, 19);
   overflow: hidden;
+  background-color: rgba(21, 51, 76, 0.596) !important;
   height: 26vh;
   min-height: fit-content;  
 }
@@ -23,11 +23,12 @@
 .name {
   font-size: 1.2vw;
   color: rgb(255, 255, 255);
-  transition: color .25s ease-in-out;
+  transition: all .25s;
 }
 
 .card-wrapper:hover > .name {
-  color: rgb(0, 255, 255);
+  color: rgb(0, 255, 234) !important;
+
 }
 
 .card-wrapper:hover > .info-pane {
@@ -55,10 +56,11 @@
 
 .blacklist-button {
   color: rgb(151, 28, 28);
+  color: rgb(173, 173, 173);
   position: absolute;
   right: 2%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-30%);
   writing-mode: vertical-lr;
   letter-spacing: .01vh;;
   text-orientation: upright;
