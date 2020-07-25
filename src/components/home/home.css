@@ -30,7 +30,7 @@ body {
 }
 
 .clear-search-button {
-  color: rgb(156, 156, 156);
+  color: rgb(251, 255, 0);
   font-style: italic;
   position: absolute;
   margin-top: 1vh;
@@ -46,8 +46,7 @@ body {
 }
 
 .clear-search-button:hover {
-  /* border: 2px solid rgb(0, 255, 255); */
-  color: white;
+  color: rgb(0, 247, 255);
 
 }
 
@@ -61,7 +60,7 @@ body {
   height: 5vh !important;
   text-align: left;
   width: 100%;
-  background-color: rgb(46, 46, 46);  
+  background-color: rgb(29, 29, 29);  
   font-size: 1vw;
   z-index: 9;
 }
@@ -73,24 +72,6 @@ body {
 
 .bot-bar a:hover {
   color: greenyellow
-}
-
-.escape-key {
-  position: absolute;
-  padding: .5%;
-  padding-left: 1.25%;
-  padding-right: 1.25%;
-  border: 1px solid white;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all .25s;
-  right: 5%;
-  top: 5%;
-}
-
-.escape-key:hover {
-  color: grey;
-  border-color: cyan;
 }
 
 .lds-ring {
@@ -135,10 +116,10 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.466);
+  background-color: rgba(26, 26, 26, 0.76);
   backdrop-filter: blur(5px);
   color: rgb(121, 218, 224) !important;
-  font-size: 1.25vw;
+  font-size: 1vw !important ;
   line-height: 1.5;
   z-index: 99;
   animation: fade-in 2s ease-in-out both;
@@ -148,9 +129,32 @@ body {
   font-size: 1.75vw;
 }
 
+.escape-key {
+  position: absolute;
+  padding: .5%;
+  padding-left: 1.25%;
+  padding-right: 1.25%;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .25s;
+  right: 5%;
+  font-size: .75vw;
+  top: 5%;
+}
+
+.escape-key:hover {
+  color: grey;
+  border-color: rgba(0, 255, 255, 0); 
+}
+
+.fsa-link {
+  color: cyan;
+}
+
 .highlight-this {
   color: white;
-  font-size: 1.25vw !important;
+  font-size: 1vw !important;
 }
 
 .shader-layer {

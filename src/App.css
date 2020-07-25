@@ -1,5 +1,5 @@
 * {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Cairo', sans-serif !important;
 }
 
 html {
@@ -56,11 +56,12 @@ html {
   font-weight: 400;
   font-size: 1.2vw;
   transition: all .25s !important;
+  font-family: 'Cairo', sans-serif !important;
 }
 
 .ui.menu .item:hover {
-  color: rgb(107, 107, 107) !important;
-  /* color: rgba(21, 51, 76, 0.596) !important; */
+  color: rgb(255, 217, 0) !important;
+
 }
 
 .ui.fluid.dropdown {
@@ -123,7 +124,7 @@ html {
   will-change: transform,opacity;
 }
 
-  .ui.default.dropdown:not(.button)>.text, .ui.dropdown:not(.button)>.default.text {
+.ui.default.dropdown:not(.button)>.text, .ui.dropdown:not(.button)>.default.text {
   color: rgba(255, 255, 255, 0.87) !important;
 }
 

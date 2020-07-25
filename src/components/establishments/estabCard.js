@@ -11,7 +11,8 @@ const EstabCard = props => {
         
         <div className="info-pane">
 
-          <span>FSA Hygiene Rating: </span> {props.establishment.ratingValue}/5 &nbsp; <span>Assessment Date: </span> {props.establishment.ratingDate}<br/><br/>
+          <span>FSA Hygiene Rating: </span> {props.establishment.ratingValue}/5 &nbsp; 
+          <span>Last Assessed: </span> {props.establishment.ratingDate}<br/><br/>
           <span>Type: </span> <br/>{props.establishment.type_of}<br/><br/>
           <span>Address: </span><br/>{props.establishment.addressLine2}<br/>{props.establishment.postcode}<br/><br/>
           <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} ({props.establishment.localAuthEmail})

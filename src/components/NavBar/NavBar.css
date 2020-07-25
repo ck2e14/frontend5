@@ -1,1 +1,9 @@
-
+.logo {
+   position: fixed;
+   z-index: 999;
+   right: -10vw;
+   top: -12vh;
+   height: 30vh;
+   transition: all .25s;
+   overflow: hidden;
+}

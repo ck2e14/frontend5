@@ -133,7 +133,7 @@ export default class Home extends React.Component {
 
                   On that note - since March, the FSA have experienced a big surge in the number of requests made to their resources. At peak usage requests are being throttled. <br/><br/>Unfortunately this may mean waiting longer than usual to load, or the service may be made temporarily unavailable entirely.
                   <br/><br/>
-                  More information can be found <a href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here</a></span> 
+                  More information can be found <a href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here.</a></span> 
                   <br/><br/>
                   {/* Please also note that Heroku unloads apps from its servers when they haven't been very recently accessed - you may have experienced longer loading times of the website itself because of this upon initial visit.  */}
                </div> 
@@ -148,11 +148,12 @@ export default class Home extends React.Component {
                {/* <div className='drop-down-div'>
                   <DropDownExampleSelection />
                </div> */}
+
                <div className="filter-elements">
-                  <input className='filter-search' type="text" placeholder="Filter by Name" position="left" float="left" value={search} onChange={this.onChange} />
+                  <input className='filter-search' type="text" placeholder="Filter by name" position="left" float="left" value={search} onChange={this.onChange} />
 
                   { this.state.search.length >= 1 ? 
-                     <div className="clear-search-button" onClick={this.clearSearchWithClick}>
+                     <div className="clear-search-button" title='Clear Filter' onClick={this.clearSearchWithClick}>
                         X 
                      </div>
                   : null }
@@ -186,7 +187,7 @@ export default class Home extends React.Component {
             </div>
 
             <div className="bot-bar">
-               <a href="https://chriskennedy.live" target="_blank" rel="noopener noreferrer"className="portfolio-link">Christopher Kennedy</a>, Full-stack web development | Stack: JavaScript ES6, React, JWT Auth | Ruby on Rails | PostgreSQL | CD | Git   
+               <a href="https://chriskennedy.live" target="_blank" rel="noopener noreferrer"className="portfolio-link">Christopher Kennedy</a> | Full-stack developer | Stack: JavaScript ES6, React (hooks, router, async), JWT Auth | Ruby on Rails | PostgreSQL | CD | Git   
             </div>
          </>
       )
