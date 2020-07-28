@@ -4,7 +4,6 @@
    overflow-y: scroll;
    float: left;
    margin-top: 7vh;
-   scrollbar-width: 0;
    border-radius: 4px;
    box-sizing: border-box;
    background-color: rgba(63, 63, 63, 0) !important;
@@ -12,14 +11,6 @@
 
 .wrapper:hover {
    transform: none !important;
-}
-
-.top {
-   /* display: none !important */
-}
-
-.container {
-   /* display: none !important; */
 }
 
 .container:hover {
@@ -37,7 +28,7 @@
    width: 10px;;
 }
 .estabs-div::-webkit-scrollbar-track {
-   background: #44444434;
+   background: #44444417;
 }
 .estabs-div::-webkit-scrollbar-thumb {
    background-color: rgb(105, 105, 105) !important;

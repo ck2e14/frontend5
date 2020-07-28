@@ -1,6 +1,6 @@
 import React from 'react';
-import paths from '../../paths';
-import BlacklistStyle from './BlacklistStyle.css'
+import './BlacklistStyle.css'
+// import paths from '../../paths';
 
 const estabCard = props => {
 
@@ -10,7 +10,7 @@ const estabCard = props => {
       <div className="top">
       <h5 className="title-h5">{props.establishment.name}</h5>
       
-      <div className="tooltip"  className="blacklist">
+      <div className="tooltip blacklist">
       {/* <img         onClick={() => props.remove(props.establishment.blacklists[0].id)}
 
 className="blacklist-iconBL" src="https://img.icons8.com/cotton/2x/checkmark.png"/>  */}
@@ -38,9 +38,8 @@ className="blacklist-iconBL" src="https://img.icons8.com/cotton/2x/checkmark.png
     <div className="inside">
       <div className="icon"><i className="material-icons">More Info</i></div>
       <div className="contents">
-      <img         onClick={() => props.remove(props.establishment.blacklists[0].id)}
-
-className="blacklist-iconBL" src="https://img.icons8.com/cotton/2x/checkmark.png"/>
+      <img  className="blacklist-iconBL" alt='Click to remove premises from your blacklist' onClick={() => props.remove(props.establishment.blacklists[0].id) }
+        src="https://img.icons8.com/cotton/2x/checkmark.png"/>
         <table>
           <tr>
             <th><strong>Overall Rating</strong></th>

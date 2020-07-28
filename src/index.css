@@ -4,10 +4,38 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(39, 39, 39) !important;
+  /* background: linear-gradient(239deg, #37eab4, #37d9ea) !important;
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
+  background-size: 600% 600%;
+  animation-name: background-anim;
+  animation-duration: 15s;
+  animation-iteration-count: infinite; */
   overflow: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 81%}
+  50%{background-position:100% 20%}
+  100%{background-position:0% 81%}
+}
+
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 81%}
+  50%{background-position:100% 20%}
+  100%{background-position:0% 81%}
+}
+
+@keyframes AnimationName {
+  0%{background-position:0% 81%}
+  50%{background-position:100% 20%}
+  100%{background-position:0% 81%}
 }

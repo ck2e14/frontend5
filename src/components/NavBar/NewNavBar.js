@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import './NavBar.css'
 import hygenikLogo from '../../Assets/hygenik logo.png'
@@ -49,7 +49,7 @@ export default class MenuExampleBasic extends Component {
                </Menu.Item>
             </Link>
             {/* <a href="/home" className="logo-link-to-homepage"> */}
-            {/* re-insert the logo into the commented-out anchor tag once you have a logo that only occupies the area the graphic covers, not a huge clickable area KEKW */}
+            {/* re-insert the logo into the commented-out anchor tag once you have a logo that only occupies the area the graphic covers, not a huge clickable area*/}
                <img src={hygenikLogo} alt="HygenikLogo" className="logo"/>
             {/* </a> */}
          </Menu>

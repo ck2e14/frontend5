@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import API from "../../adapters/API";
 import { 
-   BrowserRouter as Router,
-   Switch,
-   Route,
-   Redirect,
    Link,
    useHistory 
 } from "react-router-dom";
@@ -42,7 +38,7 @@ const Signup = props => {
                      <div className="header">
                      {!errors ? 'Sign up failed. Your password must be at least 6 characters.' : null}
                   </div>
-                  <p className="text" >{errors ? 'Please choose your login credentials' : null}</p>
+                  <p className="text" >{errors ? 'Please choose your login credentials. Passwords must be at least 6 characters long.' : null}</p>
                </div>
                </div>
             <div className="ui-card">

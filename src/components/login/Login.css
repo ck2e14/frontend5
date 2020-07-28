@@ -4,10 +4,15 @@
 
 .login-container {
   height: 100vh;
-  background-color: rgba(21, 51, 76, 0.596) !important;
+  /* background-color: #42c5da !important; */
+  background: linear-gradient(239deg, #37eab4, #37d9ea);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
   background-size: 600% 600%;
   animation-name: background-anim;
-  animation-duration: 15s;
+  animation-duration: 8s;
   animation-iteration-count: infinite;
 }
 
@@ -15,7 +20,7 @@
   font-family: 'Saira Semi Condensed', sans-serif;
   padding: 0 20px;
   font-size: 20px;
-  color: white !important;
+  color: rgb(49, 49, 49) !important;
   padding-bottom: 5%;;
 }
 
@@ -121,4 +126,22 @@ input[type=submit], select {
   0%{background-position:92% 0%}
   50%{background-position:9% 100%}
   100%{background-position:92% 0%}  
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 81%}
+  50%{background-position:100% 20%}
+  100%{background-position:0% 81%}
+}
+
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 81%}
+  50%{background-position:100% 20%}
+  100%{background-position:0% 81%}
+}
+
+@keyframes AnimationName {
+  0%{background-position:0% 81%}
+  50%{background-position:100% 20%}
+  100%{background-position:0% 81%}
 }
