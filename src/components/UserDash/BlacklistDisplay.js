@@ -1,7 +1,7 @@
 import React from 'react'
 import API from '../../adapters/API'
 import BlacklistCard from '../UserDash/BlacklistCard'
-import BlacklistStyle from './BlacklistStyle.css'
+// import BlacklistStyle from './BlacklistStyle.css'
 import NewNavBar from '../NavBar/NewNavBar'
 
 export default class BlacklistDisplay extends React.Component {
@@ -25,46 +25,46 @@ export default class BlacklistDisplay extends React.Component {
    //     throttling by FSA)
    //  3) pushes reconstructed estabs (from their local IDs) into BlacklistDisplay state
    //     NOTE: use of spread operator, otherwise each enumeration will wipe the previous
-componentDidMount(){
-   if(this.props.userID){
-   fetch(`https://mod5-api.herokuapp.com/api/v1/users/${this.props.user.id}`, {
-      method: "GET",
-      headers: {
-         "Content-Type": "application/json",
-         Accept: "application/json"
-      }
-   })
-   .then(res => res.json())
-   .then(userObject => this.rebuildEstabs(userObject))
-   .then(this.setState({ readyToRender: true }) )
-}
-   }
-
-rebuildEstabs = (objects) => {
-   console.log(objects)
-   objects.blacklists.map(object => {
-      fetch(` https://mod5-api.herokuapp.com/api/v1/establishments/${object.establishment_id}`, {
+   componentDidMount(){
+      if(this.props.userID){
+      fetch(`https://mod5-api.herokuapp.com/api/v1/users/${this.props.user.id}`, {
          method: "GET",
          headers: {
             "Content-Type": "application/json",
             Accept: "application/json"
          }
-      }).then(res => res.json())
-      .then(data => this.setState({
-         rebuilt: [...this.state.rebuilt, data]
-      }))
-})
-}
+      })
+      .then(res => res.json())
+      .then(userObject => this.rebuildEstabs(userObject))
+      .then(this.setState({ readyToRender: true }) )
+   }
+   }
 
-handleRemoveEstab = (id) => {
-   API.removeBlacklist(id);
-   alert(`Removed premises from your blacklist.`);
-   window.location.reload()
-}
+   rebuildEstabs = (objects) => {
+      console.log(objects)
+      objects.blacklists.map(object => {
+         return fetch(` https://mod5-api.herokuapp.com/api/v1/establishments/${object.establishment_id}`, {
+                  method: "GET",
+                  headers: {
+                     "Content-Type": "application/json",
+                     Accept: "application/json"
+                  }
+               }).then(res => res.json())
+               .then(data => this.setState({
+                  rebuilt: [...this.state.rebuilt, data]
+               }))
+      })
+   }
 
-buildCards = () => this.state.rebuilt.map(estab => {
-   return <BlacklistCard remove={this.handleRemoveEstab} establishment={estab} user={this.props.user} />
-})
+   handleRemoveEstab = (id) => {
+      API.removeBlacklist(id);
+      alert(`Removed premises from your blacklist.`);
+      window.location.reload()
+   }
+
+   buildCards = () => this.state.rebuilt.map(estab => {
+      return <BlacklistCard remove={this.handleRemoveEstab} establishment={estab} user={this.props.user} />
+   })
 
    render(){
       return(

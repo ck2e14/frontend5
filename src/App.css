@@ -40,7 +40,9 @@ html {
   border: none !important;
   box-shadow:  none !important;
   border-radius: 0 !important;
-  background-color: rgba(21, 51, 76, 0.596) !important;
+  background-color: #49b8b2 !important;
+  /* background: linear-gradient(-239deg, #37eab4, #64dce9) !important; */
+  background-size: 400% 400%;
   /* background-color: #324f74 !important; */
 }
 
@@ -56,15 +58,15 @@ html {
   background: 0 0;
   border: none !important;
   text-transform: none;
-  color: rgb(255, 255, 255) !important;
-  font-weight: 400;
-  font-size: .9vw;
+  color: rgb(56, 56, 56) !important;
+  font-weight: 900 !important;
+  font-size: 1.75vh;
   transition: all .25s !important;
   font-family: 'Cairo', sans-serif !important;
 }
 
 .ui.menu .item:hover {
-  color: rgb(255, 217, 0) !important;
+  color: rgb(255, 255, 255) !important;
 
 }
 

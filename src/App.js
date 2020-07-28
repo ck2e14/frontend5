@@ -2,20 +2,17 @@ import './App.css';
 import "./App";
 import Login from './components/login/Login';
 import Signup from './components/signup/Signup'
-import { Route, Redirect, Switch, useHistory, Link } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import paths from './paths';
 import API from './adapters/API'
 import Home from './components/home/Home'
-import UserDash from './components/UserDash/UserDash';
 import BlacklistDisplay from './components/UserDash/BlacklistDisplay';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import UserDash from './components/UserDash/UserDash';
 
 const App = () => {
   const [user, setUser] = useState(null);
-  const [user2, setUser2] = useState(null); 
-  // user2 is solely to be able to use the user object to conditionally render below - 
-  //  user is already used for this purpose and can't be re-used in that way
   const history = useHistory();
   const [userID, setUserID] = useState(null);
 
@@ -23,15 +20,14 @@ const App = () => {
     API.validate()
       .then(user => {
         setUser(user);
-        setUser2(true);
         setUserID(user.id);
-        // history.push('/');
+        history.push('/home');
         console.log('validated user');
       }).catch(() => {
         history.push(paths.LOGIN);
         console.log('user not validated');
       });
-  }, []);
+  }, [history]);
 
   const logout = () => {
     API.logout();
@@ -45,8 +41,8 @@ const App = () => {
       <Switch>
 
         { user ? 
-          <Route exact path="/home" component={props => 
-            <Home {...props} userID={userID} user={user} logout={logout} displayShader={true} displayWelcome={true} />} 
+          <Route path="/home" component={props => 
+            <Home {...props} userID={userID} user={user} logout={logout} displayShader={true} />} 
           /> 
         :  
           <Route path="/login" component={props => 
@@ -58,14 +54,14 @@ const App = () => {
           <UserDash {...props} user={user} logout={logout} /> }
           /> */}
 
-        { user2 ? 
+        { user ? 
         // user2 is indicative of the presence of the normal user object, duplicated for conditional rendering reasons
-            <Route exact path="/find-premises" component={props => 
-              <Home {...props} userID={userID} user={user} logout={logout} displayShader={false} displayWelcome={false}/>} 
+            <Route path="/find-premises" component={props => 
+              <Home {...props} userID={userID} user={user} logout={logout} displayShader={false} />} 
             /> 
         : null }
 
-        <Route exact path="/blacklist" component={props =>
+        <Route path="/blacklist" component={props =>
           <BlacklistDisplay {...props} userID={userID} user={user} logout={logout} /> }
         />  
         

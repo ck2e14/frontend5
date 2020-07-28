@@ -1,7 +1,5 @@
 import React from "react";
-// import { compose, withProps, lifecycle } from "recompose";
-import { Map, GoogleApiWrapper, InfoWindow, Marker, MarkerCluster } from 'google-maps-react';   
-import container from '../establishments/container.css'
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';   
 import './ShowMap.css'
 
 class ShowMap extends React.Component {
@@ -16,7 +14,8 @@ class ShowMap extends React.Component {
       selectedPlaceRating: '',
       selectedPlaceType: '',
       finishedSetState: false,
-      recenterToHere: { lat: this.props.latitude, lng: this.props.longitude}
+      recenterToHere: { lat: this.props.latitude, lng: this.props.longitude},
+      mapZoom: 10.5,
       }
    }
 
@@ -24,7 +23,6 @@ class ShowMap extends React.Component {
       this.setState({
          establishments: this.props.estabs,
          finishedSetState: true,
-         // recenterToHere: {}
       })
    }
 
@@ -34,8 +32,8 @@ class ShowMap extends React.Component {
          establishments: this.props.estabs,
          finishedSetState: true,
          recenterToHere: { 
-            lat: this.props.recenterMapUponEstabClick.latitude,
-            lng: this.props.recenterMapUponEstabClick.longitude
+            lat: this.props.latitude,
+            lng: this.props.longitude
          }
       })
    }
@@ -62,17 +60,25 @@ class ShowMap extends React.Component {
    };
 
    displayMarkers = () => {
+      if(!this.state.establishments) {
+         // window.location.reload()
+         return null
+      }
       return this.state.establishments.map((estab, index) => {
-         return <Marker key={index} id={estab.name} position={{
-            lat: estab.latitude,
-            lng: estab.longitude
-         }}
-         onClick={this.onMarkerClick}
-         name={estab.name}
-         rating={estab.ratingValue}
-         typeOf={estab.type_of}
-         // onClick={() => console.log(estab.id, estab.name)} 
-         />
+         return (
+            <Marker 
+               key={index} 
+               id={estab.name} 
+               position={{
+                  lat: estab.latitude,
+                  lng: estab.longitude
+               }}
+               onClick={this.onMarkerClick}
+               name={estab.name}
+               rating={estab.ratingValue}
+               typeOf={estab.type_of}
+            />
+         )
       })
    }
    
@@ -80,9 +86,9 @@ class ShowMap extends React.Component {
       
       const mapStyles = {
          width: '60%',
-         height: '73%',
-         borderRadius: '20px',
-         border: '5px solid #444444;'
+         height: '74%',
+         borderRadius: '10px',
+         // border: '5px solid #3ddef6'
       };
 
       return(
@@ -90,12 +96,12 @@ class ShowMap extends React.Component {
          {this.state.finishedSetState ?
             <Map
                google={this.props.google}
-               zoom={14.5}
+               zoom={this.state.mapZoom}
                style={mapStyles}
                yesIWantToUseGoogleMapApiInternals
                mapTypeId='terrain'
                initialCenter={{ lat: this.props.latitude, lng: this.props.longitude}}
-               center={this.state.recenterToHere}
+               center={{ lat: this.props.latitude, lng: this.props.longitude}}
             >
          {this.displayMarkers()}
                <InfoWindow 
