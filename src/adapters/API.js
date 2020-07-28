@@ -7,7 +7,7 @@ const BLACKLISTS_URL = `${API_URL}blacklists`;
 const CORS_ANYWHERE_PREFIX = 'https://cors-anywhere.herokuapp.com/'
 const FSA_ENH_SEARCH = 'https://ratings.food.gov.uk/enhanced-search/en-GB/%5e/%5e/DISTANCE/0/%5e/';
 const FSA_SEARCH_BY_ADDRESS_URL = 'https://ratings.food.gov.uk/search-address/';
-const ADDRESS_SEARCH_SUFFIX = '/Alpha/1/750/json';
+const ADDRESS_SEARCH_SUFFIX = '/Alpha/1/1250/json';
 const GEOCODING_BASE_URL = 'http://open.mapquestapi.com/geocoding/v1/address?key=yTjeWaGGiekrLYHIhbDdzcyvE9mK6Gmc&location='
 
 const jsonify = res => {

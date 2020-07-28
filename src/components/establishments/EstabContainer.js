@@ -1,5 +1,5 @@
 import React from "react";
-import EstabCard from './EstabCard'
+import EstabCard from './estabCard'
 import './EstabContainer.css'
 
 export default class EstabContainer extends React.Component {

@@ -1,5 +1,5 @@
 import React from 'react';
-import  './EstabCard.css'
+import  './estabCard.css'
 
 const EstabCard = props => {
 
