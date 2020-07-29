@@ -66,6 +66,7 @@
   padding-left: 2%;
   font-size: 1vw;
   color: rgb(161, 161, 161);
+  text-transform: capitalize;
 }
 
 .no-results {

@@ -138,11 +138,11 @@ export default class Home extends React.Component {
                <div className="filter-elements">
 
                   { this.state.establishments ?
-                     <input className='filter-search' type="text" name="filter" placeholder="Filter results" position="left" float="left" value={filter} onChange={this.handleChange} />
+                     <input className='filter-search' type="text" name="filter" tabIndex='1' placeholder="Filter results" position="left" float="left" value={filter} onChange={this.handleChange} />
                   : null }
 
                   <form onSubmit={event => this.handleSearchAddressSubmit(event)} className="address-search-form">
-                     <input className="search-by-address filter-search" placeholder="Postcode/street/town" type="text" name="search"  value={search} onChange={this.handleChange}/>
+                     <input className="search-by-address filter-search" tabIndex='1' placeholder="Postcode/street/town" type="text" name="search"  value={search} onChange={this.handleChange}/>
                   </form>
 
                   { this.state.filter.length >= 1 ? 

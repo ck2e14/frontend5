@@ -8,11 +8,15 @@ const EstabCard = props => {
 
   const ratingAsInteger = parseInt(props.establishment.ratingValue)
 
+  const name = props.establishment.name
+  const address1 = props.establishment.addressLine1
+  const address2 = props.establishment.addressLine2
+
   if(ratingAsInteger === 5){
     return (    
       <div className="card-wrapper r-5" onClick={() => props.handleEstabCardClick(props.establishment)}>
 
-          <div className="name">{props.establishment.name}</div>
+          <div className="name">{name}</div>
           
           <div className="info-pane" style={{color: '#010101'}} >
 
@@ -22,7 +26,8 @@ const EstabCard = props => {
             
             <span>Type: </span> <br/>{props.establishment.type_of}<br/><br/>
             
-            <span>Address: </span>{props.establishment.addressLine1 ? <br/> : null } {props.establishment.addressLine1 ? props.establishment.addressLine1 : null } <br/>{props.establishment.addressLine2}<br/>{props.establishment.postcode}<br/><br/>
+            <span>Address: </span>{address1 ? <br/> : null } {address1 ? address1 : null } {address2 ?
+            <br/> : null }{address2 ? address2 : null }<br/>{props.establishment.postcode}<br/><br/>
             
             <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} ({props.establishment.localAuthEmail})
             
@@ -41,7 +46,7 @@ const EstabCard = props => {
     return (
       <div className="card-wrapper r4-3" onClick={() => props.handleEstabCardClick(props.establishment)}>
 
-          <div className="name">{props.establishment.name}</div>
+          <div className="name">{name}</div>
           
           <div className="info-pane" style={{color: '#010101'}} >
 
@@ -51,7 +56,8 @@ const EstabCard = props => {
             
             <span>Type: </span> <br/>{props.establishment.type_of}<br/><br/>
             
-            <span>Address: </span>{props.establishment.addressLine1 ? <br/> : null } {props.establishment.addressLine1 ? props.establishment.addressLine1 : null } <br/>{props.establishment.addressLine2}<br/>{props.establishment.postcode}<br/><br/>
+            <span>Address: </span>{address1 ? <br/> : null } {address1 ? address1 : null } {address2 ?
+            <br/> : null }{address2 ? address2 : null }<br/>{props.establishment.postcode}<br/><br/>
             
             <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} ({props.establishment.localAuthEmail})
             
@@ -70,7 +76,7 @@ const EstabCard = props => {
     return (
       <div className="card-wrapper r-other" onClick={() => props.handleEstabCardClick(props.establishment)}>
   
-          <div className="name" style={{color: 'white'}}>{props.establishment.name}</div>
+          <div className="name" style={{color: 'white'}}>{name}</div>
           
           <div className="info-pane">
   
@@ -80,7 +86,8 @@ const EstabCard = props => {
             
             <span>Type: </span> <br/>{props.establishment.type_of}<br/><br/>
             
-            <span>Address: </span>{props.establishment.addressLine1 ? <br/> : null } {props.establishment.addressLine1 ? props.establishment.addressLine1 : null } <br/>{props.establishment.addressLine2}<br/>{props.establishment.postcode}<br/><br/>
+            <span>Address: </span>{address1 ? <br/> : null } {address1 ? address1 : null } {address2 ?
+            <br/> : null }{address2 ? address2 : null }<br/>{props.establishment.postcode}<br/><br/>
             
             <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} ({props.establishment.localAuthEmail})
             
@@ -99,7 +106,7 @@ const EstabCard = props => {
     return (
     <div className="card-wrapper r1-2" >
 
-      <div className="name">{props.establishment.name}</div>
+      <div className="name">{name}</div>
         {noResultsMoreInfo} 
     </div>
     )
@@ -108,7 +115,7 @@ const EstabCard = props => {
   return (
     <div className="card-wrapper r1-2" onClick={() => props.handleEstabCardClick(props.establishment)}>
 
-        <div className="name">{props.establishment.name}</div>
+        <div className="name">{name}</div>
                 
         <div className="info-pane" style={{color: '#010101'}} >
 
@@ -118,7 +125,8 @@ const EstabCard = props => {
         
         <span>Type: </span> <br/>{props.establishment.type_of}<br/><br/>
         
-        <span>Address: </span>{props.establishment.addressLine1 ? <br/> : null } {props.establishment.addressLine1 ? props.establishment.addressLine1 : null } <br/>{props.establishment.addressLine2}<br/>{props.establishment.postcode}<br/><br/>
+        <span>Address: </span>{address1 ? <br/> : null } {address1 ? address1 : null } {address2 ?
+        <br/> : null }{address2 ? address2 : null }<br/>{props.establishment.postcode}<br/><br/>
         
         <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} ({props.establishment.localAuthEmail})
         

@@ -41,6 +41,7 @@ body {
   border-radius: 5px;
   padding: .25%;
   transition: all .25s;
+  user-select: none;
 }
 
 .clear-search-button:hover {

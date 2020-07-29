@@ -7,7 +7,7 @@ const BLACKLISTS_URL = `${API_URL}blacklists`;
 const CORS_ANYWHERE_PREFIX = 'https://cors-anywhere.herokuapp.com/'
 const FSA_ENH_SEARCH = 'https://ratings.food.gov.uk/enhanced-search/en-GB/%5e/%5e/DISTANCE/0/%5e/';
 const FSA_SEARCH_BY_ADDRESS_URL = 'https://ratings.food.gov.uk/search-address/';
-const ADDRESS_SEARCH_SUFFIX = '/Alpha/1/1250/json';
+const ADDRESS_SEARCH_SUFFIX = '/Alpha/1/2500/json';
 const GEOCODING_BASE_URL = 'https://open.mapquestapi.com/geocoding/v1/address?key=yTjeWaGGiekrLYHIhbDdzcyvE9mK6Gmc&location='
 
 const jsonify = res => {
@@ -163,7 +163,7 @@ const autoGetEstabs = (position) => {
   const latLong = `${position.coords.longitude}/${position.coords.latitude}/`
   console.log(`Latitude + Longitude returned by geolocation services: ${latLong}`)
   console.log('fetching from FSA API...')
-  return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_ENH_SEARCH}${latLong}1/150/json`)
+  return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_ENH_SEARCH}${latLong}1/750/json`)
     .then(handleErrors)
     .then(response => response.json())
     .then(data => {
