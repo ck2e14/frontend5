@@ -81,6 +81,7 @@ export default class Home extends React.Component {
 
    handleSearchAddressSubmit = event => {
       event.preventDefault()
+      this.setState({ finishedFetch: false })
       this.setEstablishmentsFromAddressSearch(this.state.search)
       
    }
