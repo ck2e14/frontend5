@@ -55,12 +55,18 @@ export default class BlacklistDisplay extends React.Component {
                }))
       })
    }
-
+// removes blacklisting record from blacklist table and then filters state to remove estab with matching ID. For some reason the ID is always 1 lower than it should be - presumably API has desynced somewhere along the way. 
    handleRemoveEstab = (id) => {
       API.removeBlacklist(id);
+      console.log(id)
       alert(`Removed premises from your blacklist.`);
-      window.location.reload()
+      this.setState({
+         rebuilt: this.state.rebuilt.filter(
+            estab => estab.id !== (id + 1)
+         )
+      })
    }
+
 
    buildCards = () => this.state.rebuilt.map(estab => {
       return <BlacklistCard remove={this.handleRemoveEstab} establishment={estab} user={this.props.user} />
