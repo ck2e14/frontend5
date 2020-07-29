@@ -3,8 +3,9 @@ import API from '../../adapters/API'
 import EstabContainer from '../establishments/EstabContainer'
 import ShowMap from '../map/ShowMap'
 import NewNavbar from '../NavBar/NewNavBar'
-// import Popup from '../BlacklistPopup/FeedbackPopup'
 import './home.css'
+// import handwash from '../../Assets/handwash.jpg'
+// import Popup from '../BlacklistPopup/FeedbackPopup'
 
 export default class Home extends React.Component {
 
@@ -23,7 +24,6 @@ export default class Home extends React.Component {
          recenterToGeocode: {}
       }
    }
-
    // generic handleChange handles all form inputs - ensure your 'name' attribute inline for the JSX input matches the state key you wanna put the values into
    handleChange = event => {
       this.setState({
@@ -52,7 +52,6 @@ export default class Home extends React.Component {
       alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`)
       
    }
-   
    // geolocation takes three args here - mandatory success callback, optional error callback and an object with PositionOptions
    setEstablishmentsFromYourLocation() {
       if (!navigator.geolocation) {
@@ -80,7 +79,6 @@ export default class Home extends React.Component {
       event.preventDefault()
       this.setState({ finishedFetch: false })
       this.setEstablishmentsFromAddressSearch(this.state.search)
-      
    }
 
    setEstablishmentsFromAddressSearch = (search) => {
@@ -93,7 +91,7 @@ export default class Home extends React.Component {
          .then(estabs => this.setState({
             establishments: estabs,
             finishedFetch: true,
-            currentUserId: this.props.user.id,  
+            currentUserId: this.props.user.id
          }))
    }
 
@@ -127,6 +125,7 @@ export default class Home extends React.Component {
       return(
          <> 
             <div className='big-div'> 
+            {/* <img src={handwash} alt="" className="background"/> */}
 
                { this.props.user ? 
                   <NewNavbar user={this.props.user} logout={this.props.logout}/> 
@@ -148,13 +147,9 @@ export default class Home extends React.Component {
                         X 
                      </div>
                   : null }
-{/* 
-                  <div className="search-by-address" onClick={() => this.setEstablishmentsFromAddressSearch('liverpool')}>
-                     TEMP - REPLACE WITH INPUT.
-                  </div> */}
                
                </div>
-               
+
                <div className='primary-map-wrapper'>
                   { this.state.finishedFetch ? 
                      <EstabContainer 

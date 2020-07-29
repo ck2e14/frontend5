@@ -2,6 +2,15 @@ body {
   font-family: 'Roboto', sans-serif !important;
 }
 
+.background {
+  z-index: -1;
+  position: fixed;
+  margin: 0;
+  left: 0;
+  top: 0;
+  max-height: 100vh
+}
+
 .search-div {
   float: left;
   background-color: aqua;
@@ -92,10 +101,10 @@ body {
   width: 124px;
   height: 124px;
   margin: 8px;
-  border: 13px solid #fff;
+  border: 13px solid rgb(25, 212, 181);
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: rgb(255, 255, 255) transparent transparent transparent;
+  border-color: rgb(26, 240, 158) transparent transparent transparent;
 }
 
 .lds-ring div:nth-child(1) {
