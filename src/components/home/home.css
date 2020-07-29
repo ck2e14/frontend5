@@ -61,6 +61,26 @@ body {
   left: 5%;
 }
 
+.click-for-location-find {
+  color: white;
+  font-size: 2vh;
+  border: 2px solid white;
+  padding: .5%;
+  width: fit-content;
+  left: 37%;
+  border-radius: 5px;
+  position: absolute;
+  cursor: pointer;
+  transition: all .25s;
+  margin-top: 0.25vh;
+
+}
+
+.click-for-location-find:hover {
+  color: cyan;
+}
+
+
 .bot-bar {
   color: rgb(199, 199, 199);
   position: absolute;

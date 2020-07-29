@@ -14,7 +14,7 @@ export default class Home extends React.Component {
       this.state = { 
          establishments: [],
          blacklist: [],
-         finishedFetch: false,
+         finishedFetch: true,
          currentUserId: '',
          longitude: '',
          latitude: '',
@@ -58,7 +58,8 @@ export default class Home extends React.Component {
          console.log('Geolocation is not enabled by your browser');
          alert('Geolocation is not enabled by your browser. Please enable location services to use &nbsp; _Hygenik or enter a search term below. ')
       } else {
-         console.log('Locating...')       
+         console.log('Locating...')      
+         this.setState({finishedFetch: false}) 
          window.navigator.geolocation.getCurrentPosition(location => {   
             API.autoGetEstabs(location)
                .then(estabs => this.setState({
@@ -115,7 +116,7 @@ export default class Home extends React.Component {
    }
 
    componentDidMount(){
-      this.setEstablishmentsFromYourLocation();
+      // this.setEstablishmentsFromYourLocation(); 
    }
    // TODO: put an event listener on the whole document on load for keypress. Then in the escapeClick method above put a check for esc keycode and if so trigger the setState
    
@@ -134,12 +135,16 @@ export default class Home extends React.Component {
 
                <div className="filter-elements">
 
+                  <div className="click-for-location-find" onClick={() => this.setEstablishmentsFromYourLocation()} >
+                     Use My Location
+                  </div>
+
                   { this.state.establishments ?
                      <input className='filter-search' type="text" name="filter" tabIndex='1' placeholder="Filter results" position="left" float="left" value={filter} onChange={this.handleChange} />
                   : null }
 
                   <form onSubmit={event => this.handleSearchAddressSubmit(event)} className="address-search-form">
-                     <input className="search-by-address filter-search" tabIndex='1' placeholder="Postcode/street/town" type="text" name="search"  value={search} onChange={this.handleChange}/>
+                     <input className="search-by-address filter-search" tabIndex='1' placeholder="street/town" type="text" name="search"  value={search} onChange={this.handleChange}/>
                   </form>
 
                   { this.state.filter.length >= 1 ? 
