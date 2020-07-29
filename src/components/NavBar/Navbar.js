@@ -27,7 +27,7 @@ const Navbar = (props) => {
       to='/'
       exact
       style={dashStyle}
-      >Premises Lookup</NavLink>
+      >Find Sites Near Me</NavLink>
       <NavLink 
       to='/dashboard'
       exact

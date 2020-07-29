@@ -24,7 +24,7 @@ export default class MenuExampleBasic extends Component {
                   // active={activeItem === 'Premises Lookup'}
                   onClick={this.handleItemClick}
                >
-                  Premises Lookup
+                  Find Sites
                </Menu.Item>
             </Link>
 

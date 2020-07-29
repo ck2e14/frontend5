@@ -35,9 +35,6 @@ export default class Home extends React.Component {
       this.setState({ displayShader: false, displayWelcomeMessage: false })
    }
 
-   handlePremisesLookupClick = () => {
-   }
-
    handleEstabCardClick = estabObject => {
       // console.log(estabObject)
       return this.setState({ 
