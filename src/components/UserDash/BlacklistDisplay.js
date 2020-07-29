@@ -55,7 +55,9 @@ export default class BlacklistDisplay extends React.Component {
                }))
       })
    }
-// removes blacklisting record from blacklist table and then filters state to remove estab with matching ID. For some reason the ID is always 1 lower than it should be - presumably API has desynced somewhere along the way. 
+// removes blacklisting record from blacklist table and then filters state to remove estab with matching ID. We are incrementing the BLACKLISTING record ID by 1 because it is ALWAYS THE CASE (until you add validation UPON CREATION of a blacklisting that the estab hasn't already been added - remember we make a local estab copy only ever at point of making a blacklisting addition) that an estab ID will be 1 more than a blacklisting ID.
+// so the blacklist id is used to delete from blacklist/:id and then its also used to +1 to give us the right value to filter state to get the right ESTABLISHMENT id, since in state the ID per establishment is estab ID not blacklist ID.
+// You can verify this is still the case by creating a new account, adding an estab to blacklist and checking on your API that the new blacklisting record ID is one less than the new estab ID. just got to https://mod5-api.herokuapp.com/api/v1/users and look inside the new user's blacklist. If you ever put validation to stop duplicated blacklistings/estabs you will need to handle the state filtering differently - by addressLine1 might work - is unique enough. 
    handleRemoveEstab = (id) => {
       API.removeBlacklist(id);
       console.log(id)

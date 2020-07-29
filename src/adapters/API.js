@@ -35,6 +35,7 @@ const signup = userDetails => {
   })
 };
 
+// destroys the blacklisting record that matches the blacklisting ID. 
 const removeBlacklist = (id) => {
   return fetch(`${BLACKLISTS_URL}/${id}`, {
            method: "DELETE"
@@ -74,7 +75,7 @@ const validate = () => {
       return data.user;
     })
 };
-
+// newEstab is creating a local copy of the premises for blacklist join table to have a solid reference and reduced reliance on FSA fetch (throttling concern)
 const newEstab = (estabDetails, userID) => {
   return fetch(ESTABS_URL, {
             method: "POST",
@@ -96,7 +97,7 @@ const addToBlacklist = (estabData, userID) => {
         Accept: "application/json"
     },
     body: JSON.stringify({
-      blacklist: {
+      blacklist: {  
       user_id: userID, 
       establishment_id: estabData.establishment.id 
       }
