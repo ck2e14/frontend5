@@ -35,10 +35,11 @@ const signup = userDetails => {
   })
 };
 
-const removeBlacklist = (id) => 
-  fetch(`${BLACKLISTS_URL}/${id}`, {
-    method: "DELETE"
-})
+const removeBlacklist = (id) => {
+  return fetch(`${BLACKLISTS_URL}/${id}`, {
+           method: "DELETE"
+          })
+}
 
 const login = userDetails => {
   return fetch(LOGIN_URL, {
@@ -74,16 +75,18 @@ const validate = () => {
     })
 };
 
-const newEstab = (estabDetails, userID) =>
-  fetch(ESTABS_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify({ establishment: estabDetails })
-  }).then(jsonify)
-  .then(estabData => addToBlacklist(estabData, userID))
+const newEstab = (estabDetails, userID) => {
+  return fetch(ESTABS_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+            },
+            body: JSON.stringify({ establishment: estabDetails })
+          })
+          .then(jsonify)
+          .then(estabData => addToBlacklist(estabData, userID))
+}
 
 const addToBlacklist = (estabData, userID) => {
     fetch(BLACKLISTS_URL, {
@@ -101,7 +104,6 @@ const addToBlacklist = (estabData, userID) => {
     }).then(jsonify)
     .then(data => console.log(data))
 }
-
 // RAW SYNTAX EXAMPLE http://open.mapquestapi.com/geocoding/v1/address?key=yTjeWaGGiekrLYHIhbDdzcyvE9mK6Gmc&location=dorking
 const getLatLongFromGeocode = ( searchTerm ) => {
   const addressInput = searchTerm.split(' ').join('%20');
@@ -115,7 +117,6 @@ const getLatLongFromGeocode = ( searchTerm ) => {
       }
     })
 }
-
 // RAW SYNTAX: https://ratings.food.gov.uk/search-address/{address}/{page}/{resultsPerPage}/json 
 const getEstabsFromAddress = ( searchTerm ) => {
   const addressInput = searchTerm.split(' ').join('%20');

@@ -11,15 +11,14 @@ export default class EstabContainer extends React.Component {
    })}
 
    render(){   
-      
       const cards = this.buildCards()
-
       // below is conditional rendering to display error message (no results) inside a single estab card.
-      if(!this.props.establishments) return (
-         <div className="estabs-div">
+      if(!this.props.establishments) {
+         return (
+            <div className="estabs-div">
             <EstabCard establishment={{name: 'No Results Were Found :('}} displayInfoPane={false} user={this.props.user} />
          </div>
-      )
+      )}
 
       return( 
          <div>

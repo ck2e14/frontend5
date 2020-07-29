@@ -5,9 +5,7 @@ const EstabCard = props => {
 
   const noResultsMoreInfo = <div className="no-results info-pane"> 
   <br/>Please check your search terms for spelling, or try a slightly wider search area. If you searched a full postcode, try searching the first part. If you searched a street name, try searching its town or borough. Results can be filtered by name once they've been returned. </div>
-
   const ratingAsInteger = parseInt(props.establishment.ratingValue)
-
   const name = props.establishment.name
   const address1 = props.establishment.addressLine1
   const address2 = props.establishment.addressLine2
