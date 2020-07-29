@@ -29,6 +29,15 @@ html {
   color: #61dafb;
 }
 
+.mobile-message {
+  color: white;
+  font-size: 3vh;
+  margin-top: 50%;
+  padding: 5%;
+  position: relative;
+
+}
+
 .ui.menu {
   display: flex;
   max-height: 5vh !important;

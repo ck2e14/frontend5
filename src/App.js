@@ -9,6 +9,10 @@ import API from './adapters/API'
 import Home from './components/home/Home'
 import BlacklistDisplay from './components/UserDash/BlacklistDisplay';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  isBrowser,
+  isMobile
+} from "react-device-detect";
 // import UserDash from './components/UserDash/UserDash';
 
 const App = () => {
@@ -35,54 +39,63 @@ const App = () => {
     history.push(paths.LOGIN);
   };
 
-  return (
-    <div className="App">
-      
-      <Switch>
+  if(isMobile) {
+    return (
+      <div className="mobile-message">Welcome to Hygenik. This app is currently in development for mobiles - please visit the website on a desktop browser.<br/><br/> Apologies for any inconvenience! <br/><br/>I am working hard to bring a responsive version to mobile in the close future.<br/><br/><a href="https://chriskennedy.live" className="portfolio-link">PORTFOLIO</a> | <a href="https://github.com/ck2e14" className="portfolio-link">GITHUB</a></div>
+    )
+  }
 
-        { user ? 
-          <Route path="/home" component={props => 
-            <Home {...props} userID={userID} user={user} logout={logout} displayShader={true} />} 
-          /> 
-        :  
+
+  if(isBrowser) {
+    return (
+      <div className="App">
+        
+        <Switch>
+
+          { user ? 
+            <Route path="/home" component={props => 
+              <Home {...props} userID={userID} user={user} logout={logout} displayShader={true} />} 
+            /> 
+          :  
+            <Route path="/login" component={props => 
+              <Login user={user} {...props} setUser={setUser} />} 
+            />
+          }
+          
+          {/* <Route exact path="/blacklist" component={props =>
+            <UserDash {...props} user={user} logout={logout} /> }
+            /> */}
+
+          { user ? 
+          // user2 is indicative of the presence of the normal user object, duplicated for conditional rendering reasons
+              <Route path="/find-premises" component={props => 
+                <Home {...props} userID={userID} user={user} logout={logout} displayShader={false} />} 
+              /> 
+          : null }
+
+          <Route path="/blacklist" component={props =>
+            <BlacklistDisplay {...props} userID={userID} user={user} logout={logout} /> }
+          />  
+          
+          <Route exact path='/' component={props => 
+            <Login user={user}{...props} setUser={setUser}/>} 
+          />
+
           <Route path="/login" component={props => 
             <Login user={user} {...props} setUser={setUser} />} 
           />
-        }
-        
-        {/* <Route exact path="/blacklist" component={props =>
-          <UserDash {...props} user={user} logout={logout} /> }
-          /> */}
 
-        { user ? 
-        // user2 is indicative of the presence of the normal user object, duplicated for conditional rendering reasons
-            <Route path="/find-premises" component={props => 
-              <Home {...props} userID={userID} user={user} logout={logout} displayShader={false} />} 
-            /> 
-        : null }
+          <Route path="/signup" component={props => 
+            <Signup user={user} {...props} setUser={setUser}
+          />} />
 
-        <Route path="/blacklist" component={props =>
-          <BlacklistDisplay {...props} userID={userID} user={user} logout={logout} /> }
-        />  
-        
-        <Route exact path='/' component={props => 
-          <Login user={user}{...props} setUser={setUser}/>} 
-        />
+        </Switch>
 
-        <Route path="/login" component={props => 
-          <Login user={user} {...props} setUser={setUser} />} 
-        />
-
-        <Route path="/signup" component={props => 
-          <Signup user={user} {...props} setUser={setUser}
-        />} />
-
-      </Switch>
-
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"></link>
-      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&family=Rubik:wght@700&display=swap" rel="stylesheet"></link>
-    </div>
-  );
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&family=Rubik:wght@700&display=swap" rel="stylesheet"></link>
+      </div>
+    );
+  }
 }
 
 export default App;

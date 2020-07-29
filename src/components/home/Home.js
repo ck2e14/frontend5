@@ -69,7 +69,7 @@ export default class Home extends React.Component {
                   currentUserId: this.props.user.id
                }))
          }, 
-         () => alert('Geolocation failure. Please ensure _Hygenik has access to locations services and refresh the page, or enter a search term below.'),
+         () => alert('Geolocation failure. Please ensure _Hygenik has access to locations services and hard-refresh the page (clearing cache) or enter a search term below.'),
          {'enableHighAccuracy':true,'timeout': 8000,'maximumAge':0}
          )   
       }
