@@ -32,6 +32,7 @@ const App = () => {
         console.log('user not validated');
       });
   }, [history]);
+  
 
   const logout = () => {
     API.logout();

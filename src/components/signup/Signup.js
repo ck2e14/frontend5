@@ -67,6 +67,12 @@ const Signup = props => {
                </form>
                </div>
                <Link className="signin-link" to="/login">Signed up? Login Here.</Link>
+               <Link to={{
+  pathname: `/login`,
+  state: { 
+    
+  }
+}}/>
          </div>
          </div>
          </div>

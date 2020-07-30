@@ -100,7 +100,7 @@ class ShowMap extends React.Component {
                style={mapStyles}
                yesIWantToUseGoogleMapApiInternals
                mapTypeId='terrain'
-               initialCenter={{ lat: this.props.latitude, lng: this.props.longitude}}
+               initialCenter={{ lat: this.props.latitude || 51.5074, lng: this.props.longitude || 0.1278}}
                center={{ lat: this.props.latitude, lng: this.props.longitude}}
             >
          {this.displayMarkers()}
