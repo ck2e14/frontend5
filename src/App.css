@@ -43,7 +43,8 @@ html {
   height:70%;
   margin-left: 1%;
   margin-top: .4%;
-  transition: all .5s
+  transition: all .5s;
+  z-index: 99999 !important;
 }
 
 .help-icon:hover {
@@ -51,16 +52,16 @@ html {
 }
 
 .logged-in-as {
-  top: 52% !important;
+  top: 54% !important;
   position: relative;
   transform: translateY(-20%) !important;
   font-size: 1.25vh !important;
   color: rgb(201, 201, 201) !important;
-  left: .5% !important;
+  margin-left: 58% !important;
   cursor: default;
   font-weight: bold !important;
   letter-spacing: .1vw;
-
+  font-style: italic !important;
 }
 
 .via-help-icon {
