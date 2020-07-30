@@ -36,7 +36,7 @@
 
 .title-text {
   color: white;
-  font-size: 70px;
+  font-size: 3.5vw !important;
   font-family: 'Saira Semi Condensed', sans-serif;
 }
 
@@ -77,10 +77,10 @@
 .signin-link {
   padding: 12px 20px;
   background-color: rgba(255, 255, 255, 0);
-  margin-top: -2vh !important;
+  margin-top: 0vh !important;
   display: inline-block;
   font-size: 1vw !important;
-
+  width: 7vw !important;
   border-radius: 4px;
   box-sizing: border-box;
   color: white !important;
@@ -106,6 +106,13 @@ input[type=text], select {
   border: 3px solid rgb(255, 252, 252);
   border-radius: 4px;
   box-sizing: border-box;
+  max-height: 4vh !important;
+  max-width: 10vw !important;
+}
+
+.field input {
+  max-height: 4vh !important;
+  max-width: 10vw !important;;
 }
 
 input::placeholder {
@@ -122,6 +129,8 @@ input[type=password], select {
   border: none !important;
   border-radius: 4px;
   box-sizing: border-box;
+  max-height: 4vh !important;
+  max-width: 10vw !important;
 }
 
 input[type=submit], select {
@@ -137,6 +146,8 @@ input[type=submit], select {
   box-sizing: border-box;
   margin-top: -2vh !important;
 
+  max-height: 4vh !important;
+  max-width: 10vw !important;
   color: white;
 }
 

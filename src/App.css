@@ -50,12 +50,16 @@ html {
   filter: brightness(4)
 }
 
-.via-help-icon {
-  animation: fade-in .25s !important;
+.logged-in-as {
+  top: 50% !important;
+  position: relative;
+  transform: translateY(-20%) !important;
+  font-size: 1.25vh !important;
+  left: .5% !important;
 }
 
-.ui {
-  max-height: 5vh !important;
+.via-help-icon {
+  animation: fade-in .25s !important;
 }
 
 .ui.menu {
@@ -69,7 +73,7 @@ html {
   border: none !important;
   box-shadow:  none !important;
   border-radius: 0 !important;
-  background-color: #00e1ff !important;
+  background-color: #00ffc8 !important;
   /* background: linear-gradient(-239deg, #37eab4, #64dce9) !important; */
   background-size: 400% 400%;
   /* background-color: #324f74 !important; */

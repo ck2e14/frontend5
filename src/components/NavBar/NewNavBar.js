@@ -54,6 +54,8 @@ export default class MenuExampleBasic extends Component {
                </Menu.Item>
             </Link>
 
+            <div className="logged-in-as"> Logged in as {this.props.user.username}</div>
+
             { this.state.helpMsg ? <div className="shader-layer" onClick={this.helpClick}></div> : null }
 
             { this.state.helpMsg ? 

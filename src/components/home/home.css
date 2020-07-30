@@ -20,7 +20,7 @@ body {
   /* width: 14% !important   ; */
   max-width: 11%;
   min-width: 11%;
-  margin-top: 5.9vh;
+  margin-top: 0vh;
   left: 22%;
   height: 3vh;
   max-height: 3vh;
@@ -194,7 +194,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.514);
+  background-color: rgba(0, 0, 0, 0.814);
   z-index: 99;
 }
 
