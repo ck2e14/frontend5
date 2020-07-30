@@ -142,7 +142,7 @@ export default class Home extends React.Component {
       On that note - since March, the FSA have experienced a big surge in the number of requests made to their resources. At peak usage requests are being dynamically throttled. <br/><br/>Unfortunately this may mean waiting longer than usual to load, or the service may be made temporarily unavailable entirely. Please refresh / hard refresh the page after a couple of minutes if that is the case - hopefully the throttling will have been relaxed!
       <br/><br/>
       This app remains in development. Please report any bugs you encounter to <a href="mailto:chriswkennedy@icloud.com">Chris Kennedy.</a> Suggestions are also welcome! Thanks!<br/><br/>
-      More information can be found <a href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here.</a></span> 
+      More information can be found <a  target="_blank" rel="noopener noreferrer"href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here.</a></span> 
       <br/><br/>
       Please note: NO personal data is stored by Hygenik. Using location services improves the utility and flow of the app, but if you would prefer to search manually feel free to revoke location services in your browser. 
       {/* Please also note that Heroku unloads apps from its servers when they haven't been very recently accessed - you may have experienced longer loading times of the website itself because of this upon initial visit.  */}
