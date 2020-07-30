@@ -50,9 +50,9 @@ export default class Home extends React.Component {
    }
 
    handleBlacklistClick = (estabObject, userID) => {
-      API.newEstab(estabObject, this.props.user.id);
+      API.newEstab(estabObject, this.props.user.id)
       alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`)
-      
+      this.setState({ filter: '' }) 
    }
    // geolocation takes three args here - mandatory success callback, optional error callback and an object with PositionOptions
    setEstablishmentsFromYourLocation() {

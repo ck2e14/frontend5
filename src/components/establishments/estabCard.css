@@ -18,7 +18,7 @@
 .card-wrapper:hover {
   overflow: hidden;
   background-color: rgba(21, 51, 76, 0.596);
-  height: 32vh;
+  height: 29vh;
   /* border-radius: 20px; */
   /* min-height: fit-content;   */
   /* filter: brightness(1); */
@@ -147,7 +147,8 @@
   transition: all .5s;
   padding-top: 2%;
   font-size: 1.5vh;
-  font-weight: bold;
+  font-weight: bold;;
+  z-index: 99;
 }
 
 .blacklist-button:hover {
