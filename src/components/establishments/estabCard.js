@@ -10,11 +10,21 @@ const EstabCard = props => {
   const address1 = props.establishment.addressLine1
   const address2 = props.establishment.addressLine2
 
+  if(props.displayInfoPane === false) {
+    return (
+    <div className="card-wrapper r1-2" >
+
+      <div className="name">{name}</div>
+        {noResultsMoreInfo} 
+    </div>
+    )
+  }
+
   if(ratingAsInteger === 5){
     return (    
       <div className="card-wrapper r-5" onClick={() => props.handleEstabCardClick(props.establishment)}>
-
-          <div className="name">{name}</div>
+        
+          <div className="name">{name}</div> &nbsp; <div className="color-code-name-box-estab-card-5">{props.establishment.ratingValue}/5</div>
           
           <div className="info-pane" style={{color: '#010101'}} >
 
@@ -44,7 +54,7 @@ const EstabCard = props => {
     return (
       <div className="card-wrapper r4-3" onClick={() => props.handleEstabCardClick(props.establishment)}>
 
-          <div className="name">{name}</div>
+          <div className="name">{name}</div> &nbsp; <div className="color-code-name-box-estab-card-4-3">{props.establishment.ratingValue}/5</div>
           
           <div className="info-pane" style={{color: '#010101'}} >
 
@@ -100,20 +110,10 @@ const EstabCard = props => {
     ) 
   }
 
-  if(props.displayInfoPane === false) {
-    return (
-    <div className="card-wrapper r1-2" >
-
-      <div className="name">{name}</div>
-        {noResultsMoreInfo} 
-    </div>
-    )
-  }
-
   return (
     <div className="card-wrapper r1-2" onClick={() => props.handleEstabCardClick(props.establishment)}>
 
-        <div className="name">{name}</div>
+        <div className="name">{name}</div>&nbsp; <div className="color-code-name-box-estab-card-1-2">{props.establishment.ratingValue}/5</div>
                 
         <div className="info-pane" style={{color: '#010101'}} >
 

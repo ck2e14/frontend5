@@ -18,7 +18,7 @@
 .card-wrapper:hover {
   overflow: hidden;
   background-color: rgba(21, 51, 76, 0.596);
-  height: 29vh;
+  height: 32vh;
   /* border-radius: 20px; */
   /* min-height: fit-content;   */
   /* filter: brightness(1); */
@@ -51,6 +51,45 @@
 .card-wrapper:hover > .info-pane {
   display: block;
   opacity: 1;
+}
+
+.color-code-name-box-estab-card-5 {
+  font-size: 2vh !important;
+  margin-top: -2%;
+  margin-bottom: 2%;;
+  color: #49b675;
+  opacity: 1;
+  transition: all .25s;
+}
+
+.card-wrapper:hover > .color-code-name-box-estab-card-5 {
+  opacity: 0;
+}
+
+.color-code-name-box-estab-card-4-3 {
+  font-size: 2vh !important;
+  margin-top: -2%;
+  margin-bottom: 2%;;
+  color: #e9cb4e;
+  opacity: 1;
+  transition: all .25s;
+}
+
+.card-wrapper:hover > .color-code-name-box-estab-card-4-3 {
+  opacity: 0;
+}
+
+.color-code-name-box-estab-card-1-2 {
+  font-size: 2vh !important;
+  margin-top: -2%;
+  margin-bottom: 2%;;
+  color: #e04d6b;
+  opacity: 1;
+  transition: all .25s;
+}
+
+.card-wrapper:hover > .color-code-name-box-estab-card-1-2 {
+  opacity: 0;
 }
 
 .info-pane {
