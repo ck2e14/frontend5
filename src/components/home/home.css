@@ -16,6 +16,28 @@ body {
   background-color: aqua;
 }
 
+.submit-button {
+  color: grey;
+  cursor: pointer;
+  transition: all .25s;
+  position: absolute;
+  width: fit-content;
+  padding: .5%;
+  /* margin-left: 2% !important; */
+  left: 15% !important;
+  top: 4.75vh;
+  transform: translateY(35%);
+  border-radius: 4px;
+  font-size: 2vh !important;
+  background-color: rgba(91, 145, 124, 0);
+
+}
+
+.submit-button:hover {
+  /* background-color: rgb(91, 145, 124); */
+  color: white;
+}
+
 .filter-search {
   /* width: 14% !important   ; */
   max-width: 11%;
@@ -23,7 +45,7 @@ body {
   margin-top: 0vh;
   left: 22%;
   height: 3vh;
-  max-height: 3vh;
+  max-height: 20px !important;
   min-height: 3vh;;
   z-index: 9;
   position: fixed;
@@ -40,7 +62,7 @@ body {
 .clear-search-button {
   color: rgb(0, 247, 255);
   position: absolute;
-  margin-top: 1vh;
+  margin-top: 0vh;
   max-height: 4vh;
   font-size: 2vh; 
   left: 34.5%;  
@@ -58,26 +80,31 @@ body {
 }
 
 .search-by-address {
-  left: 5%;
+  left: 2vw;
 }
 
 .click-for-location-find {
-  color: white;
-  font-size: 2vh;
-  border: 2px solid white;
-  padding: .5%;
+  color: rgb(185, 185, 185);
+  font-size: 1.75vh;
+  border: 2px solid rgba(255, 255, 255, 0);
+  padding: .7%;
   width: fit-content;
-  left: 37%;
-  border-radius: 5px;
+  left: .65vw;
+  z-index: 99;
+  margin-top:2% !important;
+  border-radius: 3px;
   position: absolute;
   cursor: pointer;
   transition: all .25s;
-  margin-top: 0.25vh;
-
+  margin-top: -.2vh;
+  background-color: rgba(128, 128, 128, 0);
+  letter-spacing: .35vw;
 }
 
 .click-for-location-find:hover {
-  color: cyan;
+  color: rgb(255, 255, 255);
+  background-color: rgb(91, 145, 124);
+  border-color: rgba(128, 128, 128, 0);
 }
 
 
@@ -97,12 +124,12 @@ body {
 }
 
 .bot-bar a {
-  color: cyan;
-  transition: all 1s;
+  color: rgb(91, 145, 124);
+  transition: all .5s;
 }
 
 .bot-bar a:hover {
-  color: greenyellow
+  color: rgb(0, 255, 42)
 }
 
 .lds-ring {
@@ -124,7 +151,7 @@ body {
   border: 13px solid rgb(25, 212, 181);
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: rgb(26, 240, 158) transparent transparent transparent;
+  border-color: rgb(91, 145, 124) transparent transparent transparent;
 }
 
 .lds-ring div:nth-child(1) {
@@ -152,7 +179,7 @@ body {
   color: rgb(121, 218, 224) !important;
   font-size: 1vw !important ;
   line-height: 1.5;
-  z-index: 99;
+  z-index: 999;
   animation: fade-in 2s ease-in-out both;
 }
 
@@ -195,7 +222,7 @@ body {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.814);
-  z-index: 99;
+  z-index: 999;
 }
 
 @keyframes lds-ring {

@@ -62,6 +62,9 @@
   /* margin-bottom: 2%;; */
   color: #49b675;
   opacity: 1;
+  padding: 1%;
+  border: 1px solid rgb(112, 112, 112);
+  border-radius: 5px;
 }
 
 .card-wrapper:hover > .color-code-name-box-estab-card-5 {
@@ -79,6 +82,9 @@
   /* margin-bottom: 2%;; */
   color: #e9cb4e;
   opacity: 1;
+  padding: 1%;
+  border: 1px solid rgb(112, 112, 112);
+  border-radius: 5px;
 }
 
 .card-wrapper:hover > .color-code-name-box-estab-card-4-3 {
@@ -95,6 +101,9 @@
   /* margin-bottom: 2%;; */
   color: #e04d6b;
   opacity: 1;
+  padding: 1%;
+  border: 1px solid rgb(112, 112, 112);
+  border-radius: 5px;
 }
 
 .card-wrapper:hover > .color-code-name-box-estab-card-1-2 {

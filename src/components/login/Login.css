@@ -6,6 +6,7 @@
   height: 100vh;
   /* background-color: #42c5da !important; */
   background: linear-gradient(239deg, #37eab4, #37d9ea);
+  /* background: linear-gradient(239deg, rgb(39, 39, 39), rgb(61, 61, 61)); */
   background-size: 400% 400%;
   -webkit-animation: AnimationName 6s ease infinite;
   -moz-animation: AnimationName 6s ease infinite;

@@ -147,7 +147,7 @@ export default class Home extends React.Component {
       Please note: NO personal data is stored by Hygenik. Using location services improves the utility and flow of the app, but if you would prefer to search manually feel free to revoke location services in your browser. 
       {/* Please also note that Heroku unloads apps from its servers when they haven't been very recently accessed - you may have experienced longer loading times of the website itself because of this upon initial visit.  */}
    </div>  : null }
-   
+
             <div className='big-div'> 
             {/* <img src={handwash} alt="" className="background"/> */}
 
@@ -169,6 +169,10 @@ export default class Home extends React.Component {
                   <form onSubmit={event => this.handleSearchAddressSubmit(event)} className="address-search-form">
                      <input className="search-by-address filter-search" tabIndex='1' placeholder="Search Placename" type="text" name="search"  value={search} onChange={this.handleChange}/>
                   </form>
+
+                  {this.state.search.length > 0 ?
+                     <div className="submit-button">GO</div>  
+                  : null }
 
                   { this.state.filter.length >= 1 ? 
                      <div className="clear-search-button" title='Clear Filter' onClick={this.clearFilterWithClick}>

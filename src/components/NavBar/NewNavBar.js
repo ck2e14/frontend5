@@ -54,8 +54,6 @@ export default class MenuExampleBasic extends Component {
                </Menu.Item>
             </Link>
 
-            <div className="logged-in-as"> Logged in as {this.props.user.username}</div>
-
             { this.state.helpMsg ? <div className="shader-layer" onClick={this.helpClick}></div> : null }
 
             { this.state.helpMsg ? 
@@ -72,7 +70,13 @@ export default class MenuExampleBasic extends Component {
                   <br/><br/>
                   Please note: NO personal data is stored by Hygenik. Using location services improves the utility and flow of the app, but if you would prefer to search manually feel free to revoke location services in your browser. 
                   {/* Please also note that Heroku unloads apps from its servers when they haven't been very recently accessed - you may have experienced longer loading times of the website itself because of this upon initial visit.  */}
-               </div>  : null }
+               </div>  
+            : null }
+
+{ this.props.user ?
+           <div className="logged-in-as"> Logged in as <span>{this.props.user.username}</span></div>
+           : null }
+
 
                <img src={helpIcon} onClick={this.helpClick} alt="About Hygenik" className="help-icon"/>
                

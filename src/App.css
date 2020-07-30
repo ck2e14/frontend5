@@ -51,11 +51,16 @@ html {
 }
 
 .logged-in-as {
-  top: 50% !important;
+  top: 52% !important;
   position: relative;
   transform: translateY(-20%) !important;
   font-size: 1.25vh !important;
+  color: rgb(201, 201, 201) !important;
   left: .5% !important;
+  cursor: default;
+  font-weight: bold !important;
+  letter-spacing: .1vw;
+
 }
 
 .via-help-icon {
@@ -65,16 +70,15 @@ html {
 .ui.menu {
   display: flex;
   max-height: 5vh !important;
-  min-width:  5vh !important;
   height: 5vh !important;
   margin-right: 0 !important;
   font-family: 'Roboto', sans-serif !important;
   font-weight: 400;
   border: none !important;
-  box-shadow:  none !important;
+  box-shadow:  2px 2px 1px rgb(83, 83, 83) !important;
   border-radius: 0 !important;
-  background-color: #00ffc8 !important;
-  /* background: linear-gradient(-239deg, #37eab4, #64dce9) !important; */
+  background-color: rgba(43, 43, 43, 0) !important;
+  /* background: linear-gradient(-239deg, #292929, #aff7ff) !important; */
   background-size: 400% 400%;
   /* background-color: #324f74 !important; */
 }
@@ -82,6 +86,7 @@ html {
 .ui.menu .item {
   position: relative;
   vertical-align: middle;
+  letter-spacing: .1vw;
   line-height: 1;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
@@ -91,7 +96,7 @@ html {
   background: 0 0;
   border: none !important;
   text-transform: none;
-  color: rgb(56, 56, 56) !important;
+  color: rgb(148, 148, 148) !important;
   font-weight: 900 !important;
   font-size: 1.75vh;
   transition: all .25s !important;
@@ -99,7 +104,8 @@ html {
 }
 
 .ui.menu .item:hover {
-  color: rgb(255, 255, 255) !important;
+  color: rgb(194, 194, 194) !important;
+  background-color: rgb(84, 153, 127) !important;
 
 }
 
