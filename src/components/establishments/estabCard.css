@@ -54,48 +54,58 @@
 }
 
 .color-code-name-box-estab-card-5 {
-  font-size: 2vh !important;
-  margin-top: -2%;
-  margin-bottom: 2%;;
+  font-size: 1.5vh !important;
+  position: fixed;
+  top: 10%;
+  right: 2%;
+  /* margin-top: 0vh; */
+  /* margin-bottom: 2%;; */
   color: #49b675;
   opacity: 1;
-  transition: all .25s;
 }
 
 .card-wrapper:hover > .color-code-name-box-estab-card-5 {
-  opacity: 0;
+  /* opacity: 0; */
+  display: none;
+
 }
 
 .color-code-name-box-estab-card-4-3 {
-  font-size: 2vh !important;
-  margin-top: -2%;
-  margin-bottom: 2%;;
+  font-size: 1.5vh !important;
+  position: fixed;
+  top: 10%;
+  right: 2%;
+  /* margin-top: 0vh; */
+  /* margin-bottom: 2%;; */
   color: #e9cb4e;
   opacity: 1;
-  transition: all .25s;
 }
 
 .card-wrapper:hover > .color-code-name-box-estab-card-4-3 {
-  opacity: 0;
+  /* opacity: 0; */
+  display: none;
 }
 
 .color-code-name-box-estab-card-1-2 {
-  font-size: 2vh !important;
-  margin-top: -2%;
-  margin-bottom: 2%;;
+  font-size: 1.5vh !important;
+  position: fixed;
+  top: 10%;
+  right: 2%;
+  /* margin-top: 0vh; */
+  /* margin-bottom: 2%;; */
   color: #e04d6b;
   opacity: 1;
-  transition: all .25s;
 }
 
 .card-wrapper:hover > .color-code-name-box-estab-card-1-2 {
-  opacity: 0;
+  /* opacity: 0; */
+  display: none;
 }
 
 .info-pane {
   opacity: 0;
   margin-top: 2%;
-  line-height: 1.75vh;
+  line-height: 1.5vh;
   display: none;
   transition: all .25s ease-in-out;
   animation: fade-in .25s ease-in-out both;
