@@ -36,11 +36,6 @@ const Login = props => {
       localStorage.alreadyVisited = false
    }
 
-   const closeWelcomeMsgAndShader = () => {
-      setWelcome(false);
-      setDisplayShader(false)
-   }
-
    return (
       <div className="login-container">
 
@@ -79,12 +74,12 @@ const Login = props => {
                                  />
                               </div>
                               <input className="submit" type="submit" value="LOG IN"/>
+                              <Link className='register-link' to="/signup">REGISTER</Link>
                            </div>
                      </form>
                      </div>
                   </div>
                </div>
-            <Link className='register-link' to="/signup">REGISTER</Link>
          </div>
       </div>
 </div>

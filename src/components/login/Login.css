@@ -19,7 +19,7 @@
 .text {  
   font-family: 'Saira Semi Condensed', sans-serif;
   padding: 0 20px;
-  font-size: 20px;
+  font-size: 2vh !important;
   color: rgb(49, 49, 49) !important;
   padding-bottom: 5%;;
 }
@@ -45,28 +45,45 @@
 }
 
 .register-link {
-  color: white;
+  color: white !important;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none !important;
-  font-size: .75vw !important;
+  font-size: 1vw !important;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin-top: -2vh !important;
   display: inline-block;
   border-radius: 4px;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0);
 }
 
-.signin-link {
+.submit {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none !important;
+  font-size: 1vw !important;
   padding: 12px 20px;
-  background-color: rgba(255, 255, 255, 0);
-  margin: 8px 0;
+  margin-top: 12vh !important;
+  /* margin: 8px 0; */
   display: inline-block;
   border-radius: 4px;
   box-sizing: border-box;
-  color: white;
+}
+
+.signin-link {
+  padding: 12px 20px;
+  background-color: rgba(255, 255, 255, 0);
+  margin-top: -2vh !important;
+  display: inline-block;
+  font-size: 1vw !important;
+
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: white !important;
 }
 
 .login-border-box {
@@ -85,7 +102,6 @@ input[type=text], select {
   text-align: center;
   padding: 12px 20px;
   transform: scaleX(1.25) scaleY(1.1) !important;
-  margin: 8px 0;
   display: inline-block;
   border: 3px solid rgb(255, 252, 252);
   border-radius: 4px;
@@ -117,8 +133,10 @@ input[type=submit], select {
   padding-right: 24%;
   border: none !important;
   border-radius: 4px;
-  font-size: .8vw !important;
+  /* font-size: .8vw !important; */
   box-sizing: border-box;
+  margin-top: -2vh !important;
+
   color: white;
 }
 

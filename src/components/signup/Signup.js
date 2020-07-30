@@ -62,17 +62,11 @@ const Signup = props => {
                      onChange={e => setPassword(e.target.value)}
                   />
                </div>
-                  <input className="submit" type="submit" value="Sign up"/>
+                  <input className="submit" type="submit" value="SIGN UP"/>
+                  <Link className="signin-link" to="/login">SIGNED UP? LOGIN HERE.</Link>
                   </div>
                </form>
                </div>
-               <Link className="signin-link" to="/login">Signed up? Login Here.</Link>
-               <Link to={{
-  pathname: `/login`,
-  state: { 
-    
-  }
-}}/>
          </div>
          </div>
          </div>
