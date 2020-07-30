@@ -13,6 +13,8 @@ import {
   isBrowser,
   isMobile
 } from "react-device-detect";
+import helpIcon from './Assets/helpIcon.png'
+
 // import UserDash from './components/UserDash/UserDash';
 
 const App = () => {

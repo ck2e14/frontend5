@@ -35,7 +35,27 @@ html {
   margin-top: 50%;
   padding: 5%;
   position: relative;
+}
 
+.help-icon {
+  max-width: 4vh;
+  max-height: 4vh;
+  height:70%;
+  margin-left: 1%;
+  margin-top: .4%;
+  transition: all .5s
+}
+
+.help-icon:hover {
+  filter: brightness(4)
+}
+
+.via-help-icon {
+  animation: fade-in .25s !important;
+}
+
+.ui {
+  max-height: 5vh !important;
 }
 
 .ui.menu {
@@ -49,7 +69,7 @@ html {
   border: none !important;
   box-shadow:  none !important;
   border-radius: 0 !important;
-  background-color: #49b8b2 !important;
+  background-color: #00e1ff !important;
   /* background: linear-gradient(-239deg, #37eab4, #64dce9) !important; */
   background-size: 400% 400%;
   /* background-color: #324f74 !important; */
@@ -143,11 +163,11 @@ html {
   color: rgba(255, 255, 255, 0.87) !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes fade-in {
+  0% {
+    opacity: 0;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 1;
   }
 }

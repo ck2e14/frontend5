@@ -76,6 +76,7 @@ export default class BlacklistDisplay extends React.Component {
 
    render(){
       return(
+         <>
          <div className='main-div'>
 
             <NewNavBar user={this.props.user} logout={this.props.logout} />
@@ -96,8 +97,13 @@ export default class BlacklistDisplay extends React.Component {
                   </div>
 
                </div>
+               
 
          </div>
+          <div className="bot-bar">
+          <a href="https://chriskennedy.live" target="_blank" rel="noopener noreferrer"className="portfolio-link">Christopher Kennedy</a> | Full-stack developer | Stack: JavaScript ES6, React (hooks, router, async), JWT Auth | Ruby on Rails | PostgreSQL | CD | Git   
+       </div>
+       </>
       )
    }
 }
