@@ -73,9 +73,9 @@ export default class MenuExampleBasic extends Component {
                </div>  
             : null }
 
-{ this.props.user ?
-           <div className="logged-in-as"> Logged in as <span>{this.props.user.username}</span></div>
-           : null }
+            { this.props.user ?
+               <div className="logged-in-as"> Logged in as <span>{this.props.user.username}</span></div>
+            : null }
 
 
                <img src={helpIcon} onClick={this.helpClick} alt="About Hygenik" className="help-icon"/>

@@ -12,7 +12,7 @@ export default class Home extends React.Component {
    constructor(props){
       super(props)
       this.state = { 
-         establishments: [],
+         establishments: [{ name: 'Get Started!' }],
          blacklist: [],
          finishedFetch: true,
          currentUserId: '',

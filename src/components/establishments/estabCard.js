@@ -20,6 +20,18 @@ const EstabCard = props => {
     )
   }
 
+  if(name === 'Get Started!') {
+    return (
+      <div className="card-wrapper get-started-wrapper" >
+
+      <div className="name">{name}</div> 
+      <div className="get-started-info info-pane">
+        Select 'Use my location' to see premises near you, or search for a street/town.
+      </div>
+    </div>
+    )
+  }
+
   if(ratingAsInteger === 5){
     return (    
       <div className="card-wrapper r-5" onClick={() => props.handleEstabCardClick(props.establishment)}>

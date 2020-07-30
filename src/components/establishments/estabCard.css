@@ -24,6 +24,24 @@
   /* filter: brightness(1); */
 }
 
+.get-started-wrapper {
+  user-select: none;
+}
+
+.get-started-wrapper:hover {
+  height: 13vh !important;
+  background-color: rgb(91, 145, 124) !important;
+}
+
+.get-started-wrapper:hover > .name {
+  color: white !important;
+}
+
+.get-started-info {
+  margin-top: 7% !important;
+  color: white !important;
+}
+
 .r-5:hover {
   background-color: #49b675;
 }
