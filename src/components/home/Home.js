@@ -86,9 +86,13 @@ export default class Home extends React.Component {
       this.setEstablishmentsFromAddressSearch(this.state.search)
    }
 
+   addressGoClick = () => {
+      this.setEstablishmentsFromAddressSearch(this.state.search)
+   }
+
    setEstablishmentsFromAddressSearch = (search) => {
       this.clearFilterWithClick()
-      API.getLatLongFromGeocode(search).then(locationObject => this.setState({
+      API.getLatLongFromGeocode(this.state.search).then(locationObject => this.setState({
          currentLongitude: locationObject.geocodedLongitude,
          currentLatitude: locationObject.geocodedLatitude, 
       }))
@@ -176,7 +180,7 @@ export default class Home extends React.Component {
                   </form>
 
                   {this.state.search.length > 0 ?
-                     <div className="submit-button">GO</div>  
+                     <div className="submit-button" onClick={(event) => this.addressGoClick(event)}>GO</div>  
                   : null }
 
                   { this.state.filter.length >= 1 ? 
