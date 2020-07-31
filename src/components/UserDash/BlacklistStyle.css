@@ -1,16 +1,20 @@
 .display-cards-div {
   width: 75%;
-  margin-left: 21em;
-  border: 2px solid rgb(116, 111, 111);
-  border-radius: 10px 10px 10px 10px;
-
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  /* border: 2px solid rgb(116, 111, 111); */
 }
 
-.main-div {
+.card-wrapper {
+  cursor: default;
+}
+
+.main-div-blacklist {
+  padding: 5%;
   height: 100%;
-  width: 100%;
-  position: absolute;
-overflow: scroll
+  width: 100%;;
+  overflow: scroll;
   
 }
 
@@ -22,7 +26,6 @@ font-size: 30px;
   color: rgb(199, 199, 199);
   font-size: 2vw;
 }
-
 .wrapper {
   width: 300px;
   height: 300px;

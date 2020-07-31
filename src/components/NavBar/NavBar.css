@@ -7,3 +7,44 @@
    transition: all .25s;
    overflow: hidden;
 }
+
+.nav-wrapper {
+   display: flex;
+   align-items: left;
+   width: 100vw;
+   position: fixed;
+   height: 5vh;
+   background-color: rgba(44, 44, 44, 0);
+   border-bottom: 2px solid rgb(85, 85, 85); 
+   color: white !important;
+}
+
+.navbar-item {
+   color: rgb(153, 153, 153);
+   font-size: 2.5vh;
+   min-width: 9vw;
+   padding: 1%;
+   padding-right: 2%;
+   padding-left: 2%;
+   transition: all .25s;
+   letter-spacing: .1vw;   
+}
+.navbar-item:hover {
+   color: rgb(255, 255, 255);
+   background-color: rgb(91, 145, 124);
+   border-color: rgba(128, 128, 128, 0);
+}
+
+.logged-in-as {
+   top: 54% !important;
+   position: relative;
+   transform: translateY(-20%) !important;
+   font-size: 1.25vh !important;
+   color: rgb(201, 201, 201) !important;
+   margin-left: 52% !important;
+   cursor: default;
+   font-weight: bold !important;
+   letter-spacing: .1vw;
+   font-style: italic !important;
+ }
+ 

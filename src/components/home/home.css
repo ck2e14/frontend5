@@ -11,6 +11,11 @@ body {
   max-height: 100vh
 }
 
+.filter-elements {
+  margin-top: 8vh;
+  position: fixed;
+}
+
 .search-div {
   float: left;
   background-color: aqua;
@@ -24,11 +29,13 @@ body {
   width: fit-content;
   padding: .5%;
   /* margin-left: 2% !important; */
-  left: 15% !important;
-  top: 4.75vh;
+  /* left: 15% !important; */
+  margin-left: 15vw;
+  /* top: 4.75vh; */
   transform: translateY(35%);
   border-radius: 4px;
-  font-size: 2vh !important;
+  font-size: 2.5vh !important;
+  font-weight: bold;
   background-color: rgba(91, 145, 124, 0);
 
 }
@@ -43,7 +50,7 @@ body {
   max-width: 11%;
   min-width: 11%;
   margin-top: 0vh;
-  left: 22%;
+  left: 20%;
   height: 3vh;
   max-height: 20px !important;
   min-height: 3vh;;
@@ -60,23 +67,24 @@ body {
 }
 
 .clear-search-button {
-  color: rgb(0, 247, 255);
+  color: rgb(161, 161, 161);
   position: absolute;
-  margin-top: 0vh;
+  margin-top: 0.5vh;
   max-height: 4vh;
-  font-size: 2vh; 
-  left: 34.5%;  
+  font-size: 3vh; 
+  margin-left: 33vw;
   z-index: 9;
   cursor: pointer;
   border: 2px solid rgba(0, 255, 255, 0);
   border-radius: 5px;
-  padding: .25%;
-  transition: all .25s;
+  padding: .5%;
+  font-weight: bold;
+  transition: all .5s;
   user-select: none;
 }
 
 .clear-search-button:hover {
-  color: rgb(251, 255, 0);
+  color: rgb(255, 255, 255);
 }
 
 .search-by-address {
@@ -88,17 +96,17 @@ body {
   font-size: 1.75vh;
   border: 2px solid rgba(255, 255, 255, 0);
   padding: .7%;
-  width: fit-content;
+  width: 13.75vw !important;
   left: .65vw;
   z-index: 99;
-  margin-top:2% !important;
+  margin-top:3.5vh !important;
   border-radius: 3px;
   position: absolute;
   cursor: pointer;
   transition: all .25s;
-  margin-top: -.2vh;
   background-color: rgba(128, 128, 128, 0);
   letter-spacing: .35vw;
+  user-select: none;
 }
 
 .click-for-location-find:hover {
@@ -106,7 +114,6 @@ body {
   background-color: rgb(91, 145, 124);
   border-color: rgba(128, 128, 128, 0);
 }
-
 
 .bot-bar {
   color: rgb(199, 199, 199);
@@ -174,19 +181,22 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 8px;
-  background-color: rgba(26, 26, 26, 0.76);
+  background-color: rgba(0, 0, 0, 0.76);
   backdrop-filter: blur(5px);
   color: rgb(121, 218, 224) !important;
   font-size: 1vw !important ;
   line-height: 1.5;
   z-index: 999;
-  animation: fade-in 2s ease-in-out both;
+  animation: fade-in 1s ease-in-out both;
 }
 
 .explanation-and-welcome span {
   font-size: 1.75vw;
 }
 
+.explanation-and-welcome a {
+  color: cyan;
+}
 .escape-key {
   position: absolute;
   padding: .5%;

@@ -1,7 +1,6 @@
 import React from 'react'
 import API from '../../adapters/API'
 import BlacklistCard from '../UserDash/BlacklistCard'
-// import BlacklistStyle from './BlacklistStyle.css'
 import NewNavBar from '../NavBar/NewNavBar'
 
 export default class BlacklistDisplay extends React.Component {
@@ -55,9 +54,10 @@ export default class BlacklistDisplay extends React.Component {
                }))
       })
    }
-// removes blacklisting record from blacklist table and then filters state to remove estab with matching ID. We are incrementing the BLACKLISTING record ID by 1 because it is ALWAYS THE CASE (until you add validation UPON CREATION of a blacklisting that the estab hasn't already been added - remember we make a local estab copy only ever at point of making a blacklisting addition) that an estab ID will be 1 more than a blacklisting ID.
-// so the blacklist id is used to delete from blacklist/:id and then its also used to +1 to give us the right value to filter state to get the right ESTABLISHMENT id, since in state the ID per establishment is estab ID not blacklist ID.
-// You can verify this is still the case by creating a new account, adding an estab to blacklist and checking on your API that the new blacklisting record ID is one less than the new estab ID. just got to https://mod5-api.herokuapp.com/api/v1/users and look inside the new user's blacklist. If you ever put validation to stop duplicated blacklistings/estabs you will need to handle the state filtering differently - by addressLine1 might work - is unique enough. 
+
+   // removes blacklisting record from blacklist table and then filters state to remove estab with matching ID. We are incrementing the BLACKLISTING record ID by 1 because it is ALWAYS THE CASE (until you add validation UPON CREATION of a blacklisting that the estab hasn't already been added - remember we make a local estab copy only ever at point of making a blacklisting addition) that an estab ID will be 1 more than a blacklisting ID.
+   // so the blacklist id is used to delete from blacklist/:id and then its also used to +1 to give us the right value to filter state to get the right ESTABLISHMENT id, since in state the ID per establishment is estab ID not blacklist ID.
+   // You can verify this is still the case by creating a new account, adding an estab to blacklist and checking on your API that the new blacklisting record ID is one less than the new estab ID. just got to https://mod5-api.herokuapp.com/api/v1/users and look inside the new user's blacklist. If you ever put validation to stop duplicated blacklistings/estabs you will need to handle the state filtering differently - by addressLine1 might work - is unique enough. 
    handleRemoveEstab = (id) => {
       API.removeBlacklist(id);
       console.log(id)
@@ -69,7 +69,6 @@ export default class BlacklistDisplay extends React.Component {
       })
    }
 
-
    buildCards = () => this.state.rebuilt.map(estab => {
       return <BlacklistCard remove={this.handleRemoveEstab} establishment={estab} user={this.props.user} />
    })
@@ -77,33 +76,33 @@ export default class BlacklistDisplay extends React.Component {
    render(){
       return(
          <>
-         <div className='main-div'>
-
             <NewNavBar user={this.props.user} logout={this.props.logout} />
 
-               <div className='border-box'>
+            <div className='main-div-blacklist'>
 
-               <h1> My Blacklisted Sites</h1>
+                  <div className='border-box'>
 
-                  <div className='display-cards-div'>     
+                  <h1> My Blacklisted Sites</h1>
+
+                     <div className='display-cards-div'>     
 
 
-                     { this.state.readyToRender ?
-                        console.log(this.state.userInfo.blacklists)
-                     : null }
+                        { this.state.readyToRender ?
+                           console.log(this.state.userInfo.blacklists)
+                        : null }
 
-                     {this.buildCards()}
+                        {this.buildCards()}
+
+                     </div>
 
                   </div>
+                  
+            </div>
 
-               </div>
-               
-
-         </div>
-          <div className="bot-bar">
-          <a href="https://chriskennedy.live" target="_blank" rel="noopener noreferrer"className="portfolio-link">Christopher Kennedy</a> | Full-stack developer | Stack: JavaScript ES6, React (hooks, router, async), JWT Auth | Ruby on Rails | PostgreSQL | CD | Git   
-       </div>
-       </>
+            <div className="bot-bar">
+               <a href="https://chriskennedy.live" target="_blank" rel="noopener noreferrer"className="portfolio-link">Christopher Kennedy</a> | Full-stack developer | Stack: JavaScript ES6, React (hooks, router, async), JWT Auth | Ruby on Rails | PostgreSQL | CD | Git   
+            </div>
+         </>
       )
    }
 }

@@ -88,7 +88,7 @@ class ShowMap extends React.Component {
          width: '60%',
          height: '74%',
          borderRadius: '10px',
-         marginTop: '2  %',
+         marginTop: '4.5%',
          // border: '5px solid #3ddef6'
       };
 
@@ -102,7 +102,7 @@ class ShowMap extends React.Component {
                yesIWantToUseGoogleMapApiInternals
                mapTypeId='terrain'
                initialCenter={{ lat: this.props.latitude || 51.5074, lng: this.props.longitude || 0.1278}}
-               center={{ lat: this.props.latitude, lng: this.props.longitude}}
+               center={{ lat: this.props.latitude, lng: this.props.longitude}} 
             >
          {this.displayMarkers()}
                <InfoWindow 

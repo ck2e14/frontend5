@@ -3,6 +3,7 @@ import API from '../../adapters/API'
 import EstabContainer from '../establishments/EstabContainer'
 import ShowMap from '../map/ShowMap'
 import NewNavbar from '../NavBar/NewNavBar'
+import helpIcon from '../../Assets/helpIcon.png'
 import './home.css'
 // import handwash from '../../Assets/handwash.jpg'
 // import Popup from '../BlacklistPopup/FeedbackPopup'
@@ -34,7 +35,7 @@ export default class Home extends React.Component {
    }
 
    shaderClick = () => {
-      this.setState({ displayShader: false, displayWelcomeMessage: false })
+      this.setState({ displayShader: !this.state.displayShader, displayWelcomeMessage: !this.state.displayWelcomeMessage })
    }
 
    handleEstabCardClick = estabObject => {
@@ -129,8 +130,9 @@ export default class Home extends React.Component {
       const {displayWelcomeMessage} = this.state
       return(
          <> 
+            <img src={helpIcon} onClick={this.shaderClick} alt="About Hygenik" className="help-icon"/>
 
-         { displayShader ? <div className="shader-layer" onClick={() => this.shaderClick()}></div> : null }
+         { displayShader ? <div className="shader-layer" onClick={this.shaderClick}></div> : null }
 
          { displayWelcomeMessage ? 
             <div className="explanation-and-welcome">

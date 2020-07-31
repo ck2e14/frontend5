@@ -1,83 +1,128 @@
 import React from 'react';
 import './BlacklistStyle.css'
-// import paths from '../../paths';
 
-const estabCard = props => {
+const BlacklistCard = props => {
+
+  const ratingAsInteger = parseInt(props.establishment.ratingValue)
+  const name = props.establishment.name
+  const address1 = props.establishment.addressLine1
+  const address2 = props.establishment.addressLine2
+
+  if(ratingAsInteger === 5){
+    return (    
+      <div className="card-wrapper r-5" >
+        
+          <div className="name">{name}</div> &nbsp; <div className="color-code-name-box-estab-card-5">{props.establishment.ratingValue}/5</div>
+          
+          <div className="info-pane" style={{color: '#010101'}} >
+
+            <span>FSA Hygiene Rating: </span> {props.establishment.ratingValue}/5 &nbsp; 
+
+            <span>Last Assessed: </span> {props.establishment.ratingDate}<br/><br/>
+            
+            <span>Type: </span> <br/>{props.establishment.type_of}<br/><br/>
+            
+            <span>Postcode: </span>{address1 ? <br/> : null } {address1 ? address1 : null } {address2 ?
+            <br/> : null }{address2 ? address2 : null }<br/>{props.establishment.postcode}<br/><br/>
+            
+            <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} 
+            
+            <div className="blacklist-button"
+              onClick={() => props.remove(props.establishment.blacklists[0].id) }
+              >REMOVE
+            </div>
+
+        </div>
+            
+      </div> 
+    )
+  } 
+  
+  if(ratingAsInteger === 4 || ratingAsInteger === 3) {
+    return (
+      <div className="card-wrapper r4-3" >
+
+          <div className="name">{name}</div> &nbsp; <div className="color-code-name-box-estab-card-4-3">{props.establishment.ratingValue}/5</div>
+          
+          <div className="info-pane" style={{color: '#010101'}} >
+
+            <span>FSA Hygiene Rating: </span> {props.establishment.ratingValue}/5 &nbsp; 
+
+            <span>Last Assessed: </span> {props.establishment.ratingDate}<br/><br/>
+            
+            <span>Type: </span> <br/>{props.establishment.type_of}<br/><br/>
+            
+            <span>Postcode: </span>{address1 ? <br/> : null } {address1 ? address1 : null } {address2 ?
+            <br/> : null }{address2 ? address2 : null }<br/>{props.establishment.postcode}<br/><br/>
+            
+            <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} 
+            
+            <div className="blacklist-button"
+              onClick={() => props.remove(props.establishment.blacklists[0].id) }
+              >REMOVE
+            </div>
+
+        </div>
+            
+      </div>
+    ) 
+  }
+
+  if(props.establishment.ratingValue === 'AwaitingInspection' || props.establishment.ratingValue === 'Exempt' || props.establishment.ratingValue === 'AwaitingPublication') {
+    return (
+      <div className="card-wrapper r-other">
+  
+          <div className="name" style={{color: 'white'}}>{name}</div>
+          
+          <div className="info-pane">
+  
+            <span>FSA Hygiene Rating: </span> {props.establishment.ratingValue}/5 &nbsp; 
+  
+            <span>Last Assessed: </span> {props.establishment.ratingDate}<br/><br/>
+            
+            <span>Type: </span> <br/>{props.establishment.type_of}<br/><br/>
+            
+            <span>Postcode: </span>{address1 ? <br/> : null } {address1 ? address1 : null } {address2 ?
+            <br/> : null }{address2 ? address2 : null }<br/>{props.establishment.postcode}<br/><br/>
+            
+            <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} 
+            
+            <div className="blacklist-button"
+              onClick={() => props.remove(props.establishment.blacklists[0].id) }
+              >REMOVE
+            </div>
+  
+        </div>
+            
+      </div>
+    ) 
+  }
 
   return (
-    <div className="wrapperBL" id=''>
-    <div className="container">
-      <div className="top">
-      <h5 className="title-h5">{props.establishment.name}</h5>
-      
-      <div className="tooltip blacklist">
-      {/* <img         onClick={() => props.remove(props.establishment.blacklists[0].id)}
+    <div className="card-wrapper r1-2" >
 
-className="blacklist-iconBL" src="https://img.icons8.com/cotton/2x/checkmark.png"/>  */}
-          <span className="tooltiptext">Click to Blacklist</span>
-          </div>
+        <div className="name">{name}</div>&nbsp; <div className="color-code-name-box-estab-card-1-2">{props.establishment.ratingValue}/5</div>
+                
+        <div className="info-pane" style={{color: '#010101'}} >
+
+        <span>FSA Hygiene Rating: </span> {props.establishment.ratingValue}/5 &nbsp; 
+
+        <span>Last Assessed: </span> {props.establishment.ratingDate}<br/><br/>
+        
+        <span>Type: </span> <br/>{props.establishment.type_of}<br/><br/>
+        
+        <span>Postcode: </span>{address1 ? <br/> : null } {address1 ? address1 : null } {address2 ?
+        <br/> : null }{address2 ? address2 : null }<br/>{props.establishment.postcode}<br/><br/>
+        
+        <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} 
+        
+        <div className="blacklist-button"onClick={() => props.remove(props.establishment.blacklists[0].id) }
+          >REMOVE
         </div>
 
-      </div>
-      <div className="bottom"></div>
-        <div className="left">
-          <div className="details">
-            {/* <h5>{props.establishment.name}</h5> */}
-          </div>
-          {/* <div className="tooltip" onClick={() => props.handleBlacklistClick(props.establishment)} className="blacklist"><img className="blacklist-icon" src="https://static.thenounproject.com/png/429749-200.png"/>
-          <span className="tooltiptext">Click to Blacklist</span>
-          </div>
-        </div> */}
-        <div className="right">
-          <div className="done"><i className="material-icons">done</i></div>
-          <div className="details">
-          </div>
-          <div className="remove"><i className="material-icons">clear</i></div>
-        </div>
     </div>
-    <div className="inside">
-      <div className="icon"><i className="material-icons">More Info</i></div>
-      <div className="contents">
-      <img  className="blacklist-iconBL" alt='Click to remove premises from your blacklist' onClick={() => props.remove(props.establishment.blacklists[0].id) }
-        src="https://img.icons8.com/cotton/2x/checkmark.png"/>
-        <table>
-          <tr>
-            <th><strong>Overall Rating</strong></th>
-            <th><strong>When?</strong></th>
-          </tr>
-          <tr>
-            <td>{props.establishment.ratingValue}</td> 
-            <td>{props.establishment.ratingDate}</td>
-          </tr>
-          <tr>
-            <th>Premises Type</th>
-            <th>Authority</th>
-          </tr>
-          <tr>
-            <td>{props.establishment.type_of}</td>
-            <td>{props.establishment.localAuth}</td>
-          </tr>
-          <tr>
-            <th>Authority Contact</th>
-            <th></th>
-          </tr>
-          <tr>
-            <td>{props.establishment.localAuthEmail}</td>
-            <td>{props.establishment.addressLine1}</td>
-          </tr>
-          <tr>
-            <th>Address </th>
-            <td>{props.establishment.addressLine2}</td>
-          </tr> 
-          <tr>
-            {/* <td>palceholder</td> */}
-            <td>{props.establishment.postcode}</td>
-          </tr>
-        </table>
-      </div>
     </div>
-  </div>
-  )
+  ) 
 }
 
-export default estabCard;
+export default BlacklistCard;
