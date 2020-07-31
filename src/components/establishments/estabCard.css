@@ -71,10 +71,28 @@
   opacity: 1;
 }
 
+.color-code-name-box-estab-card-other {
+  font-size: 1.5vh !important;
+  position: fixed;
+  top: 54%;
+  right: 2%;
+  /* margin-top: 0vh; */
+  /* margin-bottom: 2%;; */
+  color: #00f7ff;
+  opacity: 1;
+  padding: 1%;
+  border: 1px solid rgb(112, 112, 112);
+  border-radius: 5px;
+}
+
+.card-wrapper:hover > .color-code-name-box-estab-card-other {
+  display:none
+}
+
 .color-code-name-box-estab-card-5 {
   font-size: 1.5vh !important;
   position: fixed;
-  top: 10%;
+  top: 54%;
   right: 2%;
   /* margin-top: 0vh; */
   /* margin-bottom: 2%;; */
@@ -94,7 +112,7 @@
 .color-code-name-box-estab-card-4-3 {
   font-size: 1.5vh !important;
   position: fixed;
-  top: 10%;
+  top: 54%;
   right: 2%;
   /* margin-top: 0vh; */
   /* margin-bottom: 2%;; */
@@ -113,7 +131,7 @@
 .color-code-name-box-estab-card-1-2 {
   font-size: 1.5vh !important;
   position: fixed;
-  top: 10%;
+  top: 54%;
   right: 2%;
   /* margin-top: 0vh; */
   /* margin-bottom: 2%;; */

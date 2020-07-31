@@ -96,7 +96,7 @@ const EstabCard = props => {
     return (
       <div className="card-wrapper r-other" onClick={() => props.handleEstabCardClick(props.establishment)}>
   
-          <div className="name" style={{color: 'white'}}>{name}</div>
+          <div className="name" style={{color: 'white'}}>{name}</div> &nbsp; <div className="color-code-name-box-estab-card-other">{props.establishment.ratingValue}</div>
           
           <div className="info-pane">
   
