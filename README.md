@@ -1,2 +1,4 @@
-Frontend repo for FlatIron mod5 Project - Hygenik
-AJAX ES6, React.js, JWT Auth, Rails API backend
+Frontend Repo for  _Hygenik
+AJAX ES6, React.js (hooks, router), JWT Auth, Rails API backend
+
+Thanks to Josh and Paul for their useful feedback and testing. 
