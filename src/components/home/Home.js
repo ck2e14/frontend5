@@ -50,7 +50,8 @@ export default class Home extends React.Component {
       // per estab click.
    }
 
-   handleBlacklistClick = (estabObject, userID) => {
+   handleBlacklistClick = (estabObject, event) => {
+      event.stopPropagation()
       API.newEstab(estabObject, this.props.user.id)
       alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`)
       this.setState({ filter: '' }) 

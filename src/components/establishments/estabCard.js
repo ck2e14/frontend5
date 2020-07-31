@@ -52,7 +52,7 @@ const EstabCard = props => {
             <span>Responsible Authority: </span> <br/>{props.establishment.localAuth} ({props.establishment.localAuthEmail})
             
             <div className="blacklist-button"
-              onClick={() => props.handleBlacklistClick(props.establishment)} 
+              onClick={(event) => props.handleBlacklistClick(props.establishment, event)} 
               >BLACKLIST
             </div>
 
