@@ -155,14 +155,12 @@ export default class Home extends React.Component {
                   <div className="escape-key" onClick={() => this.shaderClick()}>X</div>
                   <span> Welcome to  &nbsp;  _Hygenik!</span> <br/><br/>
 
-                  <span className='highlight-this'>I hope you find this app useful for exploring the FSA-assessed hygiene ratings of places to eat near you - particularly considering the current situation. <br/><br/>
+                  <span className='highlight-this'>I hope you find this app useful for exploring the FSA-assessed hygiene ratings of UK establishments - particularly considering the coronavirus. <br/><br/>
 
-                  On that note - since March, the FSA have experienced a big surge in the number of requests made to their resources. At peak usage requests are being dynamically throttled. <br/><br/>Unfortunately this may mean waiting longer than usual to load, or the service may be made temporarily unavailable entirely. Please refresh / hard refresh the page after a couple of minutes if that is the case - hopefully the throttling will have been relaxed!
-                  <br/><br/>
-                  This app remains in development. Please report any bugs you encounter to <a href="mailto:chriswkennedy@icloud.com">Chris Kennedy.</a> Suggestions are also welcome! Thanks!<br/><br/>
-                  More information can be found <a  target="_blank" rel="noopener noreferrer"href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here.</a></span> 
-                  <br/><br/>
-                  Please note: NO personal data is stored by Hygenik. Using location services improves the utility and flow of the app, but if you would prefer to search manually feel free to revoke location services in your browser. 
+                  On that note - since March, the FSA have experienced a big surge in the number of requests made to their resources. At peak usage requests are being dynamically throttled. <br/><br/>Unfortunately this may mean waiting longer than usual to load, or the service may be made temporarily unavailable entirely. Please refresh / hard refresh the page after a couple of minutes if that is the case - hopefully the throttling will have been relaxed! More information can be found <a  target="_blank" rel="noopener noreferrer"href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here.</a>
+                  &nbsp;This app remains in development. Please report any bugs you encounter to <a href="mailto:chriswkennedy@icloud.com">Chris Kennedy.</a> Suggestions are also welcome! Thanks!<br/><br/></span> 
+
+                  PLEASE NOTE: Unfortunately the JavaScript geolocation methods have been deprecated for http sites. This means paying for a SSL certificate (circa £200+ per year) which is not currently an option. This has now been rolled out to all browsers. \nPlease use the search field instead. More information can be found at: <br/>https://developers.google.com/web/updates/2016/04/geolocation-on-secure-contexts-only. \nIf you are interested in how the code for this method works please visit this component's code on GitHub at: <br/>https://github.com/ck2e14/frontend5/blob/master/src/components/home/Home.js. Additionally you may download the repo and run it locally - browsers treat localhost as secure.
                   {/* Please also note that Heroku unloads apps from its servers when they haven't been very recently accessed - you may have experienced longer loading times of the website itself because of this upon initial visit.  */}
                </div>  
             : null }
