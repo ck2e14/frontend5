@@ -18,7 +18,7 @@
 .card-wrapper:hover {
   overflow: hidden;
   background-color: rgba(21, 51, 76, 0.596);
-  height: 29vh;
+  height: 32vh;
   /* border-radius: 20px; */
   /* min-height: fit-content;   */
   /* filter: brightness(1); */
@@ -29,7 +29,7 @@
 }
 
 .get-started-wrapper:hover {
-  height: 13vh !important;
+  height: 17vh !important;
   background-color: rgb(91, 145, 124) !important;
 }
 
@@ -143,14 +143,13 @@
 }
 
 .card-wrapper:hover > .color-code-name-box-estab-card-1-2 {
-  /* opacity: 0; */
   display: none;
 }
 
 .info-pane {
   opacity: 0;
   margin-top: 2%;
-  line-height: 1.5vh;
+  line-height: 2.1vh;
   display: none;
   transition: all .25s ease-in-out;
   animation: fade-in .25s ease-in-out both;

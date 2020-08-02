@@ -22,7 +22,7 @@ const EstabCard = props => {
 
   if(name === 'Get Started!') {
     return (
-      <div className="card-wrapper get-started-wrapper" >
+      <div className="card-wrapper get-started-wrapper" style={{marginTop: '45%'}} >
 
       <div className="name">{name}</div> 
       <div className="get-started-info info-pane">

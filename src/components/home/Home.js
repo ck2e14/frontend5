@@ -57,10 +57,11 @@ export default class Home extends React.Component {
       this.setState({ filter: '' }) 
    }
    // geolocation takes three args here - mandatory success callback, optional error callback and an object with PositionOptions
+   
    setEstablishmentsFromYourLocation() {
       if (!navigator.geolocation) {
          console.log('Geolocation is not enabled by your browser');
-         alert('Geolocation is not enabled by your browser. Please enable location services to use &nbsp; _Hygenik or enter a search term below. ')
+         alert('Unfortunately, the JavaScript methods used to ascertain geolocation have been deprecated for insecure origins. This means paying for a SSL certificate (circa £200+ per year) which is not currently a viable option. This has now been rolled out to all browsers. Please use the search field instead. More information can be found at https://developers.google.com/web/updates/2016/04/geolocation-on-secure-contexts-only.')
       } else {
          console.log('Locating...')      
          this.setState({finishedFetch: false}) 
@@ -74,7 +75,7 @@ export default class Home extends React.Component {
                   currentUserId: this.props.user.id
                }))
          }, 
-         () => alert('Geolocation failure. Please ensure _Hygenik has access to locations services and hard-refresh the page (clearing cache) or enter a search term below.'),
+         () => alert('Unfortunately, the JavaScript methods used to ascertain geolocation have been deprecated for insecure origins. This means paying for a SSL certificate (circa £200+ per year) which is not currently a viable option. This has now been rolled out to all browsers. Please use the search field instead. More information can be found at https://developers.google.com/web/updates/2016/04/geolocation-on-secure-contexts-only.'),
          {'enableHighAccuracy':true,'timeout': 8000,'maximumAge':0}
          )   
       }
