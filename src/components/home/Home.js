@@ -56,12 +56,22 @@ export default class Home extends React.Component {
       alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`)
       this.setState({ filter: '' }) 
    }
+
+
+   // since geolocation has been depresated for http sites - now just use this sadface method:
+      
+   deprecatedGeolocation() {
+      this.setState({finishedFetch: true})
+      alert("Unfortunately the JavaScript geolocation methods have been deprecated for http sites. This means paying for a SSL certificate (circa £200+ per year) which is not currently an option. This has now been rolled out to all browsers. \nPlease use the search field instead. \nMore information can be found at: \nhttps://developers.google.com/web/updates/2016/04/geolocation-on-secure-contexts-only. \nIf you are interested in how the code for this method works please visit this component's code on GitHub at: \nhttps://github.com/ck2e14/frontend5/blob/master/src/components/home/Home.js. \nAdditionally you may download the repo and run it locally - browsers treat localhost as secure.")
+   }
+
+
    // geolocation takes three args here - mandatory success callback, optional error callback and an object with PositionOptions
-   
    setEstablishmentsFromYourLocation() {
       if (!navigator.geolocation) {
          console.log('Geolocation is not enabled by your browser');
          alert('Unfortunately, the JavaScript methods used to ascertain geolocation have been deprecated for insecure origins. This means paying for a SSL certificate (circa £200+ per year) which is not currently a viable option. This has now been rolled out to all browsers. Please use the search field instead. More information can be found at https://developers.google.com/web/updates/2016/04/geolocation-on-secure-contexts-only.')
+         this.deprecatedGeolocation()
       } else {
          console.log('Locating...')      
          this.setState({finishedFetch: false}) 
@@ -167,7 +177,7 @@ export default class Home extends React.Component {
 
                <div className="filter-elements">
 
-                  <div className="click-for-location-find" onClick={() => this.setEstablishmentsFromYourLocation()} >
+                  <div className="click-for-location-find" onClick={() => this.deprecatedGeolocation()} >
                      Use My Location
                   </div>
 
