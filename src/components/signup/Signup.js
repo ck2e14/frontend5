@@ -11,9 +11,19 @@ const Signup = props => {
    const [password, setPassword] = useState("");
    const [errors, setErrors] = useState([]);
    const history = useHistory();
+   // TODO: Frontend validation on password length done. MUST implement in backend, and for types of characters not just length.
 
    const handleSubmit = e => {
       e.preventDefault();
+      if(!username || !password) {
+         return setErrors(['Please fill-out both fields.'])
+      }
+      if(username.length < 6) {
+         return setErrors(['Your username must be at least 6 characters.'])
+      }
+      if(password.length < 6) {
+         return setErrors(['Your password must be at least 6 characters.'])
+      }
       API.signup({ username, password })
          .then(user => {
             console.log(user);
@@ -21,59 +31,58 @@ const Signup = props => {
             history.push("/home");
          })
          .catch(errors => {
-            setErrors(errors[errors]);
-            console.error(errors);
+            setErrors([errors]);
+            // console.error(errors);
+            console.log(errors)
          });
    };
 
-   return (
+   return(
       <div className="login-container">
-         <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap" rel="stylesheet"></link>
-         <div className="page-login">
-            <div className="login-border-box">
-               <div>
-                  <div>
-                     <div className="content">
-                        <h1 className="title-text" align="center">  _Hygenik.com</h1>
-                     <div className="header">
-                     {!errors ? 'Sign up failed. Your password must be at least 6 characters.' : null}
+
+         <div className="login-content-container">
+
+            <h1 className="title-text" align="center"> _Hygenik<span>.</span>com</h1>
+
+            <div className="errors">{errors?.join(', ')}</div>
+
+            <div className="login-content-inputs-container-flex">
+               
+               <form onSubmit={handleSubmit} className="login-form">
+
+                  <div className="username-input-container">
+                        <input
+                           type="text"
+                           placeholder="USERNAME"
+                           name="username"
+                           value={username}
+                           onChange={e => setUsername(e.target.value)}
+                        />
                   </div>
-                  <p className="text" >{errors ? 'Please choose your login credentials. Passwords must be at least 6 characters long.' : null}</p>
-               </div>
-               </div>
-            <div className="ui-card">
-               <div className="content">
-               <form onSubmit={handleSubmit} className="ui form">
-                  <div className="field">
-                  {errors?.join(', ')}
-                  <input
-                     type="text"
-                     placeholder="USERNAME"
-                     name="username"
-                     value={username}
-                     onChange={e => setUsername(e.target.value)}
-                  />
-               <div className="field">
-                  <input
-                     type="password"
-                     placeholder="PASSWORD"
-                     name="password"
-                     value={password}
-                     onChange={e => setPassword(e.target.value)}
-                  />
-               </div>
-                  <input className="submit" type="submit" value="SIGN UP"/>
-                  <Link className="signin-link" to="/login">SIGNED UP? LOGIN HERE.</Link>
+
+                  <div className="password-input-container">
+                     <input
+                        type="password"
+                        placeholder="PASSWORD"
+                        name="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                     />
                   </div>
+
+                  <input className="login-submit" type="submit" value="SIGN UP"/><br/><br/>
+
+                  <Link className='registration-link' to="/login">HAVE AN ACCOUNT?</Link>
+
                </form>
-               </div>
+
+            </div>
+
          </div>
-         </div>
-         </div>
+
       </div>
-</div>
-   );
-};
+   )
+}
 
 export default Signup;
 

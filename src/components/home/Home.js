@@ -62,8 +62,10 @@ export default class Home extends React.Component {
       alert('Please enable location services in your browser settings. This site is secured via HTTPS, and at no point stores or shares your geolocation data. Thank you!')
    }
 
-
-   // geolocation takes three args here - mandatory success callback, optional error callback and an object with PositionOptions
+   // geolocation takes three args: 
+      // (1)mandatory success callback, 
+      // (2)optional error callback and 
+      // (3)an object with PositionOptions
    setEstablishmentsFromYourLocation() {
       if (!navigator.geolocation) {
          console.log('Geolocation is not enabled by your browser');

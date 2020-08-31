@@ -1,4 +1,5 @@
-const API_URL = "https://mod5-api.herokuapp.com/api/v1/";
+// const API_URL = "https://mod5-api.herokuapp.com/api/v1/";
+const API_URL = "http://localhost:3000/api/v1/";
 const LOGIN_URL = `${API_URL}login`;
 const VALIDATE_URL = `${API_URL}validate`;
 const SIGNUP_URL = `${API_URL}users`;
@@ -38,8 +39,8 @@ const signup = userDetails => {
 // destroys the blacklisting record that matches the blacklisting ID. 
 const removeBlacklist = (id) => {
   return fetch(`${BLACKLISTS_URL}/${id}`, {
-           method: "DELETE"
-          })
+    method: "DELETE"
+  })
 }
 
 const login = userDetails => {
