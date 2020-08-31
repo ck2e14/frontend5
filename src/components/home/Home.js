@@ -176,7 +176,7 @@ export default class Home extends React.Component {
 
                <div className="filter-elements">
 
-                  <div className="click-for-location-find" onClick={() => this.deprecatedGeolocation()} >
+                  <div className="click-for-location-find" onClick={() => this.setEstablishmentsFromYourLocation()} >
                      Use My Location
                   </div>
 
