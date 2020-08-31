@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from "react";
+import {
+   BrowserView,
+   MobileView,
+   isBrowser,
+   isMobile
+} from "react-device-detect";
 import API from '../../adapters/API';
 import {
    Link,
@@ -32,7 +38,7 @@ const Login = props => {
          history.push("/home");
       })
       .catch(errors => {
-         setErrors(errors);
+         setErrors([errors]);
          console.log(errors);
       });
    };
@@ -68,9 +74,7 @@ const Login = props => {
    return(
       <div className="login-container">
 
-         <div className="login-content-container">
-
-            <h1 className="title-text" align="center"> _Hygenik<span>.</span>com</h1>
+            <h1 className="title-text" align="center"> <span>_</span>Hygenik<span>.</span>com</h1>
 
             <div className="errors">{errors?.join(', ')}</div>
 
@@ -97,18 +101,17 @@ const Login = props => {
                            onChange={e => setPassword(e.target.value)}
                         />
                      </div>
-
-                     <div className="submit-btn" onClick={handleLogInSubmit}>LOG IN</div><br/><br/>
-                     <div className="submit-btn" onClick={handleRegisterSubmit}>REGISTER</div><br/><br/>
+                     
                      <input className="login-submit" type="submit" value="LOG IN"/><br/><br/>
 
                      {/* <Link className='registration-link' to="/signup">REGISTER</Link> */}
 
                </form>
 
+                <div className="submit-btn" onClick={handleLogInSubmit}>LOG IN</div><br/><br/>
+               <div className="submit-btn register" onClick={handleRegisterSubmit}>REGISTER</div>
+               <br/><br/>
             </div>
-
-         </div>
 
       </div>
    )
