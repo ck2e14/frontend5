@@ -152,15 +152,12 @@ export default class Home extends React.Component {
             { displayWelcomeMessage ? 
                <div className="explanation-and-welcome">
                   <div className="escape-key" onClick={() => this.shaderClick()}>X</div>
-                  <span> Welcome to  &nbsp;  _Hygenik!</span> <br/><br/>
+                  <span> Welcome to  &nbsp;  _Hygenik.</span> <br/><br/>
 
                   <span className='highlight-this'>I hope you find this app useful for exploring the FSA-assessed hygiene ratings of UK establishments - particularly considering the coronavirus. <br/><br/>
 
-                  On that note - since March, the FSA have experienced a big surge in the number of requests made to their resources. At peak usage requests are being dynamically throttled. <br/><br/>Unfortunately this may mean waiting longer than usual to load, or the service may be made temporarily unavailable entirely. Please refresh / hard refresh the page after a couple of minutes if that is the case - hopefully the throttling will have been relaxed! More information can be found <a  target="_blank" rel="noopener noreferrer"href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here.</a>
-                  &nbsp;This app remains in development. Please report any bugs you encounter to <a href="mailto:chriswkennedy@icloud.com">Chris Kennedy.</a> Suggestions are also welcome! Thanks!<br/><br/>
-
-                  PLEASE NOTE: Unfortunately the JavaScript geolocation methods have been deprecated for http sites. This means paying for a SSL certificate - which will be sorted soon! Please use the search field instead. More information can be found <a  target="_blank" rel="noopener noreferrer"href="https://developers.google.com/web/updates/2016/04/geolocation-on-secure-contexts-only" className="fsa-link">here.</a> <br/>If you are interested in how the code for this method works please visit this component's code on GitHub<a  target="_blank" rel="noopener noreferrer"href="https://github.com/ck2e14/frontend5/blob/master/src/components/home/Home.js" className="fsa-link">here.</a> Additionally you may download the repo and run it locally - browsers treat localhost as secure.
-                  {/* Please also note that Heroku unloads apps from its servers when they haven't been very recently accessed - you may have experienced longer loading times of the website itself because of this upon initial visit.  */}
+                  Since March, the FSA have experienced a surge in the number of requests made to their resources. At peak usage, requests are being dynamically throttled. <br/><br/>Unfortunately this may mean waiting longer than usual to load, or the service may be made temporarily unavailable entirely. Please refresh / hard refresh the page after a couple of minutes if that is the case - hopefully the throttling will have been relaxed! More information can be found <a  target="_blank" rel="noopener noreferrer"href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here.</a><br/><br/>
+                  &nbsp;This app remains in development. Please report any bugs you encounter to <a href="https://chriskennedy.live">Chris Kennedy.</a> Suggestions are also welcome! Thanks!<br/><br/>
                   </span> 
                </div>  
             : null }

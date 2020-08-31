@@ -1,5 +1,5 @@
-// const API_URL = "https://mod5-api.herokuapp.com/api/v1/";
-const API_URL = "http://localhost:3000/api/v1/";
+const API_URL = "https://mod5-api.herokuapp.com/api/v1/";
+// const API_URL = "http://localhost:3000/api/v1/";
 const LOGIN_URL = `${API_URL}login`;
 const VALIDATE_URL = `${API_URL}validate`;
 const SIGNUP_URL = `${API_URL}users`;

@@ -20,7 +20,7 @@ const Login = props => {
    //    clearStorage()
    // }, [])
 
-   const handleSubmit = e => {
+   const handleLogInSubmit = e => {
       e.preventDefault();
       if(!username || !password) {
          return setErrors(['Please fill-out both fields.'])
@@ -35,6 +35,30 @@ const Login = props => {
          setErrors(errors);
          console.log(errors);
       });
+   };
+
+   const handleRegisterSubmit = e => {
+      e.preventDefault();
+      if(!username || !password) {
+         return setErrors(['Please fill-out both fields.'])
+      }
+      if(username.length < 6) {
+         return setErrors(['Your username must be at least 6 characters.'])
+      }
+      if(password.length < 6) {
+         return setErrors(['Your password must be at least 6 characters.'])
+      }
+      API.signup({ username, password })
+         .then(user => {
+            console.log(user);
+            props.setUser(user);
+            history.push("/home");
+         })
+         .catch(errors => {
+            setErrors([errors]);
+            // console.error(errors);
+            console.log(errors)
+         });
    };
 
    // const clearStorage = () => {
@@ -52,7 +76,7 @@ const Login = props => {
 
             <div className="login-content-inputs-container-flex">
                
-               <form onSubmit={handleSubmit} className="login-form">
+               <form onSubmit={handleLogInSubmit} className="login-form">
 
                   <div className="username-input-container">
                         <input
@@ -74,9 +98,11 @@ const Login = props => {
                         />
                      </div>
 
+                     <div className="submit-btn" onClick={handleLogInSubmit}>LOG IN</div><br/><br/>
+                     <div className="submit-btn" onClick={handleRegisterSubmit}>REGISTER</div><br/><br/>
                      <input className="login-submit" type="submit" value="LOG IN"/><br/><br/>
 
-                     <Link className='registration-link' to="/signup">REGISTER</Link>
+                     {/* <Link className='registration-link' to="/signup">REGISTER</Link> */}
 
                </form>
 
