@@ -111,7 +111,6 @@ const getLatLongFromGeocode = ( searchTerm ) => {
   const addressInput = searchTerm.split(' ').join('%20');
   return fetch(`${GEOCODING_BASE_URL}${addressInput},uk&maxResults=1`)
     .then(res => res.json())
-    // .then(data => console.log(`${data.results[0].locations[0].latLng.lat} ${data.results[0].locations[0].latLng.lng}`))
     .then(data => {
       return {
         geocodedLatitude: data.results[0].locations[0].latLng.lat,

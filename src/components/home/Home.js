@@ -160,6 +160,7 @@ export default class Home extends React.Component {
    };
 
    filterEstabsByType = () => {
+      // TODO: Fix the selectAll checkbox functionality 
          // const s = this.state
          // if(s.addCaringPremsToFilter, s.addTakeawaysToFilter, s.addDistribsToFilter, s.addEducationToFilter, s.addHotelsToFilter, s.addRestaurantsToFilter, s.addMarketsToFilter, s.addMobileToFilter === true) {
          //    this.setState({addAllToFilter: false})
