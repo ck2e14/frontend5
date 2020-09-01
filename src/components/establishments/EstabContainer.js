@@ -4,6 +4,7 @@ import "./EstabContainer.css";
 
 export default class EstabContainer extends React.Component {
    buildCards = () => {
+      if(!this.props.establishments) return null
       return this.props.establishments.map((estab) => {
          return (
             <EstabCard
@@ -11,6 +12,7 @@ export default class EstabContainer extends React.Component {
                handleBlacklistClick={this.props.handleBlacklistClick}
                establishment={estab}
                user={this.props.user}
+               key={estab.id}
             />
          );
       });
@@ -26,6 +28,7 @@ export default class EstabContainer extends React.Component {
                   establishment={{ name: "No Results Were Found :(" }}
                   displayInfoPane={false}
                   user={this.props.user}
+                  key={'no-result-card'}
                />
             </div>
          );

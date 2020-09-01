@@ -5,16 +5,15 @@ import ShowMap from "../map/ShowMap";
 import NewNavbar from "../NavBar/NewNavBar";
 import WelcomeMsg from "../WelcomeMsg/WelcomeMsg";
 import helpIcon from "../../Assets/helpIcon.png";
-import "./home.css";
+import "./Home-style.css";
 import WelcomeMSg from "../WelcomeMsg/WelcomeMsg";
-// import handwash from '../../Assets/handwash.jpg'
-// import Popup from '../BlacklistPopup/FeedbackPopup'
-
+// TODO: REMOVE the filter methods and put them in their own file so you can just call them in here, not express them too. De-clutter this component man!
+// TODO: Take all the checkboxes into their own component, pass them the methods?
 export default class Home extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         establishments: [{ name: "Get Started!" }],
+         establishments: [{ name: "Get Started!", id:'get-started' }],
          blacklist: [],
          finishedFetch: true,
          currentUserId: "",
@@ -22,16 +21,22 @@ export default class Home extends React.Component {
          latitude: "",
          filter: "",
          search: "",
-         type1: false,
-         type2: false,
-         type3: false,
+         addPubsToFilter: false,
+         addCaringPremsToFilter: false,
+         addTakeawaysToFilter: false,
+         addDistribsToFilter: false,
+         addEducationToFilter: false,
+         addRestaurantsToFilter: false,
+         addHotelsToFilter: false,
+         addMobileToFilter: false,
          geolocationFailure: false,
+         addMarketsToFilter: false,
          recenterToGeocode: {},
          displayWelcomeMessage: this.props.displayShader,
          displayShader: this.props.displayShader,
       };
    }
-   // generic handleChange handles all form inputs - ensure your 'name' attribute inline for the JSX input matches the state key you wanna put the values into
+
    handleChange = (event) => {
       this.setState({
          [event.target.name]: event.target.value,
@@ -72,7 +77,6 @@ export default class Home extends React.Component {
          "Please enable location services in your browser settings. This site is secured via HTTPS, and at no point stores or shares your geolocation data. Thank you!"
       );
    }
-
    // geolocation takes three args:
    // (1)mandatory success callback,
    // (2)optional error callback and
@@ -136,9 +140,10 @@ export default class Home extends React.Component {
       this.setState({ displayWelcomeMessage: false, displayShader: false });
    };
 
-   clearFilterWithClick = () => this.setState({ filter: "" });
+   clearFilterWithClick = () => {
+      this.setState({ filter: "" });
+   }
 
-   // interpolateMarkerToFilter is responsible for taking the marker click and pushing it into the search (controlled component) which in turn filters the establishments that are in state from the initial fetch (in the below method)
    interpolateMarkerToFilter = (searchTerm) => {
       this.setState({ filter: searchTerm });
    };
@@ -147,120 +152,76 @@ export default class Home extends React.Component {
       const lower = filter.toLowerCase();
       return this.state.establishments
          ? this.state.establishments.filter((estab) => {
-               return estab.name.toLowerCase().includes(lower);
-            })
+              return estab.name.toLowerCase().includes(lower);
+           })
          : null;
    };
 
-   // write function that interpolates arguments into the === comparison,
-   // up to 3 args, with defaults to empty strings
-   // make a UI component of some kind that will pass user's type selections into this function 
-   // the below method DOES WORK but only when hardcoding the function call inside the establishments
-   // props passed to the EstabContainer component. 
-   // *** I.E. 
-   //          establishments={this.filterEstabsByType('Restaurant/Cafe/Canteen', 'Pub/bar/nightclub', 'Caring Premises')}
-   // ***
-   
-   // It's far less verbose than the if statement-loaded old filterEstabsByType method. Improve this by making a tickbox which adds selections (if made) to 3 separate state keys which are initialised as empty strings, and then use those in place of the default args. 
    filterEstabsByType = () => {
-      const type1 = this.state.type1
-      const type2 = this.state.type2
-      const type3 = this.state.type3
-      if(type1 === false && type2 === false && type3 === false) return this.filteredEstabs(this.state.filter);
+      const pubs = this.state.addPubsToFilter ? "Pub/bar/nightclub" : "";
+      const caringPrems = this.state.addCaringPremsToFilter
+         ? "Caring Premises"
+         : "";
+      const takeaways = this.state.addTakeawaysToFilter
+         ? "Takeaway/sandwich shop"
+         : "";
+      const distributors = this.state.addDistribsToFilter
+         ? "Distributors/Transporters"
+         : "";
+      const education = this.state.addEducationToFilter
+         ? "School/college/university"
+         : "";
+      const hotels = this.state.addHotelsToFilter
+         ? "Hotel/bed & breakfast/guest house"
+         : "";
+      const mobilePrems = this.state.addMobileToFilter ? "Mobile caterer" : "";
+      const supermarkets = this.state.addMarketsToFilter
+         ? "Retailers - supermarkets/hypermarkets"
+         : "";
+      const restaurants = this.state.addRestaurantsToFilter
+         ? "Restaurant/Cafe/Canteen"
+         : "";
+
+      if (
+         pubs === "" &&
+         caringPrems === "" &&
+         takeaways === "" &&
+         distributors === "" &&
+         education === "" &&
+         hotels === "" &&
+         mobilePrems === "" &&
+         supermarkets === "" &&
+         restaurants === ""
+      )
+         return this.filteredEstabs(this.state.filter);
+
       return this.filteredEstabs(this.state.filter).filter((estab) => {
-         return estab.type_of === type1 || estab.type_of === type2 || estab.type_of === type3;
-      })
-   }
+         return (
+            estab.type_of === pubs ||
+            estab.type_of === caringPrems ||
+            estab.type_of === takeaways ||
+            estab.type_of === distributors ||
+            estab.type_of === education ||
+            estab.type_of === hotels ||
+            estab.type_of === mobilePrems ||
+            estab.type_of === supermarkets ||
+            estab.type_of === restaurants
+         );
+      });
+   };
 
-
-   // filterEstabsByType = (type1="", type2="", type3="") => {
-   //    return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //       return estab.type_of === type1 || estab.type_of === type2 || estab.type_of === type3;
-   //    })
-   // }
-
-   // filterEstabsByType = () => {
-   //    const typeOfEstab = this.state.type;
-   //    if (typeOfEstab === "all") {
-   //       return this.filteredEstabs(this.state.filter);
-   //    }
-   //    if (typeOfEstab === "Caring Premises") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Caring Premises";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Pub/bar/nightclub/restaurant/cafe") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Pub/bar/nightclub" || estab.type_of === "";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Takeaway/sandwich shop") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Takeaway/sandwich shop";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Misc") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Other catering premises";
-   //       });
-   //    }
-   //    if (typeOfEstab === "School/college/university") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "School/college/university";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Hotel/bed & breakfast/guest house") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Hotel/bed & breakfast/guest house";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Restaurant/Cafe/Canteen") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Restaurant/Cafe/Canteen";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Retail") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          if (!estab.type_of) return null;
-   //          return estab.type_of.includes("Retailers");
-   //       });
-   //    }
-   //    if (typeOfEstab === "Distributors/Transporters") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Distributors/Transporters";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Hospitals/Childcare/Caring Premises") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Hospitals/Childcare/Caring Premises";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Importers/Exporters") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Importers/Exporters";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Manufacturers/packers") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Manufacturers/packers";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Mobile caterer") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Mobile caterer";
-   //       });
-   //    }
-   //    if (typeOfEstab === "Farmers/growers") {
-   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
-   //          return estab.type_of === "Farmers/growers";
-   //       });
-   //    }
-   // };
+   handleFilterCheckboxChange = (event) => {
+      const target = event.target;
+      const value = target.type === "checkbox" ? target.checked : target.value;
+      const name = target.name;
+      this.setState({
+         [name]: value,
+      });
+   };
 
    componentDidMount() {
       // this.setEstablishmentsFromYourLocation();
    }
-   // TODO: put an event listener on the whole document on load for keypress. Then in the escapeClick method above put a check for esc keycode and if so trigger the setState
 
    render() {
       const { filter } = this.state;
@@ -276,9 +237,9 @@ export default class Home extends React.Component {
                className='help-icon'
             />
 
-            {displayShader ? (
+            {displayShader && (
                <div className='shader-layer' onClick={this.shaderClick}></div>
-            ) : null}
+            )}
 
             {displayWelcomeMessage && (
                <WelcomeMSg
@@ -304,25 +265,28 @@ export default class Home extends React.Component {
 
                   {this.state.establishments ? (
                      this.state.establishments.length > 1 ? (
-                        <input
-                           className='filter-search'
-                           type='text'
-                           name='filter'
-                           tabIndex='1'
-                           placeholder='Filter results by name'
-                           position='left'
-                           float='left'
-                           value={filter}
-                           onChange={this.handleChange}
-                        />
+                        <form>
+                           <input
+                              className='filter-search'
+                              type='text'
+                              name='filter'
+                              tabIndex='1'
+                              placeholder='Filter results by name'
+                              position='left'
+                              float='left'
+                              value={filter}
+                              onChange={this.handleChange}
+                           />
+                        </form>
                      ) : null
                   ) : null}
 
                   <form
-                     onSubmit={(event) => this.handleSearchAddressSubmit(event)}
-                     className='address-search-form'>
+                     onSubmit={(event) =>
+                        this.handleSearchAddressSubmit(event)
+                     }>
                      <input
-                        className='search-by-address filter-search'
+                        className='search-by-address'
                         tabIndex='1'
                         placeholder='Search Placename'
                         type='text'
@@ -331,8 +295,6 @@ export default class Home extends React.Component {
                         onChange={this.handleChange}
                      />
                   </form>
-                  
-                  <input type="text" onChange={this.handleChange} name="type1" className="type-changer"/>
 
                   {this.state.search.length > 0 ? (
                      <div
@@ -350,6 +312,111 @@ export default class Home extends React.Component {
                         X
                      </div>
                   ) : null}
+
+                  <div className='typeOf-inputs-container'>
+                     <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='addPubsToFilter'
+                           name='addPubsToFilter'
+                           onChange={this.handleFilterCheckboxChange}
+                           checked={this.state.addPubsToFilter}
+                        />
+                        <label for='addPubsToFilter'>
+                           Pubs, Bars & Nightclubs
+                        </label>
+                     </div>
+                     <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='addRestaurantsToFilter'
+                           name='addRestaurantsToFilter'
+                           onChange={this.handleFilterCheckboxChange}
+                           checked={this.state.addRestaurantsToFilter}
+                        />
+                        <label for='addRestaurantsToFilter'>
+                           Restaurants & Cafes
+                        </label>
+                     </div>
+                     <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='addMarketsToFilter'
+                           name='addMarketsToFilter'
+                           onChange={this.handleFilterCheckboxChange}
+                           checked={this.state.addMarketsToFilter}
+                        />
+                        <label for='addMarketsToFilter'>Supermarkets</label>
+                     </div>
+                     <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='addHotelsToFilter'
+                           name='addHotelsToFilter'
+                           onChange={this.handleFilterCheckboxChange}
+                           checked={this.state.addHotelsToFilter}
+                        />
+                        <label for='addHotelsToFilter'>Hotels/B&Bs</label>
+                     </div>
+                     <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='addTakeawaysToFilter'
+                           name='addTakeawaysToFilter'
+                           onChange={this.handleFilterCheckboxChange}
+                           checked={this.state.addTakeawaysToFilter}
+                        />
+                        <label for='addTakeawaysToFilter'>
+                           Takeaways & Sandwich Shops
+                        </label>
+                     </div>
+                     <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='addCaringPremsToFilter'
+                           name='addCaringPremsToFilter'
+                           onChange={this.handleFilterCheckboxChange}
+                           checked={this.state.addCaringPremsToFilter}
+                        />
+                        <label for='addCaringPremsToFilter'>
+                           Care Premises
+                        </label>
+                     </div>
+                     <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='addDistribsToFilter'
+                           name='addDistribsToFilter'
+                           onChange={this.handleFilterCheckboxChange}
+                           checked={this.state.addDistribsToFilter}
+                        />
+                        <label for='addDistribsToFilter'>
+                           Distributors & Transporters
+                        </label>
+                     </div>
+                     <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='addMobileToFilter'
+                           name='addMobileToFilter'
+                           onChange={this.handleFilterCheckboxChange}
+                           checked={this.state.addMobileToFilter}
+                        />
+                        <label for='addMobileToFilter'>Mobile Caterers</label>
+                     </div>
+                     <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='addEducationToFilter'
+                           name='addEducationToFilter'
+                           onChange={this.handleFilterCheckboxChange}
+                           checked={this.state.addEducationToFilter}
+                        />
+                        <label for='addEducationToFilter'>
+                           Education Premises
+                        </label>
+                     </div>
+                  </div>
                </div>
 
                <div className='primary-map-wrapper'>

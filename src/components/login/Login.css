@@ -98,7 +98,7 @@
 }
 
 span {
-  color: coral
+  color: rgb(91, 145, 124);
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 580px) {

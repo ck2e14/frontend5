@@ -1,5 +1,11 @@
 body {
   font-family: 'Roboto', sans-serif !important;
+  color: white !important;
+}
+
+::placeholder {
+  color: rgb(0, 0, 0);
+  text-align: center
 }
 
 .background {
@@ -13,7 +19,11 @@ body {
 
 .filter-elements {
   margin-top: 8vh;
-  position: fixed;
+  position: fixed
+}
+
+.primary-map-wrapper {
+/* display: none; */
 }
 
 .search-div {
@@ -22,42 +32,30 @@ body {
 }
 
 .submit-button {
-  color: grey;
+  color: rgb(75, 177, 109);   
   cursor: pointer;
   transition: all .25s;
   position: absolute;
-  width: fit-content;
   padding: .5%;
-  /* margin-left: 2% !important; */
-  /* left: 15% !important; */
-  margin-left: 15vw;
-  /* top: 4.75vh; */
+  top: 3vh;
   transform: translateY(35%);
   border-radius: 4px;
-  font-size: 2.5vh !important;
+  font-size: 2vh !important;
   font-weight: bold;
   background-color: rgba(91, 145, 124, 0);
-
 }
 
 .submit-button:hover {
-  /* background-color: rgb(91, 145, 124); */
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .filter-search {
-  /* width: 14% !important   ; */
-  max-width: 11%;
-  min-width: 11%;
-  margin-top: 0vh;
-  left: 20%;
-  height: 3vh;
-  max-height: 20px !important;
-  min-height: 3vh;;
+  width: 9.6vw;
+  height: 4vh;
+  left: 12vw;
   z-index: 9;
   position: fixed;
   text-align: center;
-  display: inline-block;
   border: none;
   color: rgb(85, 85, 85);
 }
@@ -68,19 +66,22 @@ body {
 
 .clear-search-button {
   color: rgb(161, 161, 161);
-  position: absolute;
-  margin-top: 0.5vh;
+  position: fixed;
+  left: 10vw;
   max-height: 4vh;
   font-size: 3vh; 
-  margin-left: 33vw;
   z-index: 9;
   cursor: pointer;
   border: 2px solid rgba(0, 255, 255, 0);
   border-radius: 5px;
-  padding: .5%;
+  /* padding: .5%; */
   font-weight: bold;
   transition: all .5s;
   user-select: none;
+}
+
+input[type=checkbox] {
+  transform: scale(1.25);
 }
 
 .clear-search-button:hover {
@@ -88,31 +89,34 @@ body {
 }
 
 .search-by-address {
-  left: 2vw;
+  left: 0;
+  width: 9.6vw;
+  height: 4vh;
+  position: fixed;
 }
 
 .click-for-location-find {
-  color: rgb(185, 185, 185);
+  color: rgb(75, 177, 109);   
   font-size: 1.75vh;
-  border: 2px solid rgba(255, 255, 255, 0);
-  padding: .7%;
-  width: 13.75vw !important;
-  left: .65vw;
+  width: 10vw;
+  text-align: left;
+  font-weight: bold;
   z-index: 99;
-  margin-top:3.5vh !important;
-  border-radius: 3px;
-  position: absolute;
+  padding-left: 5px;
+  margin-top:-3vh !important;
+  left: 0%;
+  border-bottom-right-radius: 3px;
+  position: fixed;
   cursor: pointer;
   transition: all .25s;
   background-color: rgba(128, 128, 128, 0);
-  letter-spacing: .35vw;
   user-select: none;
 }
 
 .click-for-location-find:hover {
   color: rgb(255, 255, 255);
-  background-color: rgb(91, 145, 124);
-  border-color: rgba(128, 128, 128, 0);
+
+  /* background-color: rgb(91, 145, 124); */
 }
 
 .bot-bar {
@@ -197,6 +201,7 @@ body {
 .explanation-and-welcome a {
   color: cyan;
 }
+
 .escape-key {
   position: absolute;
   padding: .5%;
@@ -232,6 +237,31 @@ body {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.814);
+  z-index: 999;
+}
+
+.typeOf-inputs-container{
+  z-index: 999;
+  top: 4.5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+  display: flex;
+}
+
+.type-changer {
+  position: relative;
+  top: -5vh;
+  left: 50vw;
+  z-index: 9999;
+}
+
+label {
+  user-select: none;
+  margin-right: 2vh;
+  margin-left:.5vh;
+  height: fit-content;
+  font-size: .75vw;
   z-index: 999;
 }
 

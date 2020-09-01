@@ -15,7 +15,7 @@
    position: fixed;
    align-items: flex-end;
    height: 4.5vh;
-   background-color: rgb(68, 197, 122);
+   background-color: rgb(75, 177, 109);  
    box-shadow: 2px 2px 25px rgb(43, 141, 84);
    /* border-bottom: 2px solid rgb(85, 85, 85);  */
    color: white !important;
@@ -27,12 +27,9 @@
    min-width: 9vw;
    padding: .25%;
    font-weight: bold;
-   /* padding-right: 2%;
-   padding-left: 2%; */
    background-color: rgba(91, 145, 124, 0);
    transition: all .25s;
    text-decoration: none !important;
-   letter-spacing: .1vw;   
 }
 
 .navbar-item:hover {
