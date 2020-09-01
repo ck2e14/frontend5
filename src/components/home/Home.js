@@ -22,7 +22,7 @@ export default class Home extends React.Component {
          latitude: "",
          filter: "",
          search: "",
-         type: "Retail",
+         type: "all",
          geolocationFailure: false,
          recenterToGeocode: {},
          displayWelcomeMessage: this.props.displayShader,
@@ -160,9 +160,9 @@ export default class Home extends React.Component {
             return estab.type_of === "Caring Premises";
          });
       }
-      if (typeOfEstab === "Pub/bar/nightclub") {
+      if (typeOfEstab === "Pub/bar/nightclub/restaurant/cafe") {
          return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Pub/bar/nightclub";
+            return estab.type_of === "Pub/bar/nightclub" || estab.type_of === "Restaurant/Cafe/Canteen";
          });
       }
       if (typeOfEstab === "Takeaway/sandwich shop") {
