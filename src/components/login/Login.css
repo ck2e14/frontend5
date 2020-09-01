@@ -3,6 +3,8 @@
   width: 100vw;
   position: relative;
   display: flex;
+  background: rgb(219, 88, 88);
+  background: rgb(88, 219, 132);
   flex-direction: column;
   justify-content: center;
   /* border: 2px solid rgb(255, 255, 255); */
@@ -75,7 +77,7 @@
 
 .errors {
   position: absolute;
-  bottom: 10%;
+  bottom: 20%;
   color: rgb(255, 0, 0);
   font-size: 1.75vw;
   width: 100%;

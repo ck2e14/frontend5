@@ -1,42 +1,44 @@
-import React, { Component, useState, useEffect } from 'react'
-import { Menu } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-import './NavBar.css'
-import hygenikLogo from '../../Assets/hygenik logo.png'
-import helpIcon from '../../Assets/helpIcon.png'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./NavBar.css";
+import hygenikLogo from "../../Assets/hygenik logo.png";
+// import helpIcon from '../../Assets/helpIcon.png'
 
-const Navbar = props => {
-   
+const Navbar = (props) => {
    const [showHelpMsg, setShowHelpMsg] = useState(false);
 
-   const helpClick = () => setShowHelpMsg(!showHelpMsg);
+   // const helpClick = () => setShowHelpMsg(!showHelpMsg);
 
-   return(
-      <div className="nav-wrapper">
-
-         <Link to='/find-premises' displayWelcome={false} className='navbar-item'>
+   return (
+      <div className='nav-wrapper'>
+         <Link
+            to='/find-premises'
+            displaywelcome='false'
+            className='navbar-item'>
             Find Sites
          </Link>
 
          <Link to='/blacklist' className='navbar-item'>
-            Blacklist 
+            Blacklist
          </Link>
 
          <Link to='/' onClick={props.logout} className='navbar-item'>
             Log Out
          </Link>
 
-            { props.user ?
-               <div className="logged-in-as"> Logged in as <span>{props.user.username}</span></div>
-            : null }
-               
-               <img src={hygenikLogo} alt="HygenikLogo" className="logo"/>
+         {props.user ? (
+            <div className='logged-in-as'>
+               {" "}
+               Logged in as <span>{props.user.username}</span>
+            </div>
+         ) : null}
 
+         <img src={hygenikLogo} alt='HygenikLogo' className='logo' />
       </div>
-   )
-}
+   );
+};
 
-export default Navbar
+export default Navbar;
 
 // export default class MenuExampleBasic extends Component {
 //    state = {
@@ -84,7 +86,7 @@ export default Navbar
 
 //             { this.state.helpMsg ? <div className="shader-layer" onClick={this.helpClick}></div> : null }
 
-//             { this.state.helpMsg ? 
+//             { this.state.helpMsg ?
 //                <div className="explanation-and-welcome via-help-icon">
 //                   <div className="escape-key" onClick={this.helpClick}>X</div>
 //                   <span> Welcome to  &nbsp;  _Hygenik!</span> <br/><br/>
@@ -94,20 +96,19 @@ export default Navbar
 //                   On that note - since March, the FSA have experienced a big surge in the number of requests made to their resources. At peak usage requests are being dynamically throttled. <br/><br/>Unfortunately this may mean waiting longer than usual to load, or the service may be made temporarily unavailable entirely. Please refresh / hard refresh the page after a couple of minutes if that is the case - hopefully the throttling will have been relaxed!
 //                   <br/><br/>
 //                   This app remains in development. Please report any bugs you encounter to <a href="mailto:chriswkennedy@icloud.com">Chris Kennedy.</a> Suggestions are also welcome! Thanks!<br/><br/>
-//                   More information can be found <a  target="_blank" rel="noopener noreferrer"href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here.</a></span> 
+//                   More information can be found <a  target="_blank" rel="noopener noreferrer"href="https://api.ratings.food.gov.uk/Help/Status" className="fsa-link">here.</a></span>
 //                   <br/><br/>
-//                   Please note: NO personal data is stored by Hygenik. Using location services improves the utility and flow of the app, but if you would prefer to search manually feel free to revoke location services in your browser. 
+//                   Please note: NO personal data is stored by Hygenik. Using location services improves the utility and flow of the app, but if you would prefer to search manually feel free to revoke location services in your browser.
 //                   {/* Please also note that Heroku unloads apps from its servers when they haven't been very recently accessed - you may have experienced longer loading times of the website itself because of this upon initial visit.  */}
-//                </div>  
+//                </div>
 //             : null }
 
 //             { this.props.user ?
 //                <div className="logged-in-as"> Logged in as <span>{this.props.user.username}</span></div>
 //             : null }
 
-
 //                <img src={helpIcon} onClick={this.helpClick} alt="About Hygenik" className="help-icon"/>
-               
+
 //                <img src={hygenikLogo} alt="HygenikLogo" className="logo"/>
 //          </Menu>
 //       )

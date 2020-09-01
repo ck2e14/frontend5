@@ -30,7 +30,7 @@
 
 .get-started-wrapper:hover {
   height: 17vh !important;
-  background-color: rgb(91, 145, 124) !important;
+  background-color: rgb(87, 202, 135)!important;
 }
 
 .get-started-wrapper:hover > .name {

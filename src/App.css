@@ -11,6 +11,7 @@ html {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background: rgb(32, 32, 32);
   font-family: 'Roboto', sans-serif !important;
 
 }
@@ -39,10 +40,12 @@ html {
 
 .help-icon {
   max-width: 4vh;
-  max-height: 4vh;
+  max-height: 3vh;
   height:70%;
-  margin-left: 1%;
-  margin-top: 0.2%;
+  margin-left: 10%;
+
+  left: 55%;
+  margin-top: .5%;
   transition: all .5s;
   position: fixed;
   margin-left: 26%;

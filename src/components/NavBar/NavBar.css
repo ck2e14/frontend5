@@ -5,7 +5,7 @@
    top: -12.75vh;
    height: 30vh;
    transition: all .25s;
-   overflow: hidden;
+   display: none;
 }
 
 .nav-wrapper {
@@ -13,38 +13,48 @@
    align-items: left;
    width: 100vw;
    position: fixed;
-   height: 5vh;
-   background-color: rgba(44, 44, 44, 0);
-   border-bottom: 2px solid rgb(85, 85, 85); 
+   align-items: flex-end;
+   height: 4.5vh;
+   background-color: rgb(68, 197, 122);
+   box-shadow: 2px 2px 25px rgb(43, 141, 84);
+   /* border-bottom: 2px solid rgb(85, 85, 85);  */
    color: white !important;
 }
 
 .navbar-item {
-   color: rgb(153, 153, 153);
+   color: rgb(255, 255, 255);
    font-size: 2.5vh;
    min-width: 9vw;
-   padding: 1%;
-   padding-right: 2%;
-   padding-left: 2%;
+   padding: .25%;
+   font-weight: bold;
+   /* padding-right: 2%;
+   padding-left: 2%; */
+   background-color: rgba(91, 145, 124, 0);
    transition: all .25s;
+   text-decoration: none !important;
    letter-spacing: .1vw;   
 }
+
 .navbar-item:hover {
-   color: rgb(255, 255, 255);
-   background-color: rgb(91, 145, 124);
+   color: rgb(223, 223, 223);
+   /* background-color: rgb(134, 134, 134); */
    border-color: rgba(128, 128, 128, 0);
 }
 
 .logged-in-as {
-   top: 54% !important;
-   position: relative;
-   transform: translateY(-20%) !important;
-   font-size: 1.25vh !important;
-   color: rgb(201, 201, 201) !important;
-   margin-left: 52% !important;
+   position: absolute;
+   right: 0;
+   height: 100%;
+   padding: .5%;
+   font-size: 1.5vh !important;
+   color: rgb(255, 255, 255) !important;
+   box-shadow: 5px 5px 15px rgb(43, 43, 43);
+   background: rgb(44, 44, 44);
    cursor: default;
    font-weight: bold !important;
-   letter-spacing: .1vw;
-   font-style: italic !important;
- }
- 
+}
+
+.logged-in-as span {
+   color: rgb(255, 166, 0);
+   /* font-size: 2vh; */
+}

@@ -1,31 +1,40 @@
 import React from "react";
-import EstabCard from './estabCard'
-import './EstabContainer.css'
+import EstabCard from "./estabCard";
+import "./EstabContainer.css";
 
 export default class EstabContainer extends React.Component {
-   
    buildCards = () => {
-      if(!this.props.establishments) return null
-      return this.props.establishments.map(estab => {
-      return <EstabCard handleEstabCardClick={this.props.handleEstabClick} handleBlacklistClick={this.props.handleBlacklistClick} establishment={estab} user={this.props.user} />
-   })}
-
-   render(){   
-      const cards = this.buildCards()
-      // below is conditional rendering to display error message (no results) inside a single estab card.
-      if(!this.props.establishments) {
+      return this.props.establishments.map((estab) => {
          return (
-            <div className="estabs-div">
-            <EstabCard establishment={{name: 'No Results Were Found :('}} displayInfoPane={false} user={this.props.user} />
-         </div>
-      )}
+            <EstabCard
+               handleEstabCardClick={this.props.handleEstabClick}
+               handleBlacklistClick={this.props.handleBlacklistClick}
+               establishment={estab}
+               user={this.props.user}
+            />
+         );
+      });
+   };
 
-      return( 
-         <div>
-            <div className="estabs-div"> 
-               {cards}
+   render() {
+      const cards = this.buildCards();
+
+      if (!this.props.establishments || this.props.establishments.length < 1) {
+         return (
+            <div className='estabs-div'>
+               <EstabCard
+                  establishment={{ name: "No Results Were Found :(" }}
+                  displayInfoPane={false}
+                  user={this.props.user}
+               />
             </div>
+         );
+      }
+
+      return (
+         <div>
+            <div className='estabs-div'>{cards}</div>
          </div>
-      )
+      );
    }
 }
