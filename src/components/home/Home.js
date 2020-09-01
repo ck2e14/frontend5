@@ -22,7 +22,9 @@ export default class Home extends React.Component {
          latitude: "",
          filter: "",
          search: "",
-         type: "all",
+         type1: false,
+         type2: false,
+         type3: false,
          geolocationFailure: false,
          recenterToGeocode: {},
          displayWelcomeMessage: this.props.displayShader,
@@ -150,83 +152,110 @@ export default class Home extends React.Component {
          : null;
    };
 
+   // write function that interpolates arguments into the === comparison,
+   // up to 3 args, with defaults to empty strings
+   // make a UI component of some kind that will pass user's type selections into this function 
+   // the below method DOES WORK but only when hardcoding the function call inside the establishments
+   // props passed to the EstabContainer component. 
+   // *** I.E. 
+   //          establishments={this.filterEstabsByType('Restaurant/Cafe/Canteen', 'Pub/bar/nightclub', 'Caring Premises')}
+   // ***
+   
+   // It's far less verbose than the if statement-loaded old filterEstabsByType method. Improve this by making a tickbox which adds selections (if made) to 3 separate state keys which are initialised as empty strings, and then use those in place of the default args. 
    filterEstabsByType = () => {
-      const typeOfEstab = this.state.type;
-      if (typeOfEstab === "all") {
-         return this.filteredEstabs(this.state.filter);
-      }
-      if (typeOfEstab === "Caring Premises") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Caring Premises";
-         });
-      }
-      if (typeOfEstab === "Pub/bar/nightclub/restaurant/cafe") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Pub/bar/nightclub" || estab.type_of === "Restaurant/Cafe/Canteen";
-         });
-      }
-      if (typeOfEstab === "Takeaway/sandwich shop") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Takeaway/sandwich shop";
-         });
-      }
-      if (typeOfEstab === "Misc") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Other catering premises";
-         });
-      }
-      if (typeOfEstab === "School/college/university") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "School/college/university";
-         });
-      }
-      if (typeOfEstab === "Hotel/bed & breakfast/guest house") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Hotel/bed & breakfast/guest house";
-         });
-      }
-      if (typeOfEstab === "Restaurant/Cafe/Canteen") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Restaurant/Cafe/Canteen";
-         });
-      }
-      if (typeOfEstab === "Retail") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            if (!estab.type_of) return null;
-            return estab.type_of.includes("Retailers");
-         });
-      }
-      if (typeOfEstab === "Distributors/Transporters") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Distributors/Transporters";
-         });
-      }
-      if (typeOfEstab === "Hospitals/Childcare/Caring Premises") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Hospitals/Childcare/Caring Premises";
-         });
-      }
-      if (typeOfEstab === "Importers/Exporters") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Importers/Exporters";
-         });
-      }
-      if (typeOfEstab === "Manufacturers/packers") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Manufacturers/packers";
-         });
-      }
-      if (typeOfEstab === "Mobile caterer") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Mobile caterer";
-         });
-      }
-      if (typeOfEstab === "Farmers/growers") {
-         return this.filteredEstabs(this.state.filter).filter((estab) => {
-            return estab.type_of === "Farmers/growers";
-         });
-      }
-   };
+      const type1 = this.state.type1
+      const type2 = this.state.type2
+      const type3 = this.state.type3
+      if(type1 === false && type2 === false && type3 === false) return this.filteredEstabs(this.state.filter);
+      return this.filteredEstabs(this.state.filter).filter((estab) => {
+         return estab.type_of === type1 || estab.type_of === type2 || estab.type_of === type3;
+      })
+   }
+
+
+   // filterEstabsByType = (type1="", type2="", type3="") => {
+   //    return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //       return estab.type_of === type1 || estab.type_of === type2 || estab.type_of === type3;
+   //    })
+   // }
+
+   // filterEstabsByType = () => {
+   //    const typeOfEstab = this.state.type;
+   //    if (typeOfEstab === "all") {
+   //       return this.filteredEstabs(this.state.filter);
+   //    }
+   //    if (typeOfEstab === "Caring Premises") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Caring Premises";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Pub/bar/nightclub/restaurant/cafe") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Pub/bar/nightclub" || estab.type_of === "";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Takeaway/sandwich shop") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Takeaway/sandwich shop";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Misc") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Other catering premises";
+   //       });
+   //    }
+   //    if (typeOfEstab === "School/college/university") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "School/college/university";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Hotel/bed & breakfast/guest house") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Hotel/bed & breakfast/guest house";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Restaurant/Cafe/Canteen") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Restaurant/Cafe/Canteen";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Retail") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          if (!estab.type_of) return null;
+   //          return estab.type_of.includes("Retailers");
+   //       });
+   //    }
+   //    if (typeOfEstab === "Distributors/Transporters") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Distributors/Transporters";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Hospitals/Childcare/Caring Premises") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Hospitals/Childcare/Caring Premises";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Importers/Exporters") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Importers/Exporters";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Manufacturers/packers") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Manufacturers/packers";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Mobile caterer") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Mobile caterer";
+   //       });
+   //    }
+   //    if (typeOfEstab === "Farmers/growers") {
+   //       return this.filteredEstabs(this.state.filter).filter((estab) => {
+   //          return estab.type_of === "Farmers/growers";
+   //       });
+   //    }
+   // };
 
    componentDidMount() {
       // this.setEstablishmentsFromYourLocation();
@@ -302,6 +331,8 @@ export default class Home extends React.Component {
                         onChange={this.handleChange}
                      />
                   </form>
+                  
+                  <input type="text" onChange={this.handleChange} name="type1" className="type-changer"/>
 
                   {this.state.search.length > 0 ? (
                      <div
