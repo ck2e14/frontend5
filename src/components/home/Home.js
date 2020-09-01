@@ -29,13 +29,15 @@ export default class Home extends React.Component {
          addRestaurantsToFilter: false,
          addHotelsToFilter: false,
          addMobileToFilter: false,
-         geolocationFailure: false,
          addMarketsToFilter: false,
+         addAllToFilter: false,
+         geolocationFailure: false,
          recenterToGeocode: {},
          displayWelcomeMessage: this.props.displayShader,
          displayShader: this.props.displayShader,
       };
    }
+
 
    handleChange = (event) => {
       this.setState({
@@ -158,7 +160,13 @@ export default class Home extends React.Component {
    };
 
    filterEstabsByType = () => {
-      const pubs = this.state.addPubsToFilter ? "Pub/bar/nightclub" : "";
+         // const s = this.state
+         // if(s.addCaringPremsToFilter, s.addTakeawaysToFilter, s.addDistribsToFilter, s.addEducationToFilter, s.addHotelsToFilter, s.addRestaurantsToFilter, s.addMarketsToFilter, s.addMobileToFilter === true) {
+         //    this.setState({addAllToFilter: false})
+         // }
+      const pubs = this.state.addPubsToFilter 
+         ? "Pub/bar/nightclub" 
+         : "";
       const caringPrems = this.state.addCaringPremsToFilter
          ? "Caring Premises"
          : "";
@@ -174,7 +182,9 @@ export default class Home extends React.Component {
       const hotels = this.state.addHotelsToFilter
          ? "Hotel/bed & breakfast/guest house"
          : "";
-      const mobilePrems = this.state.addMobileToFilter ? "Mobile caterer" : "";
+      const mobilePrems = this.state.addMobileToFilter 
+         ? "Mobile caterer" 
+         : "";
       const supermarkets = this.state.addMarketsToFilter
          ? "Retailers - supermarkets/hypermarkets"
          : "";
@@ -218,6 +228,21 @@ export default class Home extends React.Component {
          [name]: value,
       });
    };
+
+   addAllToFilter = () => {
+      this.setState({
+         addAllToFilter: true,
+         addPubsToFilter: true,
+         addCaringPremsToFilter: true,
+         addTakeawaysToFilter: true,
+         addDistribsToFilter: true,
+         addEducationToFilter: true,
+         addRestaurantsToFilter: true,
+         addHotelsToFilter: true,
+         addMobileToFilter: true,
+         addMarketsToFilter: true,
+      })
+   }
 
    componentDidMount() {
       // this.setEstablishmentsFromYourLocation();
@@ -416,6 +441,30 @@ export default class Home extends React.Component {
                            Education Premises
                         </label>
                      </div>
+                     <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='addAllToFilter'
+                           name='addAllToFilter'
+                           onChange={this.addAllToFilter}
+                           checked={this.state.addAllToFilter}
+                        />
+                        <label for='addAllToFilter'>
+                           Select All
+                        </label>
+                     </div>
+                     {/* <div className='checkbox-container'>
+                        <input
+                           type='checkbox'
+                           id='removeAllFromFilter'
+                           name='removeAllFromFilter'
+                           onChange={this.addAllToFilter}
+                           checked={this.state.removeAllFromFilter}
+                        />
+                        <label for='removeAllFromFilter'>
+                           Remove All
+                        </label>
+                     </div> */}
                   </div>
                </div>
 
