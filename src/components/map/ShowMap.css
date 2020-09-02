@@ -4,14 +4,8 @@
 }
 
 .main-map-div {
-   padding-left: 2% !important;
-   margin-top: 2% !important;
-   padding-right: 2% !important;
-   padding-top: 2.5% !important;
    overflow: hidden;
    animation: fadeIn .5s ease;
-
-
 }
 
 h4, h5 {

@@ -8,7 +8,7 @@ import paths from "./paths";
 import API from "./adapters/API";
 import Home from "./components/home/Home";
 import BlacklistDisplay from "./components/UserDash/BlacklistDisplay";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { isBrowser, isMobile } from "react-device-detect";
 // import helpIcon from './Assets/helpIcon.png'
 // import UserDash from './components/UserDash/UserDash';

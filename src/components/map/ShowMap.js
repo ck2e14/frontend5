@@ -17,7 +17,7 @@ class ShowMap extends React.Component {
             lat: this.props.latitude,
             lng: this.props.longitude,
          },
-         mapZoom: 10.5,
+         mapZoom: 11,
       };
    }
 
@@ -86,10 +86,9 @@ class ShowMap extends React.Component {
 
    render() {
       const mapStyles = {
-         width: "60%",
-         height: "70%",
+         width: "100%",
+         height: "100%",
          borderRadius: "10px",
-         top: "12%",
          // border: '5px solid #3ddef6'
       };
 
@@ -98,7 +97,7 @@ class ShowMap extends React.Component {
             {this.state.finishedSetState ? (
                <Map
                   google={this.props.google}
-                  zoom={12}
+                  zoom={this.state.mapZoom}
                   style={mapStyles}
                   yesIWantToUseGoogleMapApiInternals
                   mapTypeId='terrain'

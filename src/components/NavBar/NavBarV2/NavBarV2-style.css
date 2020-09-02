@@ -1,0 +1,121 @@
+.navbar-container {
+   position: fixed;
+   left: 0; 
+   top: 0;
+   width: 5%;
+   height: 100%;
+   z-index: 99;
+   background-color: rgb(20, 20, 20);
+   box-shadow: 2px 2px 5px rgb(0, 0, 0);
+   font-family: 'Montserrat', sans-serif;
+   transition: all .5s;
+   font-weight: bold;
+	-webkit-animation: fade-in 1s;
+   animation: fade-in 1s;
+}
+
+.navbar-container:hover {
+   width: 12%;
+   /* min-width: 190px; */
+   background-color: rgb(79, 109, 83);
+}
+
+_::-webkit-full-page-media, _:future, :root .navbar-container:hover {
+   width: 16%
+}
+
+
+.navbar-container:hover > .navbar-flex-container {
+   display: flex;
+}
+
+.navbar-flex-container {
+   display: none;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: left;
+   left: 9%;
+   height: 30%;
+   width: 100%;
+   position: relative;
+   top: 50%;
+   opacity: 0;
+   transform: translateY(-50%);
+   color: rgb(207, 207, 207);
+   animation: fade-in .5s;
+   animation-delay: .2s;
+   animation-fill-mode: forwards;
+   /* transition: all .25s; */
+}
+
+.nav-item {
+   cursor: pointer;
+   position: relative;
+   font-size: 2.5vh;
+   width: fit-content;   
+   font-weight: bold;
+   letter-spacing: 3px;
+   text-align: left;
+   text-decoration: none !important;
+   z-index: 99;
+   user-select: none;
+   transition: color .25s;
+   left: 0;
+   top:0;
+   text-transform: uppercase;
+}
+_::-webkit-full-page-media, _:future, :root .nav-item {
+   letter-spacing: 0px;
+}
+
+.nav-item::before {
+   content: '';
+   position: absolute;
+   width: 100%;
+   transform: scaleX(0);
+   height: 2px;
+   bottom: 0;
+   left: 0;
+   background-color: rgb(78, 78, 78);
+   transform-origin: bottom center;
+   transition: transform .25s ease-in-out;
+}
+
+.nav-item:hover::before {
+   transform: scaleX(1);
+   transition: transform .25s ease-in-out;
+   transform-origin: bottom center;
+   background-color: rgb(146, 219, 162);
+
+}
+
+a {
+   color: rgb(189, 189, 189);
+}
+
+.nav-item:hover {
+   color: rgb(255, 255, 255);
+}
+
+.not-expanded {
+   position: absolute;
+   color: grey;
+   transform: translateY(-50%) rotate(180deg);
+   top: 50%;
+   font-size: 2vw;
+   writing-mode: vertical-lr;
+   width: fit-content;
+   left: -20%;
+   height: fit-content;
+   opacity: 1;
+   letter-spacing: .4vh;
+   animation: fade-in 1s;
+}
+
+.navbar-container:hover > .not-expanded {
+   display: none;
+   opacity: 0;
+   z-index: 1;
+   visibility: hidden;
+}
+

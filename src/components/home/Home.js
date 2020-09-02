@@ -3,17 +3,19 @@ import API from "../../adapters/API";
 import EstabContainer from "../establishments/EstabContainer";
 import ShowMap from "../map/ShowMap";
 import NewNavbar from "../NavBar/NewNavBar";
+import NavBarV2 from "../NavBar/NavBarV2/NavBarV2";
 import WelcomeMsg from "../WelcomeMsg/WelcomeMsg";
 import helpIcon from "../../Assets/helpIcon.png";
 import "./Home-style.css";
 import WelcomeMSg from "../WelcomeMsg/WelcomeMsg";
 // TODO: REMOVE the filter methods and put them in their own file so you can just call them in here, not express them too. De-clutter this component man!
 // TODO: Take all the checkboxes into their own component, pass them the methods?
+// TODO: Missing retail - other in checkboxes!!!
 export default class Home extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         establishments: [{ name: "Get Started!", id:'get-started' }],
+         establishments: [{ name: "Get Started!", id: "get-started" }],
          blacklist: [],
          finishedFetch: true,
          currentUserId: "",
@@ -37,7 +39,6 @@ export default class Home extends React.Component {
          displayShader: this.props.displayShader,
       };
    }
-
 
    handleChange = (event) => {
       this.setState({
@@ -144,7 +145,7 @@ export default class Home extends React.Component {
 
    clearFilterWithClick = () => {
       this.setState({ filter: "" });
-   }
+   };
 
    interpolateMarkerToFilter = (searchTerm) => {
       this.setState({ filter: searchTerm });
@@ -160,14 +161,12 @@ export default class Home extends React.Component {
    };
 
    filterEstabsByType = () => {
-      // TODO: Fix the selectAll checkbox functionality 
-         // const s = this.state
-         // if(s.addCaringPremsToFilter, s.addTakeawaysToFilter, s.addDistribsToFilter, s.addEducationToFilter, s.addHotelsToFilter, s.addRestaurantsToFilter, s.addMarketsToFilter, s.addMobileToFilter === true) {
-         //    this.setState({addAllToFilter: false})
-         // }
-      const pubs = this.state.addPubsToFilter 
-         ? "Pub/bar/nightclub" 
-         : "";
+      // TODO: Fix the selectAll checkbox functionality
+      // const s = this.state
+      // if(s.addCaringPremsToFilter, s.addTakeawaysToFilter, s.addDistribsToFilter, s.addEducationToFilter, s.addHotelsToFilter, s.addRestaurantsToFilter, s.addMarketsToFilter, s.addMobileToFilter === true) {
+      //    this.setState({addAllToFilter: false})
+      // }
+      const pubs = this.state.addPubsToFilter ? "Pub/bar/nightclub" : "";
       const caringPrems = this.state.addCaringPremsToFilter
          ? "Caring Premises"
          : "";
@@ -183,9 +182,7 @@ export default class Home extends React.Component {
       const hotels = this.state.addHotelsToFilter
          ? "Hotel/bed & breakfast/guest house"
          : "";
-      const mobilePrems = this.state.addMobileToFilter 
-         ? "Mobile caterer" 
-         : "";
+      const mobilePrems = this.state.addMobileToFilter ? "Mobile caterer" : "";
       const supermarkets = this.state.addMarketsToFilter
          ? "Retailers - supermarkets/hypermarkets"
          : "";
@@ -242,8 +239,8 @@ export default class Home extends React.Component {
          addHotelsToFilter: true,
          addMobileToFilter: true,
          addMarketsToFilter: true,
-      })
-   }
+      });
+   };
 
    componentDidMount() {
       // this.setEstablishmentsFromYourLocation();
@@ -275,70 +272,76 @@ export default class Home extends React.Component {
             )}
 
             <div className='big-div'>
-               {this.props.user ? (
+               {/* {this.props.user ? (
                   <NewNavbar
                      user={this.props.user}
                      logout={this.props.logout}
                   />
+               ) : null} */}
+               {this.props.user ? (
+                  <NavBarV2 user={this.props.user} logout={this.props.logout} />
                ) : null}
 
-               <div className='filter-elements'>
-                  <div
-                     className='click-for-location-find'
-                     onClick={() => this.setEstablishmentsFromYourLocation()}>
-                     Use My Location
+               <div className='primary-content-wrapper'>
+                  <div className='filter-elements'>
+                     <div
+                        className='click-for-location-find'
+                        onClick={() =>
+                           this.setEstablishmentsFromYourLocation()
+                        }>
+                        Use My Location
+                     </div>
+
+                     <form
+                        onSubmit={(event) =>
+                           this.handleSearchAddressSubmit(event)
+                        }>
+                        <input
+                           className='search-by-address'
+                           tabIndex='1'
+                           placeholder='Search Placename'
+                           type='text'
+                           name='search'
+                           value={search}
+                           onChange={this.handleChange}
+                        />
+                     </form>
+
+                     {this.state.establishments ? (
+                        this.state.establishments.length > 1 ? (
+                           <form>
+                              <input
+                                 className='filter-search'
+                                 type='text'
+                                 name='filter'
+                                 tabIndex='1'
+                                 placeholder='Filter results by name'
+                                 position='left'
+                                 float='left'
+                                 value={filter}
+                                 onChange={this.handleChange}
+                              />
+                           </form>
+                        ) : null
+                     ) : null}
+                     {this.state.search.length > 0 ? (
+                        <div
+                           className='submit-button'
+                           onClick={(event) => this.addressGoClick(event)}>
+                           GO
+                        </div>
+                     ) : null}
+
+                     {this.state.filter.length >= 1 ? (
+                        <div
+                           className='clear-search-button'
+                           title='Clear Filter'
+                           onClick={this.clearFilterWithClick}>
+                           &times;
+                        </div>
+                     ) : null}
                   </div>
-
-                  {this.state.establishments ? (
-                     this.state.establishments.length > 1 ? (
-                        <form>
-                           <input
-                              className='filter-search'
-                              type='text'
-                              name='filter'
-                              tabIndex='1'
-                              placeholder='Filter results by name'
-                              position='left'
-                              float='left'
-                              value={filter}
-                              onChange={this.handleChange}
-                           />
-                        </form>
-                     ) : null
-                  ) : null}
-
-                  <form
-                     onSubmit={(event) =>
-                        this.handleSearchAddressSubmit(event)
-                     }>
-                     <input
-                        className='search-by-address'
-                        tabIndex='1'
-                        placeholder='Search Placename'
-                        type='text'
-                        name='search'
-                        value={search}
-                        onChange={this.handleChange}
-                     />
-                  </form>
-
-                  {this.state.search.length > 0 ? (
-                     <div
-                        className='submit-button'
-                        onClick={(event) => this.addressGoClick(event)}>
-                        GO
-                     </div>
-                  ) : null}
-
-                  {this.state.filter.length >= 1 ? (
-                     <div
-                        className='clear-search-button'
-                        title='Clear Filter'
-                        onClick={this.clearFilterWithClick}>
-                        X
-                     </div>
-                  ) : null}
-
+                  {this.state.establishments.length > 1 &&
                   <div className='typeOf-inputs-container'>
                      <div className='checkbox-container'>
                         <input
@@ -393,7 +396,7 @@ export default class Home extends React.Component {
                            checked={this.state.addTakeawaysToFilter}
                         />
                         <label for='addTakeawaysToFilter'>
-                           Takeaways & Sandwich Shops
+                           Takeaways
                         </label>
                      </div>
                      <div className='checkbox-container'>
@@ -450,9 +453,7 @@ export default class Home extends React.Component {
                            onChange={this.addAllToFilter}
                            checked={this.state.addAllToFilter}
                         />
-                        <label for='addAllToFilter'>
-                           Select All
-                        </label>
+                        <label for='addAllToFilter'>Select All</label>
                      </div>
                      {/* <div className='checkbox-container'>
                         <input
@@ -466,10 +467,8 @@ export default class Home extends React.Component {
                            Remove All
                         </label>
                      </div> */}
-                  </div>
-               </div>
+                  </div>}
 
-               <div className='primary-map-wrapper'>
                   {this.state.finishedFetch ? (
                      <EstabContainer
                         user={this.props.user}
@@ -486,14 +485,16 @@ export default class Home extends React.Component {
                      </div>
                   )}
 
-                  {this.state.finishedFetch ? (
-                     <ShowMap
-                        estabs={this.filterEstabsByType()}
-                        latitude={this.state.currentLatitude}
-                        longitude={this.state.currentLongitude}
-                        interpolateMarker={this.interpolateMarkerToFilter}
-                     />
-                  ) : null}
+                  <div className='map-wrapper'>
+                     {this.state.finishedFetch ? (
+                        <ShowMap
+                           estabs={this.filterEstabsByType()}
+                           latitude={this.state.currentLatitude}
+                           longitude={this.state.currentLongitude}
+                           interpolateMarker={this.interpolateMarkerToFilter}
+                        />
+                     ) : null}
+                  </div>
                </div>
             </div>
 
