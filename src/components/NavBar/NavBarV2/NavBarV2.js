@@ -31,7 +31,7 @@ const NavBar = props => {
                   <div>Blacklist</div>  
                </Link>
 
-               <Link to='/' className="nav-item">
+               <Link to='/' onClick={logout}className="nav-item">
                   <div>Log Out</div>
                </Link>
 {/*                

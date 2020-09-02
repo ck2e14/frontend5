@@ -11,10 +11,10 @@
 }
 
 .title-text {
-  position: absolute;
-  left: 50%;
-  top: 20%;
-  transform: translateX(-50%);
+  position: fixed;
+  /* left: 50%; */
+  /* top: 20%; */
+  /* transform: translateX(-50%); */
   color: white;
   font-size: 5vw;
 }

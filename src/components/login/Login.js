@@ -79,7 +79,7 @@ const Login = (props) => {
 
    return (
       <div className='login-container'>
-         <h1 className='title-text' align='center'>
+         <h1 className='title-text' >
             {" "}
             <span>_</span>Hygenik<span>.</span>com
          </h1>
