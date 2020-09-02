@@ -78,53 +78,59 @@ const Login = (props) => {
    // }
 
    return (
-      <div className='login-container'>
-         <h1 className='title-text' >
-            {" "}
+      <>
+         <div className='title-text'>
             <span>_</span>Hygenik<span>.</span>com
-         </h1>
-
-         <div className='errors'>{errors?.join(", ")}</div>
-
-         <div className='login-content-inputs-container-flex'>
-            <form onSubmit={handleLogInSubmit} className='login-form'>
-               <div className='username-input-container'>
-                  <input
-                     type='text'
-                     placeholder='USERNAME'
-                     name='username'
-                     value={username}
-                     onChange={(e) => onUsernameChange(e)}
-                  />
-               </div>
-
-               <div className='password-input-container'>
-                  <input
-                     type='password'
-                     placeholder='PASSWORD'
-                     name='password'
-                     value={password}
-                     onChange={(e) => onPasswordChange(e)}
-                  />
-               </div>
-
-               <input className='login-submit' type='submit' value='LOG IN' />
-               <br />
-               <br />
-
-               {/* <Link className='registration-link' to="/signup">REGISTER</Link> */}
-            </form>
-
-            <div className='submit-btn' onClick={handleLogInSubmit}>
-               LOG IN
-            </div>
-            <div className='submit-btn register' onClick={handleRegisterSubmit}>
-               REGISTER
-            </div>
-            <br />
-            <br />
          </div>
-      </div>
+         <div className='login-container'>
+            <div className='errors'>{errors?.join(", ")}</div>
+
+            <div className='login-content-inputs-container-flex'>
+               <form onSubmit={handleLogInSubmit} className='login-form'>
+                  <div className='username-input-container'>
+                     <input
+                        type='text'
+                        placeholder='USERNAME'
+                        name='username'
+                        value={username}
+                        onChange={(e) => onUsernameChange(e)}
+                     />
+                  </div>
+
+                  <div className='password-input-container'>
+                     <input
+                        type='password'
+                        placeholder='PASSWORD'
+                        name='password'
+                        value={password}
+                        onChange={(e) => onPasswordChange(e)}
+                     />
+                  </div>
+
+                  <input
+                     className='login-submit'
+                     type='submit'
+                     value='LOG IN'
+                  />
+                  <br />
+                  <br />
+
+                  {/* <Link className='registration-link' to="/signup">REGISTER</Link> */}
+               </form>
+
+               <div className='submit-btn' onClick={handleLogInSubmit}>
+                  LOG IN
+               </div>
+               <div
+                  className='submit-btn register'
+                  onClick={handleRegisterSubmit}>
+                  REGISTER
+               </div>
+               <br />
+               <br />
+            </div>
+         </div>
+      </>
    );
 
    //    return (
