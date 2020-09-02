@@ -119,6 +119,7 @@ export default class Home extends React.Component {
    };
 
    addressGoClick = () => {
+      this.setState({finishedFetch: false})
       this.setEstablishmentsFromAddressSearch(this.state.search);
    };
 
