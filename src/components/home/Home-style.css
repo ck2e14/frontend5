@@ -8,6 +8,15 @@ body {
   text-align: center
 }
 
+.hygenik-title-bar {
+  position: fixed;
+  top: 1%;
+  right: 5%;
+  font-size: 5vw;
+  font-family: 'Advent Pro', sans-serif !important;
+
+}
+
 .background {
   z-index: -1;
   position: fixed;

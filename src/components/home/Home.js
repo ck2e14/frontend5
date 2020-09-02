@@ -253,12 +253,15 @@ export default class Home extends React.Component {
       const { displayWelcomeMessage } = this.state;
       return (
          <>
-            <img
+            <div className='hygenik-title-bar'>
+               <span></span>Hygenik<span>.</span>com
+            </div>
+            {/* <img
                src={helpIcon}
                onClick={this.shaderClick}
                alt='About Hygenik'
                className='help-icon'
-            />
+            /> */}
 
             {displayShader && (
                <div className='shader-layer' onClick={this.shaderClick}></div>
@@ -272,12 +275,6 @@ export default class Home extends React.Component {
             )}
 
             <div className='big-div'>
-               {/* {this.props.user ? (
-                  <NewNavbar
-                     user={this.props.user}
-                     logout={this.props.logout}
-                  />
-               ) : null} */}
                {this.props.user ? (
                   <NavBarV2 user={this.props.user} logout={this.props.logout} />
                ) : null}
@@ -341,121 +338,121 @@ export default class Home extends React.Component {
                         </div>
                      ) : null}
                   </div>
-                  {this.state.establishments.length > 1 &&
-                  <div className='typeOf-inputs-container'>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addPubsToFilter'
-                           name='addPubsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addPubsToFilter}
-                        />
-                        <label for='addPubsToFilter'>
-                           Pubs, Bars & Nightclubs
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addRestaurantsToFilter'
-                           name='addRestaurantsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addRestaurantsToFilter}
-                        />
-                        <label for='addRestaurantsToFilter'>
-                           Restaurants & Cafes
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addMarketsToFilter'
-                           name='addMarketsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addMarketsToFilter}
-                        />
-                        <label for='addMarketsToFilter'>Supermarkets</label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addHotelsToFilter'
-                           name='addHotelsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addHotelsToFilter}
-                        />
-                        <label for='addHotelsToFilter'>Hotels/B&Bs</label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addTakeawaysToFilter'
-                           name='addTakeawaysToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addTakeawaysToFilter}
-                        />
-                        <label for='addTakeawaysToFilter'>
-                           Takeaways
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addCaringPremsToFilter'
-                           name='addCaringPremsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addCaringPremsToFilter}
-                        />
-                        <label for='addCaringPremsToFilter'>
-                           Care Premises
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addDistribsToFilter'
-                           name='addDistribsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addDistribsToFilter}
-                        />
-                        <label for='addDistribsToFilter'>
-                           Distributors & Transporters
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addMobileToFilter'
-                           name='addMobileToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addMobileToFilter}
-                        />
-                        <label for='addMobileToFilter'>Mobile Caterers</label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addEducationToFilter'
-                           name='addEducationToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addEducationToFilter}
-                        />
-                        <label for='addEducationToFilter'>
-                           Education Premises
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addAllToFilter'
-                           name='addAllToFilter'
-                           onChange={this.addAllToFilter}
-                           checked={this.state.addAllToFilter}
-                        />
-                        <label for='addAllToFilter'>Select All</label>
-                     </div>
-                     {/* <div className='checkbox-container'>
+                  {this.state.establishments.length > 1 && (
+                     <div className='typeOf-inputs-container'>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addPubsToFilter'
+                              name='addPubsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addPubsToFilter}
+                           />
+                           <label for='addPubsToFilter'>
+                              Pubs, Bars & Nightclubs
+                           </label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addRestaurantsToFilter'
+                              name='addRestaurantsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addRestaurantsToFilter}
+                           />
+                           <label for='addRestaurantsToFilter'>
+                              Restaurants & Cafes
+                           </label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addMarketsToFilter'
+                              name='addMarketsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addMarketsToFilter}
+                           />
+                           <label for='addMarketsToFilter'>Supermarkets</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addHotelsToFilter'
+                              name='addHotelsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addHotelsToFilter}
+                           />
+                           <label for='addHotelsToFilter'>Hotels/B&Bs</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addTakeawaysToFilter'
+                              name='addTakeawaysToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addTakeawaysToFilter}
+                           />
+                           <label for='addTakeawaysToFilter'>Takeaways</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addCaringPremsToFilter'
+                              name='addCaringPremsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addCaringPremsToFilter}
+                           />
+                           <label for='addCaringPremsToFilter'>
+                              Care Premises
+                           </label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addDistribsToFilter'
+                              name='addDistribsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addDistribsToFilter}
+                           />
+                           <label for='addDistribsToFilter'>
+                              Distributors & Transporters
+                           </label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addMobileToFilter'
+                              name='addMobileToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addMobileToFilter}
+                           />
+                           <label for='addMobileToFilter'>
+                              Mobile Caterers
+                           </label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addEducationToFilter'
+                              name='addEducationToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addEducationToFilter}
+                           />
+                           <label for='addEducationToFilter'>
+                              Education Premises
+                           </label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addAllToFilter'
+                              name='addAllToFilter'
+                              onChange={this.addAllToFilter}
+                              checked={this.state.addAllToFilter}
+                           />
+                           <label for='addAllToFilter'>Select All</label>
+                        </div>
+                        {/* <div className='checkbox-container'>
                         <input
                            type='checkbox'
                            id='removeAllFromFilter'
@@ -467,7 +464,8 @@ export default class Home extends React.Component {
                            Remove All
                         </label>
                      </div> */}
-                  </div>}
+                     </div>
+                  )}
 
                   {this.state.finishedFetch ? (
                      <EstabContainer
