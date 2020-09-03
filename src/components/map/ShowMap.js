@@ -42,6 +42,8 @@ class ShowMap extends React.Component {
 
    onMarkerClick = (props, marker, e) => {
       this.props.interpolateMarker(marker.name);
+      // this.props.interpolateMarker(marker.id);
+      console.log(marker.id)
       return this.setState({
          selectedPlace: props,
          selectedPlaceRating: props.rating,
@@ -70,7 +72,7 @@ class ShowMap extends React.Component {
          return (
             <Marker
                key={index}
-               id={estab.name}
+               id={estab.id}
                position={{
                   lat: estab.latitude,
                   lng: estab.longitude,

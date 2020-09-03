@@ -40,7 +40,7 @@ export default class Home extends React.Component {
       };
    }
 
-   handleChange = (event) => {
+   handleChange = event => {
       this.setState({
          [event.target.name]: event.target.value,
       });
@@ -53,7 +53,7 @@ export default class Home extends React.Component {
       });
    };
 
-   handleEstabCardClick = (estabObject) => {
+   handleEstabCardClick = estabObject => {
       // console.log(estabObject)
       return this.setState({
          filter: estabObject.name,
@@ -68,9 +68,7 @@ export default class Home extends React.Component {
    handleBlacklistClick = (estabObject, event) => {
       event.stopPropagation();
       API.newEstab(estabObject, this.props.user.id);
-      alert(
-         `${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`
-      );
+      alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`);
       this.setState({ filter: "" });
    };
 
@@ -95,8 +93,8 @@ export default class Home extends React.Component {
          console.log("Locating...");
          this.setState({ finishedFetch: false });
          window.navigator.geolocation.getCurrentPosition(
-            (location) => {
-               API.autoGetEstabs(location).then((estabs) =>
+            location => {
+               API.autoGetEstabs(location).then(estabs =>
                   this.setState({
                      establishments: estabs,
                      currentLatitude: location.coords.latitude,
@@ -112,7 +110,7 @@ export default class Home extends React.Component {
       }
    }
 
-   handleSearchAddressSubmit = (event) => {
+   handleSearchAddressSubmit = event => {
       event.preventDefault();
       this.setState({ finishedFetch: false });
       this.setEstablishmentsFromAddressSearch(this.state.search);
@@ -122,24 +120,31 @@ export default class Home extends React.Component {
       this.setEstablishmentsFromAddressSearch(this.state.search);
    };
 
-   setEstablishmentsFromAddressSearch = (search) => {
+   setEstablishmentsFromAddressSearch = search => {
       this.clearFilterWithClick();
-      API.getLatLongFromGeocode(this.state.search).then((locationObject) =>
-         this.setState({
-            currentLongitude: locationObject.geocodedLongitude,
-            currentLatitude: locationObject.geocodedLatitude,
-         })
+      API.getLatLongFromGeocode(this.state.search).then(
+         locationObject => {
+            API.getEstabsFromEnteredPlaceName(locationObject).then(estabs =>
+               this.setState({
+                  establishments: estabs,
+                  finishedFetch: true,
+                  currentUserId: this.props.user.id,
+                  currentLongitude: locationObject.geocodedLongitude,
+                  currentLatitude: locationObject.geocodedLatitude,
+               })
+            );
+         }
       );
-      API.getEstabsFromAddress(search).then((estabs) =>
-         this.setState({
-            establishments: estabs,
-            finishedFetch: true,
-            currentUserId: this.props.user.id,
-         })
-      );
+      // API.getEstabsFromAddress(search).then(estabs =>
+      //    this.setState({
+      //       establishments: estabs,
+      //       finishedFetch: true,
+      //       currentUserId: this.props.user.id,
+      //    })
+      // );
    };
 
-   escapeClick = (event) => {
+   escapeClick = event => {
       this.setState({ displayWelcomeMessage: false, displayShader: false });
    };
 
@@ -147,48 +152,46 @@ export default class Home extends React.Component {
       this.setState({ filter: "" });
    };
 
-   interpolateMarkerToFilter = (searchTerm) => {
+   interpolateMarkerToFilter = (searchTerm, estabId) => {
       this.setState({ filter: searchTerm });
+      // this.filterEstabsByType(estabId);
    };
 
-   filteredEstabs = (filter) => {
+   filteredEstabs = filter => {
       const lower = filter.toLowerCase();
       return this.state.establishments
-         ? this.state.establishments.filter((estab) => {
+         ? this.state.establishments.filter(estab => {
               return estab.name.toLowerCase().includes(lower);
            })
          : null;
    };
 
-   filterEstabsByType = () => {
+   filterEstabsByType = estabId => {
+      // if(estabId) {
+      //    console.log(`does ${estabId} match`)
+      //       return this.state.establishments.filter((estab) => {
+      //          console.log(estab.id)
+      //          return estab.id === estabId
+      //       })
+      // }
+      // TODO: The above code is an attempt to filter by passed-in marker id, to solve the
+      // bodged filter by name approach of interpolating to the filter state key, which is bad
+      // when dealing with chains like costa where there will be multiple costas
+
       // TODO: Fix the selectAll checkbox functionality
       // const s = this.state
       // if(s.addCaringPremsToFilter, s.addTakeawaysToFilter, s.addDistribsToFilter, s.addEducationToFilter, s.addHotelsToFilter, s.addRestaurantsToFilter, s.addMarketsToFilter, s.addMobileToFilter === true) {
       //    this.setState({addAllToFilter: false})
       // }
       const pubs = this.state.addPubsToFilter ? "Pub/bar/nightclub" : "";
-      const caringPrems = this.state.addCaringPremsToFilter
-         ? "Caring Premises"
-         : "";
-      const takeaways = this.state.addTakeawaysToFilter
-         ? "Takeaway/sandwich shop"
-         : "";
-      const distributors = this.state.addDistribsToFilter
-         ? "Distributors/Transporters"
-         : "";
-      const education = this.state.addEducationToFilter
-         ? "School/college/university"
-         : "";
-      const hotels = this.state.addHotelsToFilter
-         ? "Hotel/bed & breakfast/guest house"
-         : "";
+      const caringPrems = this.state.addCaringPremsToFilter ? "Caring Premises" : "";
+      const takeaways = this.state.addTakeawaysToFilter ? "Takeaway/sandwich shop" : "";
+      const distributors = this.state.addDistribsToFilter ? "Distributors/Transporters" : "";
+      const education = this.state.addEducationToFilter ? "School/college/university" : "";
+      const hotels = this.state.addHotelsToFilter ? "Hotel/bed & breakfast/guest house" : "";
       const mobilePrems = this.state.addMobileToFilter ? "Mobile caterer" : "";
-      const supermarkets = this.state.addMarketsToFilter
-         ? "Retailers - supermarkets/hypermarkets"
-         : "";
-      const restaurants = this.state.addRestaurantsToFilter
-         ? "Restaurant/Cafe/Canteen"
-         : "";
+      const supermarkets = this.state.addMarketsToFilter ? "Retailers - supermarkets/hypermarkets" : "";
+      const restaurants = this.state.addRestaurantsToFilter ? "Restaurant/Cafe/Canteen" : "";
 
       if (
          pubs === "" &&
@@ -203,7 +206,7 @@ export default class Home extends React.Component {
       )
          return this.filteredEstabs(this.state.filter);
 
-      return this.filteredEstabs(this.state.filter).filter((estab) => {
+      return this.filteredEstabs(this.state.filter).filter(estab => {
          return (
             estab.type_of === pubs ||
             estab.type_of === caringPrems ||
@@ -218,7 +221,7 @@ export default class Home extends React.Component {
       });
    };
 
-   handleFilterCheckboxChange = (event) => {
+   handleFilterCheckboxChange = event => {
       const target = event.target;
       const value = target.type === "checkbox" ? target.checked : target.value;
       const name = target.name;
@@ -253,45 +256,29 @@ export default class Home extends React.Component {
       const { displayWelcomeMessage } = this.state;
       return (
          <>
-<div className="hygenik-title-bar"><span></span>Hygenik<span>.</span>com</div>
-            {/* <img
-               src={helpIcon}
-               onClick={this.shaderClick}
-               alt='About Hygenik'
-               className='help-icon'
-            /> */}
+            <div className='hygenik-title-bar'>
+               <span></span>Hygenik<span>.</span>com
+            </div>
+            <img src={helpIcon} onClick={this.shaderClick} alt='About Hygenik' className='help-icon' />
 
-            {displayShader && (
-               <div className='shader-layer' onClick={this.shaderClick}></div>
-            )}
+            {displayShader && <div className='shader-layer' onClick={this.shaderClick}></div>}
 
             {displayWelcomeMessage && (
-               <WelcomeMSg
-                  shaderClick={this.shaderClick}
-                  username={this.props.user.username}
-               />
+               <WelcomeMSg shaderClick={this.shaderClick} username={this.props.user.username} />
             )}
 
             <div className='big-div'>
-
-               {this.props.user ? (
-                  <NavBarV2 user={this.props.user} logout={this.props.logout} />
-               ) : null}
+               {this.props.user && <NavBarV2 user={this.props.user} logout={this.props.logout} />}
 
                <div className='primary-content-wrapper'>
                   <div className='filter-elements'>
                      <div
                         className='click-for-location-find'
-                        onClick={() =>
-                           this.setEstablishmentsFromYourLocation()
-                        }>
+                        onClick={() => this.setEstablishmentsFromYourLocation()}>
                         Use My Location
                      </div>
 
-                     <form
-                        onSubmit={(event) =>
-                           this.handleSearchAddressSubmit(event)
-                        }>
+                     <form onSubmit={event => this.handleSearchAddressSubmit(event)}>
                         <input
                            className='search-by-address'
                            tabIndex='1'
@@ -303,155 +290,140 @@ export default class Home extends React.Component {
                         />
                      </form>
 
-                     {this.state.establishments ? (
-                        this.state.establishments.length > 1 ? (
-                           <form>
-                              <input
-                                 className='filter-search'
-                                 type='text'
-                                 name='filter'
-                                 tabIndex='1'
-                                 placeholder='Filter results by name'
-                                 position='left'
-                                 float='left'
-                                 value={filter}
-                                 onChange={this.handleChange}
-                              />
-                           </form>
-                        ) : null
-                     ) : null}
-                     {this.state.search.length > 0 ? (
-                        <div
-                           className='submit-button'
-                           onClick={(event) => this.addressGoClick(event)}>
+                     {this.state.establishments?.length > 1 && (
+                        <form>
+                           <input
+                              className='filter-search'
+                              type='text'
+                              name='filter'
+                              tabIndex='1'
+                              placeholder='Filter results by name'
+                              position='left'
+                              float='left'
+                              value={filter}
+                              onChange={this.handleChange}
+                           />
+                        </form>
+                     )}
+
+                     {this.state.search?.length > 0 && (
+                        <div className='submit-button' onClick={event => this.addressGoClick(event)}>
                            GO
                         </div>
-                     ) : null}
+                     )}
 
-                     {this.state.filter.length >= 1 ? (
+                     {this.state.filter.length >= 1 && (
                         <div
                            className='clear-search-button'
                            title='Clear Filter'
                            onClick={this.clearFilterWithClick}>
                            &times;
                         </div>
-                     ) : null}
+                     )}
                   </div>
-                  {this.state.establishments?.length > 1 &&
-                  <div className='typeOf-inputs-container'>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addPubsToFilter'
-                           name='addPubsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addPubsToFilter}
-                        />
-                        <label for='addPubsToFilter'>
-                           Pubs, Bars & Nightclubs
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addRestaurantsToFilter'
-                           name='addRestaurantsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addRestaurantsToFilter}
-                        />
-                        <label for='addRestaurantsToFilter'>
-                           Restaurants & Cafes
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addMarketsToFilter'
-                           name='addMarketsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addMarketsToFilter}
-                        />
-                        <label for='addMarketsToFilter'>Supermarkets</label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addHotelsToFilter'
-                           name='addHotelsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addHotelsToFilter}
-                        />
-                        <label for='addHotelsToFilter'>Hotels/B&Bs</label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addTakeawaysToFilter'
-                           name='addTakeawaysToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addTakeawaysToFilter}
-                        />
-                        <label for='addTakeawaysToFilter'>
-                           Takeaways
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addCaringPremsToFilter'
-                           name='addCaringPremsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addCaringPremsToFilter}
-                        />
-                        <label for='addCaringPremsToFilter'>
-                           Care Premises
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addDistribsToFilter'
-                           name='addDistribsToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addDistribsToFilter}
-                        />
-                        <label for='addDistribsToFilter'>
-                           Distributors & Transporters
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addMobileToFilter'
-                           name='addMobileToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addMobileToFilter}
-                        />
-                        <label for='addMobileToFilter'>Mobile Caterers</label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addEducationToFilter'
-                           name='addEducationToFilter'
-                           onChange={this.handleFilterCheckboxChange}
-                           checked={this.state.addEducationToFilter}
-                        />
-                        <label for='addEducationToFilter'>
-                           Education Premises
-                        </label>
-                     </div>
-                     <div className='checkbox-container'>
-                        <input
-                           type='checkbox'
-                           id='addAllToFilter'
-                           name='addAllToFilter'
-                           onChange={this.addAllToFilter}
-                           checked={this.state.addAllToFilter}
-                        />
-                        <label for='addAllToFilter'>Select All</label>
-                     </div>
-                     {/* <div className='checkbox-container'>
+                  {this.state.establishments?.length > 1 && (
+                     <div className='typeOf-inputs-container'>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addPubsToFilter'
+                              name='addPubsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addPubsToFilter}
+                           />
+                           <label for='addPubsToFilter'>Pubs, Bars & Nightclubs</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addRestaurantsToFilter'
+                              name='addRestaurantsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addRestaurantsToFilter}
+                           />
+                           <label for='addRestaurantsToFilter'>Restaurants & Cafes</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addMarketsToFilter'
+                              name='addMarketsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addMarketsToFilter}
+                           />
+                           <label for='addMarketsToFilter'>Supermarkets</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addHotelsToFilter'
+                              name='addHotelsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addHotelsToFilter}
+                           />
+                           <label for='addHotelsToFilter'>Hotels/B&Bs</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addTakeawaysToFilter'
+                              name='addTakeawaysToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addTakeawaysToFilter}
+                           />
+                           <label for='addTakeawaysToFilter'>Takeaways</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addCaringPremsToFilter'
+                              name='addCaringPremsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addCaringPremsToFilter}
+                           />
+                           <label for='addCaringPremsToFilter'>Care Premises</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addDistribsToFilter'
+                              name='addDistribsToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addDistribsToFilter}
+                           />
+                           <label for='addDistribsToFilter'>Distributors & Transporters</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addMobileToFilter'
+                              name='addMobileToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addMobileToFilter}
+                           />
+                           <label for='addMobileToFilter'>Mobile Caterers</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addEducationToFilter'
+                              name='addEducationToFilter'
+                              onChange={this.handleFilterCheckboxChange}
+                              checked={this.state.addEducationToFilter}
+                           />
+                           <label for='addEducationToFilter'>Education Premises</label>
+                        </div>
+                        <div className='checkbox-container'>
+                           <input
+                              type='checkbox'
+                              id='addAllToFilter'
+                              name='addAllToFilter'
+                              onChange={this.addAllToFilter}
+                              checked={this.state.addAllToFilter}
+                           />
+                           <label for='addAllToFilter'>Select All</label>
+                        </div>
+                        {/* <div className='checkbox-container'>
                         <input
                            type='checkbox'
                            id='removeAllFromFilter'
@@ -463,7 +435,8 @@ export default class Home extends React.Component {
                            Remove All
                         </label>
                      </div> */}
-                  </div>}
+                     </div>
+                  )}
 
                   {this.state.finishedFetch ? (
                      <EstabContainer
@@ -482,14 +455,14 @@ export default class Home extends React.Component {
                   )}
 
                   <div className='map-wrapper'>
-                     {this.state.finishedFetch ? (
+                     {this.state.finishedFetch && (
                         <ShowMap
                            estabs={this.filterEstabsByType()}
                            latitude={this.state.currentLatitude}
                            longitude={this.state.currentLongitude}
                            interpolateMarker={this.interpolateMarkerToFilter}
                         />
-                     ) : null}
+                     )}
                   </div>
                </div>
             </div>
@@ -502,9 +475,8 @@ export default class Home extends React.Component {
                   className='portfolio-link'>
                   Chris Kennedy
                </a>{" "}
-               | Full-stack developer | Stack: JavaScript ES6, React (hooks,
-               router, async), JWT Auth | Ruby on Rails API | PostgreSQL | CD |
-               Git
+               | Full-stack developer | Stack: JavaScript ES6, React (hooks, router, async), JWT Auth | Ruby
+               on Rails API | PostgreSQL | CD | Git
             </div>
          </>
       );

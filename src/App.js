@@ -86,7 +86,7 @@ const App = () => {
                   />
                )}
 
-               {user ? (
+               {user && (
                   <Route
                      path='/find-premises'
                      component={(props) => (
@@ -99,7 +99,7 @@ const App = () => {
                         />
                      )}
                   />
-               ) : null}
+               )}
 
                <Route
                   path='/blacklist'

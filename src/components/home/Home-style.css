@@ -224,7 +224,7 @@ input[type=checkbox] {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.76);
+  background-color: rgb(37, 37, 37);
   backdrop-filter: blur(5px);
   color: rgb(121, 218, 224) !important;
   font-size: 1vw !important ;
@@ -235,10 +235,11 @@ input[type=checkbox] {
 
 .explanation-and-welcome span {
   font-size: 1.75vw;
+  color: rgb(109, 223, 147)
 }
 
 .explanation-and-welcome a {
-  color: cyan;
+  color: rgb(70, 226, 161);
 }
 
 .escape-key {
@@ -265,7 +266,7 @@ input[type=checkbox] {
 }
 
 .highlight-this {
-  color: white;
+  color: rgb(216, 216, 216) !important;
   font-size: 1vw !important;
 }
 

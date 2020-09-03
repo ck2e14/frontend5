@@ -58,9 +58,8 @@ const EstabCard = (props) => {
                <br />
                <br />
                <span>Address: </span>
-               {address1 ? <br /> : null} {address1 ? address1 : null}{" "}
-               {address2 ? <br /> : null}
-               {address2 ? address2 : null}
+               {address1 && <br />} {address1 && address1} {address2 && <br />}
+               {address2 && address2}
                <br />
                {props.establishment.postcode}
                <br />
@@ -100,9 +99,8 @@ const EstabCard = (props) => {
                <br />
                <br />
                <span>Address: </span>
-               {address1 ? <br /> : null} {address1 ? address1 : null}{" "}
-               {address2 ? <br /> : null}
-               {address2 ? address2 : null}
+               {address1 && <br />} {address1 && address1} {address2 && <br />}
+               {address2 && address2}
                <br />
                {props.establishment.postcode}
                <br />
@@ -149,9 +147,8 @@ const EstabCard = (props) => {
                <br />
                <br />
                <span>Address: </span>
-               {address1 ? <br /> : null} {address1 ? address1 : null}{" "}
-               {address2 ? <br /> : null}
-               {address2 ? address2 : null}
+               {address1 && <br />} {address1 && address1} {address2 && <br />}
+               {address2 && address2}
                <br />
                {props.establishment.postcode}
                <br />
@@ -190,9 +187,8 @@ const EstabCard = (props) => {
             <br />
             <br />
             <span>Address: </span>
-            {address1 ? <br /> : null} {address1 ? address1 : null}{" "}
-            {address2 ? <br /> : null}
-            {address2 ? address2 : null}
+            {address1 && <br />} {address1 && address1} {address2 && <br />}
+            {address2 && address2}
             <br />
             {props.establishment.postcode}
             <br />
