@@ -14,6 +14,7 @@ import WelcomeMSg from "../WelcomeMsg/WelcomeMsg";
 // TODO: Take all the checkboxes into their own component, pass them the methods?
 // TODO: Missing retail - other in checkboxes!!!
 export default class Home extends React.Component {
+
    constructor(props) {
       super(props);
       this.state = {
@@ -25,102 +26,41 @@ export default class Home extends React.Component {
          latitude: "",
          filter: "",
          search: "",
-         addPubsToFilter: false,
-         addCaringPremsToFilter: false,
-         addTakeawaysToFilter: false,
-         addDistribsToFilter: false,
-         addEducationToFilter: false,
-         addRestaurantsToFilter: false,
-         addHotelsToFilter: false,
-         addMobileToFilter: false,
-         addMarketsToFilter: false,
-         addAllToFilter: false,
+         addPubsToFilter: true,
+         addCaringPremsToFilter: true,
+         addTakeawaysToFilter: true,
+         addDistribsToFilter: true,
+         addEducationToFilter: true,
+         addRestaurantsToFilter: true,
+         addHotelsToFilter: true,
+         addMobileToFilter: true,
+         addMarketsToFilter: true,
+         addAllToFilter: true,
+         addIdToFilter: false,
          geolocationFailure: false,
          recenterToGeocode: {},
-         displayWelcomeMessage: this.props.displayShader,
-         displayShader: this.props.displayShader,
+         // displayWelcomeMessage: this.props.displayShader,
+         // displayShader: this.props.displayShader,
       };
    }
 
+   
+// *** Generic setState handler for inputs *** //
    handleChange = event => {
       this.setState({
          [event.target.name]: event.target.value,
       });
    };
 
+
+
+// *** Methods for handling user-entered places *** //
    handleAutoCompleteInputChange = address => {
       this.setState({ search: address });
    };
 
    handleAutoCompleteInputSubmit = (address, latLng) => {
       this.setState({ search: address, currentLatitude: latLng.lat, currentLongitude: latLng.lng });
-      this.setEstablishmentsFromAddressSearch(this.state.search);
-   };
-
-   shaderClick = () => {
-      this.setState({
-         displayShader: !this.state.displayShader,
-         displayWelcomeMessage: !this.state.displayWelcomeMessage,
-      });
-   };
-
-   handleEstabCardClick = estabObject => {
-      return this.setState({
-         filter: estabObject.name,
-         selectedEstabToSendToMapCenter: estabObject,
-      });
-      // TODO: change this to be a filter on this.state.establishments? or not worried?
-   };
-
-   handleBlacklistClick = (estabObject, event) => {
-      event.stopPropagation();
-      API.newEstab(estabObject, this.props.user.id);
-      alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`);
-      this.setState({ filter: "" });
-   };
-
-   unavailableGeolocation() {
-      this.setState({ finishedFetch: true });
-      alert(
-         "Please enable location services in your browser settings. This site is secured via HTTPS, and at no point stores or shares your geolocation data. Thank you!"
-      );
-   }
-   // geolocation takes three args:
-   // (1)mandatory success callback,
-   // (2)optional error callback and
-   // (3)an object with PositionOptions
-   setEstablishmentsFromYourLocation() {
-      if (!navigator.geolocation) {
-         console.log("Geolocation is not enabled by your browser");
-         alert(
-            "Please enable location services in your browser settings. This site is secured via HTTPS, and at no point stores or shares your geolocation data. Thank you!"
-         );
-         this.unavailableGeolocation();
-      } else {
-         console.log("Locating...");
-         this.setState({ finishedFetch: false });
-         window.navigator.geolocation.getCurrentPosition(
-            location => {
-               API.autoGetEstabs(location).then(estabs =>
-                  this.setState({
-                     establishments: estabs,
-                     currentLatitude: location.coords.latitude,
-                     currentLongitude: location.coords.longitude,
-                     finishedFetch: true,
-                     currentUserId: this.props.user.id,
-                  })
-               );
-            },
-            () => this.unavailableGeolocation(),
-            { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
-         );
-      }
-   }
-
-   handleSearchAddressSubmit = event => {
-      event.preventDefault();
-      if (this.state.search.length === 0) return;
-      this.setState({ finishedFetch: false });
       this.setEstablishmentsFromAddressSearch(this.state.search);
    };
 
@@ -135,7 +75,6 @@ export default class Home extends React.Component {
          geocodedLongitude: this.state.currentLongitude,
          geocodedLatitude: this.state.currentLatitude,
       };
-      console.log(latLongObj);
       API.getEstabsFromEnteredPlaceName(latLongObj).then(estabs =>
          this.setState({
             establishments: estabs,
@@ -145,21 +84,16 @@ export default class Home extends React.Component {
       );
       // NO LONGER NEED TO HIT 3RD PARTY GEOCODE API, THIS ALREADY HAPPENS VIA THE AUTOCOMPLETE
    };
+// *** End of methods for handling user-entered places *** //
 
-   escapeClick = event => {
-      this.setState({ displayWelcomeMessage: false, displayShader: false });
+
+
+// *** Methods for filtering returned establishments *** //
+   interpolateMarkerToFilter = estabId => {
+      this.setState({ addIdToFilter: estabId });
    };
 
-   clearFilterWithClick = () => {
-      this.setState({ filter: "" });
-   };
-
-   interpolateMarkerToFilter = (searchTerm, estabId) => {
-      this.setState({ filter: searchTerm });
-      // this.filterEstabsByType(estabId);
-   };
-
-   filteredEstabs = filter => {
+   filteredEstabsByName = filter => {
       const lower = filter.toLowerCase();
       return this.state.establishments
          ? this.state.establishments.filter(estab => {
@@ -168,17 +102,23 @@ export default class Home extends React.Component {
          : null;
    };
 
-   filterEstabsByType = estabId => {
-      // if(estabId) {
-      //    console.log(`does ${estabId} match`)
-      //       return this.state.establishments.filter((estab) => {
-      //          console.log(estab.id)
-      //          return estab.id === estabId
-      //       })
-      // }
-      // TODO: The above code is an attempt to filter by passed-in marker id, to solve the
-      // bodged filter by name approach of interpolating to the filter state key, which is bad
-      // when dealing with chains like costa where there will be multiple costas
+   filterEstabsByType = () => {
+      // Explanation of this method:
+      // (1) Without a filterID in state:
+      //       It checks to see if any checkbox filters are active, if yes it
+      //       adds the relevant string to the || conditional .filter(), which
+      //       is executed on the returned array from filteredEstabsByName() 
+      //       and returns an array of matching estabs, i.e. runs two filters so as
+      //       to include a user-typed-in filterbyname & user-selected checkboxes.
+      // (2)With a filterID inside state:
+      //       It ignores checkbox and 'byname' filters and returns a single element 
+      //       array containing the estab object that matches the passed in Id
+      // (3)The EstabContainer component calls this.filterEstabsByType(). Any time
+      //    one of the state keys called upon in this method changes, the method 
+      //    is fired again, changing the return & therefore what estabs are passed
+      //    from state.establishments into the EstabContainer
+
+
 
       // TODO: Fix the selectAll checkbox functionality
       // const s = this.state
@@ -194,6 +134,15 @@ export default class Home extends React.Component {
       const mobilePrems = this.state.addMobileToFilter ? "Mobile caterer" : "";
       const supermarkets = this.state.addMarketsToFilter ? "Retailers - supermarkets/hypermarkets" : "";
       const restaurants = this.state.addRestaurantsToFilter ? "Restaurant/Cafe/Canteen" : "";
+      const establishmentID = this.state.addIdToFilter;
+
+
+      if (establishmentID) {
+         return this.state.establishments?.filter(estab => {
+            return estab.id === establishmentID;
+         });
+      }
+
 
       if (
          pubs === "" &&
@@ -204,11 +153,13 @@ export default class Home extends React.Component {
          hotels === "" &&
          mobilePrems === "" &&
          supermarkets === "" &&
-         restaurants === ""
+         restaurants === "" &&
+         !establishmentID
       )
-         return this.filteredEstabs(this.state.filter);
+         return this.filteredEstabsByName(this.state.filter);
 
-      return this.filteredEstabs(this.state.filter)?.filter(estab => {
+
+      return this.filteredEstabsByName(this.state.filter)?.filter(estab => {
          return (
             estab.type_of === pubs ||
             estab.type_of === caringPrems ||
@@ -247,9 +198,91 @@ export default class Home extends React.Component {
       });
    };
 
-   componentDidMount() {
-      // this.setEstablishmentsFromYourLocation();
+   clearFilterWithClick = () => {
+      this.setState({ filter: "", addIdToFilter: false });
+   };
+
+   handleEstabCardClick = estabObject => {
+      return this.setState({
+         addIdToFilter: estabObject.id,
+         selectedEstabToSendToMapCenter: estabObject,         
+         addAllToFilter: true,
+         addPubsToFilter: true,
+         addCaringPremsToFilter: true,
+         addTakeawaysToFilter: true,
+         addDistribsToFilter: true,
+         addEducationToFilter: true,
+         addRestaurantsToFilter: true,
+         addHotelsToFilter: true,
+         addMobileToFilter: true,
+         addMarketsToFilter: true,
+      });
+   };
+// *** End of Methods for filtering returned establishments *** //
+
+
+
+// *** Methods for getting estabs from your geolocation data *** //
+   unavailableGeolocation() {
+      this.setState({ finishedFetch: true });
+      alert(
+         "Please enable location services in your browser settings. This site is secured via HTTPS, and at no point stores or shares your geolocation data. Thank you!"
+      );
    }
+   // geolocation takes three args:
+   // (1)mandatory success callback,
+   // (2)optional error callback and
+   // (3)an object with PositionOptions
+   setEstablishmentsFromYourLocation() {
+      if (!navigator.geolocation) {
+         console.log("Geolocation is not enabled by your browser");
+         alert(
+            "Please enable location services in your browser settings. This site is secured via HTTPS, and at no point stores or shares your geolocation data. Thank you!"
+         );
+         this.unavailableGeolocation();
+      } else {
+         console.log("Locating...");
+         this.setState({ finishedFetch: false });
+         window.navigator.geolocation.getCurrentPosition(
+            location => {
+               API.autoGetEstabs(location).then(estabs =>
+                  this.setState({
+                     establishments: estabs,
+                     currentLatitude: location.coords.latitude,
+                     currentLongitude: location.coords.longitude,
+                     finishedFetch: true,
+                     currentUserId: this.props.user.id,
+                  })
+               );
+            },
+            () => this.unavailableGeolocation(),
+            { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+         );
+      }
+   }
+// *** End of Methods for getting estabs from your geolocation data *** //
+
+
+
+   escapeClick = event => {
+      this.setState({ displayWelcomeMessage: false, displayShader: false });
+   };
+
+   shaderClick = () => {
+      this.setState({
+         displayShader: !this.state.displayShader,
+         displayWelcomeMessage: !this.state.displayWelcomeMessage,
+      });
+   };
+
+   handleBlacklistClick = (estabObject, event) => {
+      event.stopPropagation();
+      API.newEstab(estabObject, this.props.user.id);
+      alert(`${estabObject.name} has been blacklisted. Visit your blacklist if you wish to remove it.`);
+      this.setState({ filter: "" });
+   };
+
+
 
    render() {
       const { filter } = this.state;
@@ -261,6 +294,7 @@ export default class Home extends React.Component {
             <div className='hygenik-title-bar'>
                <span></span>Hygenik<span>.</span>com
             </div>
+
             <img src={helpIcon} onClick={this.shaderClick} alt='About Hygenik' className='help-icon' />
 
             {displayShader && <div className='shader-layer' onClick={this.shaderClick}></div>}
@@ -273,32 +307,19 @@ export default class Home extends React.Component {
                {this.props.user && <NavBarV2 user={this.props.user} logout={this.props.logout} />}
 
                <div className='primary-content-wrapper'>
-
                   <div className='filter-elements'>
                      <div
                         className='click-for-location-find'
                         onClick={() => this.setEstablishmentsFromYourLocation()}>
                         Use My Location
                      </div>
-               <AutoCompleteInput
-                        className={'autocomplete-input'}
+                     <AutoCompleteInput
+                        className={"autocomplete-input"}
                         handleChange={this.handleAutoCompleteInputChange}
                         handleSubmit={this.handleAutoCompleteInputSubmit}
                         value={this.state.search}
                         fetchFromFSA={this.addressGoClick}
                      />
-           
-                     {/* <form onSubmit={event => this.handleSearchAddressSubmit(event)}>
-                        <input
-                           className='search-by-address'
-                           tabIndex='1'
-                           placeholder='Street/Town/City'
-                           type='text'
-                           name='search'
-                           value={search}
-                           onChange={this.handleChange}
-                        />
-                     </form> */}
 
                      {this.state.establishments?.length > 1 && (
                         <form onSubmit={e => e.preventDefault(e)}>
@@ -322,12 +343,12 @@ export default class Home extends React.Component {
                         </div>
                      )}
 
-                     {this.state.filter.length >= 1 && (
+                     {(this.state.addIdToFilter || this.state.filter.length > 0) && (
                         <div
                            className='clear-search-button'
                            title='Clear Filter'
                            onClick={this.clearFilterWithClick}>
-                           &times;
+                           Return to All Results
                         </div>
                      )}
                   </div>

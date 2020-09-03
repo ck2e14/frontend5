@@ -17,7 +17,7 @@ class ShowMap extends React.Component {
             lat: this.props.latitude,
             lng: this.props.longitude,
          },
-         mapZoom: 5,
+         mapZoom: 12,
       };
    }
 
@@ -33,18 +33,18 @@ class ShowMap extends React.Component {
       this.setState({
          establishments: this.props.estabs,
          finishedSetState: true,
-         recenterToHere: { 
+         recenterToHere: {
             lat: this.props.latitude,
             lng: this.props.longitude,
          },
-         mapZoom: this.props.estabs?.length > 1 ? 13 : 5
+         // mapZoom: this.props.estabs?.length > 1 ? 13 : 5,
       });
    }
 
    onMarkerClick = (props, marker, e) => {
-      this.props.interpolateMarker(marker.name);
-      // this.props.interpolateMarker(marker.id);
-      console.log(marker.id);
+      // this.props.interpolateMarker(marker.name);
+      this.props.interpolateMarker(marker.id);
+      // console.log(marker.id);
       return this.setState({
          selectedPlace: props,
          selectedPlaceRating: props.rating,
@@ -65,10 +65,7 @@ class ShowMap extends React.Component {
    };
 
    displayMarkers = () => {
-      if (!this.state.establishments) {
-         // window.location.reload()
-         return null;
-      }
+      if (!this.state.establishments) return null;
       return this.state.establishments.map((estab, index) => {
          return (
             <Marker
@@ -113,6 +110,7 @@ class ShowMap extends React.Component {
                      lng: this.props.longitude,
                   }}>
                   {this.displayMarkers()}
+
                   <InfoWindow
                      marker={this.state.activeMarker}
                      visible={this.state.showingInfoWindow}
