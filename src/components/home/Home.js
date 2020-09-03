@@ -157,7 +157,6 @@ export default class Home extends React.Component {
    };
 
    filterEstabsByType = estabId => {
-
       // if(estabId) {
       //    console.log(`does ${estabId} match`)
       //       return this.state.establishments.filter((estab) => {
@@ -197,7 +196,7 @@ export default class Home extends React.Component {
       )
          return this.filteredEstabs(this.state.filter);
 
-      return this.filteredEstabs(this.state.filter).filter(estab => {
+      return this.filteredEstabs(this.state.filter)?.filter(estab => {
          return (
             estab.type_of === pubs ||
             estab.type_of === caringPrems ||
