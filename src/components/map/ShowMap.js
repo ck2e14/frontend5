@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
+import { Map, GoogleApiWrapper, InfoWindow, Marker, Circle } from "google-maps-react";
 import "./ShowMap.css";
 
 class ShowMap extends React.Component {
@@ -13,11 +13,12 @@ class ShowMap extends React.Component {
          selectedPlaceRating: "",
          selectedPlaceType: "",
          finishedSetState: false,
+         userLocation: true,
+         youAreHereMsgDisplay: false,
          recenterToHere: {
             lat: this.props.latitude,
             lng: this.props.longitude,
          },
-         mapZoom: 12,
       };
    }
 
@@ -25,26 +26,28 @@ class ShowMap extends React.Component {
       this.setState({
          establishments: this.props.estabs,
          finishedSetState: true,
+         mapZoom: this.props.latitude ? 14 : 5,
+         // userLocation: this.props.userLocation && this.props.userLocation
       });
    }
 
-   componentDidUpdate(prevProps) {
+   componentDidUpdate(prevProps, prevState) {
       if (prevProps === this.props) return;
       this.setState({
          establishments: this.props.estabs,
          finishedSetState: true,
+         activeMarker: {},
+         showingInfoWindow: false,
          recenterToHere: {
             lat: this.props.latitude,
             lng: this.props.longitude,
          },
-         // mapZoom: this.props.estabs?.length > 1 ? 13 : 5,
+         mapZoom: this.props.estabs?.length > 1 && 12,
       });
    }
 
    onMarkerClick = (props, marker, e) => {
-      // this.props.interpolateMarker(marker.name);
-      this.props.interpolateMarker(marker.id);
-      // console.log(marker.id);
+      this.props.interpolateIdFromMarkerToFilter(marker.id);
       return this.setState({
          selectedPlace: props,
          selectedPlaceRating: props.rating,
@@ -56,7 +59,7 @@ class ShowMap extends React.Component {
 
    onClose = props => {
       if (this.state.showingInfoWindow) {
-         this.props.interpolateMarker("");
+         this.props.interpolateIdFromMarkerToFilter("");
          return this.setState({
             showingInfoWindow: false,
             activeMarker: null,
@@ -84,6 +87,35 @@ class ShowMap extends React.Component {
       });
    };
 
+   youAreHereCircleEnter = () => {
+      this.setState({youAreHereMsgDisplay: true})
+      setTimeout(() => {
+         this.setState({youAreHereMsgDisplay: false})
+      }, 3000);
+   }
+
+   displayMyLocationMarker = () => {
+      let coords = {
+         lat: this.props.youAreHere.lat,
+         lng: this.props.youAreHere.lng
+      }
+      return (
+         <Circle
+            radius={400}
+            center={coords}
+            // onMouseover={() => this.props.handleYouAreHereHover()}
+            // onMouseover={() => this.youAreHereCircleEnter()}
+            // onClick={() => this.youAreHereCircleClick()}
+            // onMouseout={() => this.youAreHereCircleLeave()}
+            strokeColor='transparent'
+            strokeOpacity={0}
+            strokeWeight={5}
+            fillColor='rgb(221, 158, 23)'
+            fillOpacity={0.7}
+         />
+      );
+   };
+
    render() {
       const mapStyles = {
          width: "100%",
@@ -94,22 +126,28 @@ class ShowMap extends React.Component {
 
       return (
          <div className='main-map-div'>
+            {/* {this.props.youAreHere.lat !== '' && (
+               <div className="youAreHereMsg-container">
+                  TEST
+               </div>
+            )} */}
             {this.state.finishedSetState ? (
                <Map
                   google={this.props.google}
                   zoom={this.state.mapZoom}
                   style={mapStyles}
                   yesIWantToUseGoogleMapApiInternals
-                  mapTypeId='terrain'
+                  mapTypeId='Satellite'
                   initialCenter={{
-                     lat: this.props.latitude || 54.2361,
-                     lng: this.props.longitude || 4.5481,
+                     lat: this.props.latitude || 54.4862,
+                     lng: this.props.longitude || -3.8904,
                   }}
                   center={{
                      lat: this.props.latitude,
                      lng: this.props.longitude,
                   }}>
                   {this.displayMarkers()}
+                  {this.props.youAreHere && this.displayMyLocationMarker()}
 
                   <InfoWindow
                      marker={this.state.activeMarker}

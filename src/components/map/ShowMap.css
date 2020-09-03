@@ -8,12 +8,24 @@
    animation: fadeIn .5s ease;
 }
 
+.youAreHereMsg-container {
+   position: absolute;
+   color: red;
+   height: 10%;
+   width: 30%;
+   top: -5%;
+   left: 20%;
+   transform: translate(-50%, -50%);
+   border: 2px solid red;
+   z-index: 999;
+}
+
 h4, h5 {
    color: rgb(65, 65, 65) !important;
 }
 
 h1 {
-   color: rgb(0, 172, 172);
+   color: rgb(0, 172, 0);
 }
 
 @keyframes fade-in {

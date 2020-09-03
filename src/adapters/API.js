@@ -199,7 +199,8 @@ const getEstabsFromEnteredPlaceName = latLongObj => {
       .then(handleErrors)
       .then(response => response.json())
       .then(data => {
-         if (data === null) return;
+         if (data === null) return null
+         if(!data.FHRSEstablishment) return null
          if (data.FHRSEstablishment.Header.ItemCount === "1") {
             const obj = data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail;
             return [
@@ -247,6 +248,10 @@ const getEstabsFromEnteredPlaceName = latLongObj => {
              };
           });
        }
+      })
+      .catch(errors => {
+         console(errors)
+         return {}
       });
 };
 
