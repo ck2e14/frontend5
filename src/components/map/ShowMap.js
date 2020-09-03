@@ -17,7 +17,7 @@ class ShowMap extends React.Component {
             lat: this.props.latitude,
             lng: this.props.longitude,
          },
-         mapZoom: 11,
+         mapZoom: 14,
       };
    }
 
@@ -30,6 +30,7 @@ class ShowMap extends React.Component {
 
    componentDidUpdate(prevProps) {
       if (prevProps === this.props) return;
+      console.log(this.props);
       this.setState({
          establishments: this.props.estabs,
          finishedSetState: true,
@@ -37,13 +38,14 @@ class ShowMap extends React.Component {
             lat: this.props.latitude,
             lng: this.props.longitude,
          },
+         mapZoom: this.props.estabs.length > 1 ? (this.props.estabs.length > 200 ? 11 : 14) : 5,
       });
    }
 
    onMarkerClick = (props, marker, e) => {
       this.props.interpolateMarker(marker.name);
       // this.props.interpolateMarker(marker.id);
-      console.log(marker.id)
+      console.log(marker.id);
       return this.setState({
          selectedPlace: props,
          selectedPlaceRating: props.rating,
@@ -53,7 +55,7 @@ class ShowMap extends React.Component {
       });
    };
 
-   onClose = (props) => {
+   onClose = props => {
       if (this.state.showingInfoWindow) {
          this.props.interpolateMarker("");
          return this.setState({
@@ -118,9 +120,7 @@ class ShowMap extends React.Component {
                      onClose={this.onClose}>
                      <div>
                         <h1>{this.state.selectedPlace.name}</h1>
-                        <h4>
-                           Hygiene Rating: {this.state.selectedPlaceRating}
-                        </h4>
+                        <h4>Hygiene Rating: {this.state.selectedPlaceRating}</h4>
                         <h4>Type: {this.state.selectedPlace.typeOf}</h4>
                      </div>
                   </InfoWindow>

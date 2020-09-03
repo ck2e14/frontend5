@@ -54,15 +54,11 @@ export default class Home extends React.Component {
    };
 
    handleEstabCardClick = estabObject => {
-      // console.log(estabObject)
       return this.setState({
          filter: estabObject.name,
          selectedEstabToSendToMapCenter: estabObject,
       });
-      // this method interpolates the name of the clicked establishment into 'search' state
-      // key. the filterEstabs method is always controlling which establishment objects
-      // are passed down to the map components, therefore this method isolates map markers
-      // per estab click.
+      // TODO: change this to be a filter on this.state.establishments? or not worried? 
    };
 
    handleBlacklistClick = (estabObject, event) => {
@@ -135,13 +131,6 @@ export default class Home extends React.Component {
             );
          }
       );
-      // API.getEstabsFromAddress(search).then(estabs =>
-      //    this.setState({
-      //       establishments: estabs,
-      //       finishedFetch: true,
-      //       currentUserId: this.props.user.id,
-      //    })
-      // );
    };
 
    escapeClick = event => {
@@ -282,7 +271,7 @@ export default class Home extends React.Component {
                         <input
                            className='search-by-address'
                            tabIndex='1'
-                           placeholder='Search Placename'
+                           placeholder='Street/Town/Postcode'
                            type='text'
                            name='search'
                            value={search}

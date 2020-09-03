@@ -77,7 +77,9 @@ const validate = () => {
          return data.user;
       });
 };
-// newEstab is creating a local copy of the premises for blacklist join table to have a solid reference and reduced reliance on FSA fetch (throttling concern)
+
+// newEstab is creating a local copy of the premises for blacklist join table
+// to have a solid reference and reduced reliance on FSA fetch (throttling concern)
 const newEstab = (estabDetails, userID) => {
    return fetch(ESTABS_URL, {
       method: "POST",
@@ -108,7 +110,9 @@ const addToBlacklist = (estabData, userID) => {
       .then(jsonify)
       .then(data => console.log(data));
 };
-// RAW SYNTAX EXAMPLE http://open.mapquestapi.com/geocoding/v1/address?key=yTjeWaGGiekrLYHIhbDdzcyvE9mK6Gmc&location=dorking
+
+// RAW SYNTAX EXAMPLE
+// http://open.mapquestapi.com/geocoding/v1/address?key=yTjeWaGGiekrLYHIhbDdzcyvE9mK6Gmc&location=dorking
 const getLatLongFromGeocode = searchTerm => {
    const addressInput = searchTerm.split(" ").join("%20");
    return fetch(`${GEOCODING_BASE_URL}${addressInput},uk&maxResults=1`)
@@ -121,17 +125,82 @@ const getLatLongFromGeocode = searchTerm => {
       });
 };
 
-// This method is now redundant after major improvements to the way user-entered 
-// placenames are handled - see below. 
-const getEstabsFromAddress = searchTerm => {
-   const addressInput = searchTerm.split(" ").join("%20");
-   return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_SEARCH_BY_ADDRESS_URL}${addressInput}${ADDRESS_SEARCH_SUFFIX}`)
+// The method in this comment is now redundant after major improvements to the way user-entered
+// placenames are handled - see below.
+// const getEstabsFromAddress = searchTerm => {
+//    const addressInput = searchTerm.split(" ").join("%20");
+//    return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_SEARCH_BY_ADDRESS_URL}${addressInput}${ADDRESS_SEARCH_SUFFIX}`)
+//       .then(handleErrors)
+//       .then(jsonify)
+//       .then(checkJSONforValidity)
+//       .then(data => {
+//          if (data === null) return;
+//          if (data.FHRSEstablishment.Header.ItemCount === "1") {
+//             const obj = data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail;
+//             return [
+//                {
+//                   id: obj.LocalAuthorityBusinessID,
+//                   name: obj.BusinessName,
+//                   type_of: obj.BusinessType,
+//                   ratingValue: obj.RatingValue.toString(),
+//                   ratingDate: obj.RatingDate,
+//                   hygieneRating: obj.Scores.Hygiene,
+//                   structuralRating: obj.Scores.Structural,
+//                   confidenceInManagement: obj.Scores.ConfidenceInManagement,
+//                   latitude: obj.Geocode.Latitude.toString(8),
+//                   longitude: obj.Geocode.Longitude.toString(8),
+//                   localAuth: obj.LocalAuthorityName,
+//                   addressLine1: obj.AddressLine1,
+//                   addressLine2: obj.AddressLine2,
+//                   addressLine3: obj.AddressLine3,
+//                   postcode: obj.PostCode,
+//                   localAuthEmail: obj.LocalAuthorityEmailAddress,
+//                   FSAid: obj.FHRSID,
+//                },
+//             ];
+//          }
+//          if (data.FHRSEstablishment.EstablishmentCollection) {
+//             return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
+//                return {
+//                   id: obj.LocalAuthorityBusinessID,
+//                   name: obj.BusinessName,
+//                   type_of: obj.BusinessType,
+//                   ratingValue: obj.RatingValue.toString(),
+//                   ratingDate: obj.RatingDate,
+//                   hygieneRating: obj.Scores.Hygiene,
+//                   structuralRating: obj.Scores.Structural,
+//                   confidenceInManagement: obj.Scores.ConfidenceInManagement,
+//                   latitude: obj.Geocode.Latitude.toString(8),
+//                   longitude: obj.Geocode.Longitude.toString(8),
+//                   localAuth: obj.LocalAuthorityName,
+//                   addressLine1: obj.AddressLine1,
+//                   addressLine2: obj.AddressLine2,
+//                   addressLine3: obj.AddressLine3,
+//                   postcode: obj.PostCode,
+//                   localAuthEmail: obj.LocalAuthorityEmailAddress,
+//                   FSAid: obj.FHRSID,
+//                };
+//             });
+//          }
+//       });
+// };
+
+// This method replaces the above one for fetching using user-entered placenames.
+// This is because: Home.js first retrieves a geocode for the entered term
+// and then passes that to the below function, rather than the search term itself.
+// This stops the FSA fetch from returning matching streetnames in far
+// away areas, e.g. oxford street wont now return any estabs but those centered
+// around the lat/long of oxford street.
+// Obviously when you get round to it, implement the autocomplete api too to make this
+// even stronger i.e. the geocode fetch returning the desired location 100% of the time.
+
+const getEstabsFromEnteredPlaceName = latLongObj => {
+   const latLong = `${latLongObj.geocodedLongitude}/${latLongObj.geocodedLatitude}/`;
+   return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_ENH_SEARCH}${latLong}1/750/json`)
       .then(handleErrors)
-      .then(jsonify)
-      .then(checkJSONforValidity)
+      .then(response => response.json())
       .then(data => {
          if (data === null) return;
-         //  the below conditional handles when only one item is returned (i.e. single object, no array of objects to map over)
          if (data.FHRSEstablishment.Header.ItemCount === "1") {
             const obj = data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail;
             return [
@@ -157,66 +226,28 @@ const getEstabsFromAddress = searchTerm => {
             ];
          }
          if (data.FHRSEstablishment.EstablishmentCollection) {
-            return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
-               return {
-                  id: obj.LocalAuthorityBusinessID,
-                  name: obj.BusinessName,
-                  type_of: obj.BusinessType,
-                  ratingValue: obj.RatingValue.toString(),
-                  ratingDate: obj.RatingDate,
-                  hygieneRating: obj.Scores.Hygiene,
-                  structuralRating: obj.Scores.Structural,
-                  confidenceInManagement: obj.Scores.ConfidenceInManagement,
-                  latitude: obj.Geocode.Latitude.toString(8),
-                  longitude: obj.Geocode.Longitude.toString(8),
-                  localAuth: obj.LocalAuthorityName,
-                  addressLine1: obj.AddressLine1,
-                  addressLine2: obj.AddressLine2,
-                  addressLine3: obj.AddressLine3,
-                  postcode: obj.PostCode,
-                  localAuthEmail: obj.LocalAuthorityEmailAddress,
-                  FSAid: obj.FHRSID,
-               };
-            });
-         }
-      });
-};
-
-// This method replaces the above one for fetching using user-entered placenames.
-// This is because: Home.js first retrieves a geocode for the entered term
-// and then passes that to the below function, rather than the search term itself.
-// This stops the FSA fetch from returning matching streetnames in far
-// away areas, e.g. oxford street wont now return any estabs but those centered
-// around the lat/long of oxford street.
-// Obviously when you get round to it, implement the autocomplete api too to make this
-// even stronger i.e. the geocode fetch returning the desired location 100% of the time.
-const getEstabsFromEnteredPlaceName = latLongObj => {
-  const latLong = `${latLongObj.geocodedLongitude}/${latLongObj.geocodedLatitude}/`;
-   return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_ENH_SEARCH}${latLong}1/750/json`)
-      .then(handleErrors)
-      .then(response => response.json())
-      .then(data => {
-         return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
-            return {
-               id: obj.LocalAuthorityBusinessID,
-               name: obj.BusinessName,
-               type_of: obj.BusinessType,
-               ratingValue: obj.RatingValue.toString(),
-               ratingDate: obj.RatingDate,
-               hygieneRating: obj.Scores.Hygiene,
-               structuralRating: obj.Scores.Structural,
-               confidenceInManagement: obj.Scores.ConfidenceInManagement,
-               latitude: obj.Geocode.Latitude.toString(8),
-               longitude: obj.Geocode.Longitude.toString(8),
-               localAuth: obj.LocalAuthorityName,
-               addressLine1: obj.AddressLine1,
-               addressLine2: obj.AddressLine2,
-               addressLine3: obj.AddressLine3,
-               postcode: obj.PostCode,
-               localAuthEmail: obj.LocalAuthorityEmailAddress,
-               FSAid: obj.FHRSID,
-            };
-         });
+          return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
+             return {
+                id: obj.LocalAuthorityBusinessID,
+                name: obj.BusinessName,
+                type_of: obj.BusinessType,
+                ratingValue: obj.RatingValue.toString(),
+                ratingDate: obj.RatingDate,
+                hygieneRating: obj.Scores.Hygiene,
+                structuralRating: obj.Scores.Structural,
+                confidenceInManagement: obj.Scores.ConfidenceInManagement,
+                latitude: obj.Geocode.Latitude.toString(8),
+                longitude: obj.Geocode.Longitude.toString(8),
+                localAuth: obj.LocalAuthorityName,
+                addressLine1: obj.AddressLine1,
+                addressLine2: obj.AddressLine2,
+                addressLine3: obj.AddressLine3,
+                postcode: obj.PostCode,
+                localAuthEmail: obj.LocalAuthorityEmailAddress,
+                FSAid: obj.FHRSID,
+             };
+          });
+       }
       });
 };
 
@@ -277,26 +308,11 @@ export default {
    autoGetEstabs,
    newEstab,
    removeBlacklist,
-   getEstabsFromAddress,
+   //  getEstabsFromAddress,
    getLatLongFromGeocode,
-   getEstabsFromEnteredPlaceName
+   getEstabsFromEnteredPlaceName,
    // blacklistFetch,
    // addToBlacklist,
    // success,
    // error,
 };
-
-// setEstablishmentsFromAddressSearch = search => {
-//   this.clearFilterWithClick();
-//   API.getLatLongFromGeocode(this.state.search).then(
-//      locationObject => {
-//         API.getEstabsFromEnteredPlaceName(locationObject).then(estabs =>
-//            this.setState({
-//               establishments: estabs,
-//               finishedFetch: true,
-//               currentUserId: this.props.user.id,
-//               currentLongitude: locationObject.geocodedLongitude,
-//               currentLatitude: locationObject.geocodedLatitude,
-//            })
-//         );
-//      }
