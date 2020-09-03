@@ -125,65 +125,65 @@ const getLatLongFromGeocode = searchTerm => {
       });
 };
 
-// The method in this comment is now redundant after major improvements to the way user-entered
+// The method below this comment is now redundant after major improvements to the way user-entered
 // placenames are handled - see below.
-// const getEstabsFromAddress = searchTerm => {
-//    const addressInput = searchTerm.split(" ").join("%20");
-//    return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_SEARCH_BY_ADDRESS_URL}${addressInput}${ADDRESS_SEARCH_SUFFIX}`)
-//       .then(handleErrors)
-//       .then(jsonify)
-//       .then(checkJSONforValidity)
-//       .then(data => {
-//          if (data === null) return;
-//          if (data.FHRSEstablishment.Header.ItemCount === "1") {
-//             const obj = data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail;
-//             return [
-//                {
-//                   id: obj.LocalAuthorityBusinessID,
-//                   name: obj.BusinessName,
-//                   type_of: obj.BusinessType,
-//                   ratingValue: obj.RatingValue.toString(),
-//                   ratingDate: obj.RatingDate,
-//                   hygieneRating: obj.Scores.Hygiene,
-//                   structuralRating: obj.Scores.Structural,
-//                   confidenceInManagement: obj.Scores.ConfidenceInManagement,
-//                   latitude: obj.Geocode.Latitude.toString(8),
-//                   longitude: obj.Geocode.Longitude.toString(8),
-//                   localAuth: obj.LocalAuthorityName,
-//                   addressLine1: obj.AddressLine1,
-//                   addressLine2: obj.AddressLine2,
-//                   addressLine3: obj.AddressLine3,
-//                   postcode: obj.PostCode,
-//                   localAuthEmail: obj.LocalAuthorityEmailAddress,
-//                   FSAid: obj.FHRSID,
-//                },
-//             ];
-//          }
-//          if (data.FHRSEstablishment.EstablishmentCollection) {
-//             return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
-//                return {
-//                   id: obj.LocalAuthorityBusinessID,
-//                   name: obj.BusinessName,
-//                   type_of: obj.BusinessType,
-//                   ratingValue: obj.RatingValue.toString(),
-//                   ratingDate: obj.RatingDate,
-//                   hygieneRating: obj.Scores.Hygiene,
-//                   structuralRating: obj.Scores.Structural,
-//                   confidenceInManagement: obj.Scores.ConfidenceInManagement,
-//                   latitude: obj.Geocode.Latitude.toString(8),
-//                   longitude: obj.Geocode.Longitude.toString(8),
-//                   localAuth: obj.LocalAuthorityName,
-//                   addressLine1: obj.AddressLine1,
-//                   addressLine2: obj.AddressLine2,
-//                   addressLine3: obj.AddressLine3,
-//                   postcode: obj.PostCode,
-//                   localAuthEmail: obj.LocalAuthorityEmailAddress,
-//                   FSAid: obj.FHRSID,
-//                };
-//             });
-//          }
-//       });
-// };
+const getEstabsFromAddress = searchTerm => {
+   const addressInput = searchTerm.split(" ").join("%20");
+   return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_SEARCH_BY_ADDRESS_URL}${addressInput}${ADDRESS_SEARCH_SUFFIX}`)
+      .then(handleErrors)
+      .then(jsonify)
+      .then(checkJSONforValidity)
+      .then(data => {
+         if (data === null) return;
+         if (data.FHRSEstablishment.Header.ItemCount === "1") {
+            const obj = data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail;
+            return [
+               {
+                  id: obj.LocalAuthorityBusinessID,
+                  name: obj.BusinessName,
+                  type_of: obj.BusinessType,
+                  ratingValue: obj.RatingValue.toString(),
+                  ratingDate: obj.RatingDate,
+                  hygieneRating: obj.Scores.Hygiene,
+                  structuralRating: obj.Scores.Structural,
+                  confidenceInManagement: obj.Scores.ConfidenceInManagement,
+                  latitude: obj.Geocode.Latitude.toString(8),
+                  longitude: obj.Geocode.Longitude.toString(8),
+                  localAuth: obj.LocalAuthorityName,
+                  addressLine1: obj.AddressLine1,
+                  addressLine2: obj.AddressLine2,
+                  addressLine3: obj.AddressLine3,
+                  postcode: obj.PostCode,
+                  localAuthEmail: obj.LocalAuthorityEmailAddress,
+                  FSAid: obj.FHRSID,
+               },
+            ];
+         }
+         if (data.FHRSEstablishment.EstablishmentCollection) {
+            return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
+               return {
+                  id: obj.LocalAuthorityBusinessID,
+                  name: obj.BusinessName,
+                  type_of: obj.BusinessType,
+                  ratingValue: obj.RatingValue.toString(),
+                  ratingDate: obj.RatingDate,
+                  hygieneRating: obj.Scores.Hygiene,
+                  structuralRating: obj.Scores.Structural,
+                  confidenceInManagement: obj.Scores.ConfidenceInManagement,
+                  latitude: obj.Geocode.Latitude.toString(8),
+                  longitude: obj.Geocode.Longitude.toString(8),
+                  localAuth: obj.LocalAuthorityName,
+                  addressLine1: obj.AddressLine1,
+                  addressLine2: obj.AddressLine2,
+                  addressLine3: obj.AddressLine3,
+                  postcode: obj.PostCode,
+                  localAuthEmail: obj.LocalAuthorityEmailAddress,
+                  FSAid: obj.FHRSID,
+               };
+            });
+         }
+      });
+};
 
 // This method replaces the above one for fetching using user-entered placenames.
 // This is because: Home.js first retrieves a geocode for the entered term
@@ -193,10 +193,9 @@ const getLatLongFromGeocode = searchTerm => {
 // around the lat/long of oxford street.
 // Obviously when you get round to it, implement the autocomplete api too to make this
 // even stronger i.e. the geocode fetch returning the desired location 100% of the time.
-
 const getEstabsFromEnteredPlaceName = latLongObj => {
    const latLong = `${latLongObj.geocodedLongitude}/${latLongObj.geocodedLatitude}/`;
-   return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_ENH_SEARCH}${latLong}1/750/json`)
+   return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_ENH_SEARCH}${latLong}1/1250/json`)
       .then(handleErrors)
       .then(response => response.json())
       .then(data => {

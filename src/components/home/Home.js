@@ -108,6 +108,7 @@ export default class Home extends React.Component {
 
    handleSearchAddressSubmit = event => {
       event.preventDefault();
+      if(this.state.search.length === 0) return
       this.setState({ finishedFetch: false });
       this.setEstablishmentsFromAddressSearch(this.state.search);
    };
@@ -156,6 +157,7 @@ export default class Home extends React.Component {
    };
 
    filterEstabsByType = estabId => {
+
       // if(estabId) {
       //    console.log(`does ${estabId} match`)
       //       return this.state.establishments.filter((estab) => {
@@ -271,7 +273,7 @@ export default class Home extends React.Component {
                         <input
                            className='search-by-address'
                            tabIndex='1'
-                           placeholder='Street/Town/Postcode'
+                           placeholder='Street/Town/City'
                            type='text'
                            name='search'
                            value={search}
@@ -280,7 +282,7 @@ export default class Home extends React.Component {
                      </form>
 
                      {this.state.establishments?.length > 1 && (
-                        <form>
+                        <form onSubmit={e => e.preventDefault(e)}>
                            <input
                               className='filter-search'
                               type='text'

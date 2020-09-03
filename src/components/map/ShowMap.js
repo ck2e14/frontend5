@@ -30,15 +30,14 @@ class ShowMap extends React.Component {
 
    componentDidUpdate(prevProps) {
       if (prevProps === this.props) return;
-      console.log(this.props);
       this.setState({
          establishments: this.props.estabs,
          finishedSetState: true,
-         recenterToHere: {
+         recenterToHere: { 
             lat: this.props.latitude,
             lng: this.props.longitude,
          },
-         mapZoom: this.props.estabs.length > 1 ? (this.props.estabs.length > 200 ? 11 : 14) : 5,
+         mapZoom: this.props.estabs?.length > 1 ? (this.props.estabs.length > 200 ? 13 : 14) : 5,
       });
    }
 
@@ -106,8 +105,8 @@ class ShowMap extends React.Component {
                   yesIWantToUseGoogleMapApiInternals
                   mapTypeId='terrain'
                   initialCenter={{
-                     lat: this.props.latitude || 51.5074,
-                     lng: this.props.longitude || 0.1278,
+                     lat: this.props.latitude || 54.2361,
+                     lng: this.props.longitude || 4.5481,
                   }}
                   center={{
                      lat: this.props.latitude,
