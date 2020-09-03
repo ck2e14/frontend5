@@ -17,7 +17,7 @@ class ShowMap extends React.Component {
             lat: this.props.latitude,
             lng: this.props.longitude,
          },
-         mapZoom: 14,
+         mapZoom: 5,
       };
    }
 
@@ -37,7 +37,7 @@ class ShowMap extends React.Component {
             lat: this.props.latitude,
             lng: this.props.longitude,
          },
-         mapZoom: this.props.estabs?.length > 1 ? (this.props.estabs.length > 200 ? 13 : 14) : 5,
+         mapZoom: this.props.estabs?.length > 1 ? 13 : 5
       });
    }
 

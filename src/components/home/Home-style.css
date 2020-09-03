@@ -29,7 +29,7 @@ body {
 .filter-elements {
   top: 0vh;
   position: absolute;
-  width: 36%;
+  /* width: 36%; */
   height: 7vh;
   /* border: 2px solid red; */
   display: flex;
@@ -54,6 +54,7 @@ body {
   top: 16%;
   width: 58%;
   right: 2%;
+  z-index: 1;
 }
 
 .submit-button {
@@ -79,6 +80,7 @@ body {
   height: 4vh;
   z-index: 9;
   border-radius: .25vw;
+  margin-left: 5%;
   text-align: center;
   border: none;
   color: rgb(85, 85, 85);
@@ -119,6 +121,11 @@ input[type=checkbox] {
   width: 9vw;
   height: 4vh;
   border: none;
+}
+.autocomplete-input {
+  position: absolute;
+  left: 0;
+  z-index: 999;
 }
 
 .typeOf-inputs-container{

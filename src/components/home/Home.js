@@ -6,9 +6,11 @@ import NewNavbar from "../NavBar/NewNavBar";
 import NavBarV2 from "../NavBar/NavBarV2/NavBarV2";
 import WelcomeMsg from "../WelcomeMsg/WelcomeMsg";
 import helpIcon from "../../Assets/helpIcon.png";
+import AutoCompleteInput from "../AutoCompletePlaces/AutoCompletePlaces";
 import "./Home-style.css";
 import WelcomeMSg from "../WelcomeMsg/WelcomeMsg";
 // TODO: REMOVE the filter methods and put them in their own file so you can just call them in here, not express them too. De-clutter this component man!
+// TODO: Solve the annoying as fuck idea some scottish auths have for NOT BLOODY RECORDING PREMS' LAT/LONGS THUS NOT SHOWING UP AS RESULTS
 // TODO: Take all the checkboxes into their own component, pass them the methods?
 // TODO: Missing retail - other in checkboxes!!!
 export default class Home extends React.Component {
@@ -46,6 +48,15 @@ export default class Home extends React.Component {
       });
    };
 
+   handleAutoCompleteInputChange = address => {
+      this.setState({ search: address });
+   };
+
+   handleAutoCompleteInputSubmit = (address, latLng) => {
+      this.setState({ search: address, currentLatitude: latLng.lat, currentLongitude: latLng.lng });
+      this.setEstablishmentsFromAddressSearch(this.state.search);
+   };
+
    shaderClick = () => {
       this.setState({
          displayShader: !this.state.displayShader,
@@ -58,7 +69,7 @@ export default class Home extends React.Component {
          filter: estabObject.name,
          selectedEstabToSendToMapCenter: estabObject,
       });
-      // TODO: change this to be a filter on this.state.establishments? or not worried? 
+      // TODO: change this to be a filter on this.state.establishments? or not worried?
    };
 
    handleBlacklistClick = (estabObject, event) => {
@@ -108,31 +119,31 @@ export default class Home extends React.Component {
 
    handleSearchAddressSubmit = event => {
       event.preventDefault();
-      if(this.state.search.length === 0) return
+      if (this.state.search.length === 0) return;
       this.setState({ finishedFetch: false });
       this.setEstablishmentsFromAddressSearch(this.state.search);
    };
 
    addressGoClick = () => {
-      this.setState({finishedFetch:false})
+      this.setState({ finishedFetch: false });
       this.setEstablishmentsFromAddressSearch(this.state.search);
    };
 
    setEstablishmentsFromAddressSearch = search => {
       this.clearFilterWithClick();
-      API.getLatLongFromGeocode(this.state.search).then(
-         locationObject => {
-            API.getEstabsFromEnteredPlaceName(locationObject).then(estabs =>
-               this.setState({
-                  establishments: estabs,
-                  finishedFetch: true,
-                  currentUserId: this.props.user.id,
-                  currentLongitude: locationObject.geocodedLongitude,
-                  currentLatitude: locationObject.geocodedLatitude,
-               })
-            );
-         }
+      const latLongObj = {
+         geocodedLongitude: this.state.currentLongitude,
+         geocodedLatitude: this.state.currentLatitude,
+      };
+      console.log(latLongObj);
+      API.getEstabsFromEnteredPlaceName(latLongObj).then(estabs =>
+         this.setState({
+            establishments: estabs,
+            finishedFetch: true,
+            currentUserId: this.props.user.id,
+         })
       );
+      // NO LONGER NEED TO HIT 3RD PARTY GEOCODE API, THIS ALREADY HAPPENS VIA THE AUTOCOMPLETE
    };
 
    escapeClick = event => {
@@ -262,14 +273,22 @@ export default class Home extends React.Component {
                {this.props.user && <NavBarV2 user={this.props.user} logout={this.props.logout} />}
 
                <div className='primary-content-wrapper'>
+
                   <div className='filter-elements'>
                      <div
                         className='click-for-location-find'
                         onClick={() => this.setEstablishmentsFromYourLocation()}>
                         Use My Location
                      </div>
-
-                     <form onSubmit={event => this.handleSearchAddressSubmit(event)}>
+               <AutoCompleteInput
+                        className={'autocomplete-input'}
+                        handleChange={this.handleAutoCompleteInputChange}
+                        handleSubmit={this.handleAutoCompleteInputSubmit}
+                        value={this.state.search}
+                        fetchFromFSA={this.addressGoClick}
+                     />
+           
+                     {/* <form onSubmit={event => this.handleSearchAddressSubmit(event)}>
                         <input
                            className='search-by-address'
                            tabIndex='1'
@@ -279,7 +298,7 @@ export default class Home extends React.Component {
                            value={search}
                            onChange={this.handleChange}
                         />
-                     </form>
+                     </form> */}
 
                      {this.state.establishments?.length > 1 && (
                         <form onSubmit={e => e.preventDefault(e)}>
@@ -312,7 +331,7 @@ export default class Home extends React.Component {
                         </div>
                      )}
                   </div>
-                  {this.state.establishments?.length > 1 && (
+                  {this.state.finishedFetch && (
                      <div className='typeOf-inputs-container'>
                         <div className='checkbox-container'>
                            <input

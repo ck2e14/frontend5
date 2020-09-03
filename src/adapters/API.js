@@ -115,7 +115,7 @@ const addToBlacklist = (estabData, userID) => {
 // http://open.mapquestapi.com/geocoding/v1/address?key=yTjeWaGGiekrLYHIhbDdzcyvE9mK6Gmc&location=dorking
 const getLatLongFromGeocode = searchTerm => {
    const addressInput = searchTerm.split(" ").join("%20");
-   return fetch(`${GEOCODING_BASE_URL}${addressInput},uk&maxResults=1`)
+   return fetch(`${GEOCODING_BASE_URL}${addressInput}&maxResults=1`)
       .then(res => res.json())
       .then(data => {
          return {
@@ -195,7 +195,7 @@ const getEstabsFromAddress = searchTerm => {
 // even stronger i.e. the geocode fetch returning the desired location 100% of the time.
 const getEstabsFromEnteredPlaceName = latLongObj => {
    const latLong = `${latLongObj.geocodedLongitude}/${latLongObj.geocodedLatitude}/`;
-   return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_ENH_SEARCH}${latLong}1/1250/json`)
+   return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_ENH_SEARCH}${latLong}1/750/json`)
       .then(handleErrors)
       .then(response => response.json())
       .then(data => {

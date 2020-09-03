@@ -1,0 +1,19 @@
+.autocomplete-dropdown-container {
+   width: 20vw;
+   z-index: 999;
+   color: rgb(48, 48, 48);
+   position: absolute;
+}
+
+.location-search-input {
+   width: 20vw;
+   color: rgb(48, 48, 48) !important;
+   height: 4vh;
+   border: none;
+   z-index: 9;
+   border-radius: .25vw;
+}
+
+.suggestion-item--active, .suggestion-item {
+   color: rgb(19, 19, 19) !important
+}

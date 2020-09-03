@@ -20,7 +20,7 @@ const App = () => {
 
    useEffect(() => {
       API.validate()
-         .then((user) => {
+         .then(user => {
             setUser(user);
             setUserID(user.id);
             history.push("/home");
@@ -41,12 +41,11 @@ const App = () => {
    if (isMobile) {
       return (
          <div className='mobile-message'>
-            Welcome to Hygenik. This app is currently in development for mobiles
-            - please visit the website on a desktop browser.
+            Welcome to Hygenik. This app is currently in development for mobiles - please visit the website on
+            a desktop browser.
             <br />
             <br /> Apologies for any inconvenience! <br />
-            <br />I am working hard to bring a responsive version to mobile in
-            the close future.
+            <br />I am working hard to bring a responsive version to mobile in the close future.
             <br />
             <br />
             <a href='https://chriskennedy.live' className='portfolio-link'>
@@ -67,72 +66,44 @@ const App = () => {
                {user ? (
                   <Route
                      path='/home'
-                     component={(props) => (
-                        <Home
-                           {...props}
-                           userID={userID}
-                           user={user}
-                           logout={logout}
-                           displayShader={true}
-                        />
+                     component={props => (
+                        <Home {...props} userID={userID} user={user} logout={logout} displayShader={true} />
                      )}
                   />
                ) : (
                   <Route
                      path='/login'
-                     component={(props) => (
-                        <Login user={user} {...props} setUser={setUser} />
-                     )}
+                     component={props => <Login user={user} {...props} setUser={setUser} />}
                   />
                )}
 
                {user && (
                   <Route
                      path='/find-premises'
-                     component={(props) => (
-                        <Home
-                           {...props}
-                           userID={userID}
-                           user={user}
-                           logout={logout}
-                           displayShader={false}
-                        />
+                     component={props => (
+                        <Home {...props} userID={userID} user={user} logout={logout} displayShader={false} />
                      )}
                   />
                )}
 
                <Route
                   path='/blacklist'
-                  component={(props) => (
-                     <BlacklistDisplay
-                        {...props}
-                        userID={userID}
-                        user={user}
-                        logout={logout}
-                     />
+                  component={props => (
+                     <BlacklistDisplay {...props} userID={userID} user={user} logout={logout} />
                   )}
                />
 
                <Route
                   exact
                   path='/'
-                  component={(props) => (
-                     <Login user={user} {...props} setUser={setUser} />
-                  )}
+                  component={props => <Login user={user} {...props} setUser={setUser} />}
                />
 
-               <Route
-                  path='/login'
-                  component={(props) => (
-                     <Login user={user} {...props} setUser={setUser} />
-                  )}
-               />
+               <Route path='/login' component={props => <Login user={user} {...props} setUser={setUser} />} />
 
                <Route
                   path='/signup'
-                  component={(props) => (
-                     <Signup user={user} {...props} setUser={setUser} />
-                  )}
+                  component={props => <Signup user={user} {...props} setUser={setUser} />}
                />
             </Switch>
 
