@@ -250,8 +250,7 @@ const getEstabsFromEnteredPlaceName = latLongObj => {
        }
       })
       .catch(errors => {
-         console(errors)
-         return {}
+         console.log(errors)
       });
 };
 

@@ -60,7 +60,6 @@ export default class Home extends React.Component {
       this.setEstablishmentsFromAddressSearch(this.state.search);
    };
 
-
    setEstablishmentsFromAddressSearch = search => {
       this.clearFilterWithClick();
       const latLongObj = {
@@ -77,6 +76,9 @@ export default class Home extends React.Component {
       // NO LONGER NEED TO HIT 3RD PARTY GEOCODE API, THIS ALREADY HAPPENS VIA THE AUTOCOMPLETE
    };
    // *** End of methods for handling user-entered places *** //
+
+
+
 
    // *** Methods for filtering returned establishments *** //
    interpolateIdFromMarkerToFilter = estabId => {
@@ -195,6 +197,9 @@ export default class Home extends React.Component {
    };
    // *** End of Methods for filtering returned establishments *** //
 
+
+
+
    // *** Methods for getting estabs from your geolocation data *** //
    unavailableGeolocation() {
       this.setState({ finishedFetch: true });
@@ -237,6 +242,9 @@ export default class Home extends React.Component {
    }
    // *** End of Methods for getting estabs from your geolocation data *** //
 
+
+
+   
    escapeClick = event => {
       this.setState({ displayWelcomeMessage: false, displayShader: false });
    };
