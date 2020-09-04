@@ -4,17 +4,14 @@ import "./NavBar.css";
 import hygenikLogo from "../../Assets/hygenik logo.png";
 // import helpIcon from '../../Assets/helpIcon.png'
 
-const Navbar = (props) => {
-   const [showHelpMsg, setShowHelpMsg] = useState(false);
+const Navbar = props => {
+   // const [showHelpMsg, setShowHelpMsg] = useState(false);
 
    // const helpClick = () => setShowHelpMsg(!showHelpMsg);
 
    return (
       <div className='nav-wrapper'>
-         <Link
-            to='/find-premises'
-            displaywelcome='false'
-            className='navbar-item'>
+         <Link to='/find-premises' displaywelcome='false' className='navbar-item'>
             Find Sites
          </Link>
 

@@ -2,13 +2,11 @@ import React from "react";
 import API from "../../adapters/API";
 import EstabContainer from "../establishments/EstabContainer";
 import ShowMap from "../map/ShowMap";
-import NewNavbar from "../NavBar/NewNavBar";
 import NavBarV2 from "../NavBar/NavBarV2/NavBarV2";
-import WelcomeMsg from "../WelcomeMsg/WelcomeMsg";
 import helpIcon from "../../Assets/helpIcon.png";
 import AutoCompleteInput from "../AutoCompletePlaces/AutoCompletePlaces";
 import "./Home-style.css";
-import WelcomeMSg from "../WelcomeMsg/WelcomeMsg";
+import WelcomeMsg from "../WelcomeMsg/WelcomeMsg";
 // TODO: REMOVE the filter methods and put them in their own file so you can just call them in here, not express them too. De-clutter this component man!
 // TODO: Solve the annoying as fuck idea some scottish auths have for NOT BLOODY RECORDING PREMS' LAT/LONGS THUS NOT SHOWING UP AS RESULTS
 // TODO: Take all the checkboxes into their own component, pass them the methods?
@@ -40,8 +38,8 @@ export default class Home extends React.Component {
          geolocationFailure: false,
          recenterToGeocode: {},
          youAreHereMsgDisplay: false,
-         // displayWelcomeMessage: this.props.displayShader,
-         // displayShader: this.props.displayShader,
+         displayWelcomeMessage: this.props.displayShader,
+         displayShader: this.props.displayShader,
       };
    }
 
@@ -244,7 +242,7 @@ export default class Home extends React.Component {
 
 
 
-   
+
    escapeClick = event => {
       this.setState({ displayWelcomeMessage: false, displayShader: false });
    };
@@ -271,7 +269,6 @@ export default class Home extends React.Component {
 
    render() {
       const { filter } = this.state;
-      const { search } = this.state;
       const { displayShader } = this.state;
       const { displayWelcomeMessage } = this.state;
       return (
@@ -286,7 +283,7 @@ export default class Home extends React.Component {
             {displayShader && <div className='shader-layer' onClick={this.shaderClick}></div>}
 
             {displayWelcomeMessage && (
-               <WelcomeMSg shaderClick={this.shaderClick} username={this.props.user.username} />
+               <WelcomeMsg shaderClick={this.shaderClick} username={this.props.user.username} />
             )}
 
             <div className='big-div'>

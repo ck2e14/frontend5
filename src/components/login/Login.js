@@ -1,55 +1,43 @@
-import React, { useState, useEffect } from "react";
-import {
-   BrowserView,
-   MobileView,
-   isBrowser,
-   isMobile,
-} from "react-device-detect";
+import React, { useState } from "react";
 import API from "../../adapters/API";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./Login.css";
 
-const Login = (props) => {
+const Login = props => {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
    const [errors, setErrors] = useState([]);
-   const [welcomeMsg, setWelcome] = useState(true);
-   const [displayShader, setDisplayShader] = useState(true);
 
    const history = useHistory();
 
-   // useEffect(() => {
-   //    clearStorage()
-   // }, [])
-
-   const onUsernameChange = (e) => {
+   const onUsernameChange = e => {
       setUsername(e.target.value);
       setErrors([]);
    };
 
-   const onPasswordChange = (e) => {
+   const onPasswordChange = e => {
       setPassword(e.target.value);
       setErrors([]);
    };
 
-   const handleLogInSubmit = (e) => {
+   const handleLogInSubmit = e => {
       e.preventDefault();
       if (!username || !password) {
          return setErrors(["Please fill-out both fields."]);
       }
       API.login({ username, password })
-         .then((user) => {
+         .then(user => {
             console.log(user);
             props.setUser(user);
             history.push("/home");
          })
-         .catch((errors) => {
+         .catch(errors => {
             setErrors([errors]);
             console.log(errors);
          });
    };
 
-   const handleRegisterSubmit = (e) => {
+   const handleRegisterSubmit = e => {
       e.preventDefault();
       if (!username || !password) {
          return setErrors(["Please fill-out both fields."]);
@@ -61,12 +49,12 @@ const Login = (props) => {
          return setErrors(["Your password must be at least 6 characters."]);
       }
       API.signup({ username, password })
-         .then((user) => {
+         .then(user => {
             console.log(user);
             props.setUser(user);
             history.push("/home");
          })
-         .catch((errors) => {
+         .catch(errors => {
             setErrors([errors]);
             // console.error(errors);
             console.log(errors);
@@ -93,7 +81,7 @@ const Login = (props) => {
                         placeholder='USERNAME'
                         name='username'
                         value={username}
-                        onChange={(e) => onUsernameChange(e)}
+                        onChange={e => onUsernameChange(e)}
                      />
                   </div>
 
@@ -103,15 +91,11 @@ const Login = (props) => {
                         placeholder='PASSWORD'
                         name='password'
                         value={password}
-                        onChange={(e) => onPasswordChange(e)}
+                        onChange={e => onPasswordChange(e)}
                      />
                   </div>
 
-                  <input
-                     className='login-submit'
-                     type='submit'
-                     value='LOG IN'
-                  />
+                  <input className='login-submit' type='submit' value='LOG IN' />
                   <br />
                   <br />
 
@@ -121,9 +105,7 @@ const Login = (props) => {
                <div className='submit-btn' onClick={handleLogInSubmit}>
                   LOG IN
                </div>
-               <div
-                  className='submit-btn register'
-                  onClick={handleRegisterSubmit}>
+               <div className='submit-btn register' onClick={handleRegisterSubmit}>
                   REGISTER
                </div>
                <br />

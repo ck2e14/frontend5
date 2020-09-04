@@ -15,15 +15,13 @@
 }
 
 .navbar-container:hover {
-   width: 12%;
-   /* min-width: 190px; */
-   background-color: rgb(79, 109, 83);
+   width: 15%;
+   background-color: rgb(60, 105, 83);
 }
 
 _::-webkit-full-page-media, _:future, :root .navbar-container:hover {
    width: 16%
 }
-
 
 .navbar-container:hover > .navbar-flex-container {
    display: flex;
@@ -64,6 +62,7 @@ _::-webkit-full-page-media, _:future, :root .navbar-container:hover {
    top:0;
    text-transform: uppercase;
 }
+
 _::-webkit-full-page-media, _:future, :root .nav-item {
    letter-spacing: 0px;
 }

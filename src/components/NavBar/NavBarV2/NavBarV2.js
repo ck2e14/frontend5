@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const NavBar = props => {
 
-   const { user, logout } = props
+   const { logout } = props
 
    // if(isMobile){
    //    return(

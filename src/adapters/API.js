@@ -127,6 +127,7 @@ const getLatLongFromGeocode = searchTerm => {
 
 // The method below this comment is now redundant after major improvements to the way user-entered
 // placenames are handled - see below.
+// eslint-disable-next-line
 const getEstabsFromAddress = searchTerm => {
    const addressInput = searchTerm.split(" ").join("%20");
    return fetch(`${CORS_ANYWHERE_PREFIX}${FSA_SEARCH_BY_ADDRESS_URL}${addressInput}${ADDRESS_SEARCH_SUFFIX}`)
