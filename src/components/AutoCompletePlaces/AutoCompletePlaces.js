@@ -18,10 +18,16 @@ export default class AutoCompletePlaces extends React.Component {
       .then(latLng => this.props.fetchFromFSA(latLng))
       .catch(error => console.error("Error", error));
    };
+
+  
    render() {
+      const searchOptions = {
+         componentRestrictions: { country: ['uk'] },
+      }
       return (
          <PlacesAutocomplete
             value={this.props.value}
+            searchOptions={searchOptions}
             onChange={this.props.handleChange}
             onSelect={this.handleSelect}>
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
