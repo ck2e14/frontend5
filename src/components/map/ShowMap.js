@@ -88,17 +88,17 @@ class ShowMap extends React.Component {
    };
 
    youAreHereCircleEnter = () => {
-      this.setState({youAreHereMsgDisplay: true})
+      this.setState({ youAreHereMsgDisplay: true });
       setTimeout(() => {
-         this.setState({youAreHereMsgDisplay: false})
+         this.setState({ youAreHereMsgDisplay: false });
       }, 3000);
-   }
+   };
 
    displayMyLocationMarker = () => {
       let coords = {
          lat: this.props.youAreHere.lat,
-         lng: this.props.youAreHere.lng
-      }
+         lng: this.props.youAreHere.lng,
+      };
       return (
          <Circle
             radius={400}
@@ -137,7 +137,7 @@ class ShowMap extends React.Component {
                   zoom={this.state.mapZoom}
                   style={mapStyles}
                   yesIWantToUseGoogleMapApiInternals
-                  mapTypeId='Satellite'
+                  defaultMapTypeId='satellite'
                   initialCenter={{
                      lat: this.props.latitude || 54.4862,
                      lng: this.props.longitude || -3.8904,
@@ -148,7 +148,6 @@ class ShowMap extends React.Component {
                   }}>
                   {this.displayMarkers()}
                   {this.props.youAreHere && this.displayMyLocationMarker()}
-
                   <InfoWindow
                      marker={this.state.activeMarker}
                      visible={this.state.showingInfoWindow}

@@ -28,6 +28,7 @@ export default class AutoCompletePlaces extends React.Component {
          <PlacesAutocomplete
             value={this.props.value}
             searchOptions={searchOptions}
+            // highlightFirstSuggestion={true}
             onChange={this.props.handleChange}
             onSelect={this.handleSelect}>
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
@@ -41,10 +42,10 @@ export default class AutoCompletePlaces extends React.Component {
                      {loading && <div>Loading...</div>}
                      {suggestions.map(suggestion => {
                         const className = suggestion.active ? "suggestion-item--active" : "suggestion-item";
-                        // inline style for demonstration purpose
+
                         const style = suggestion.active
                            ? { backgroundColor: "rgb(19, 19, 19)", cursor: "pointer", color: "white"}
-                           : { backgroundColor: "rgb(48,48,48)", cursor: "pointer", color: "white" };
+                           : { backgroundColor: "rgb(19, 19, 19)", cursor: "pointer", color: "white" };
                         return (
                            <div
                               {...getSuggestionItemProps(suggestion, {

@@ -1,7 +1,8 @@
 .autocomplete-dropdown-container {
    width: 20vw;
    z-index: 999;
-   color: rgb(48, 48, 48);
+   color: rgb(110, 110, 110);
+   border-radius: 5vw !important;
    position: absolute;
 }
 
