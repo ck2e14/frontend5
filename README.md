@@ -1,3 +1,5 @@
+Deployed to https://hygenik.herokuapp.com
+
 Frontend Repo for  _Hygenik
 AJAX ES6, React.js (hooks, router), JWT Auth, Rails API backend
 
