@@ -104,15 +104,10 @@ export default class Home extends React.Component {
       //       It ignores checkbox and 'byname' filters and returns a single element
       //       array containing the estab object that matches the passed in Id
       // (3)The EstabContainer component calls this.filterEstabsByType(). Any time
-      //    one of the state keys called upon in this method changes, the method
-      //    is fired again, changing the return & therefore what estabs are passed
-      //    from state.establishments into the EstabContainer
+      //       one of the state keys called upon in this method changes, the method
+      //       is fired again, changing the return & therefore what estabs are passed
+      //       from state.establishments into the EstabContainer
 
-      // TODO: Fix the selectAll checkbox functionality
-      // const s = this.state
-      // if(s.addCaringPremsToFilter, s.addTakeawaysToFilter, s.addDistribsToFilter, s.addEducationToFilter, s.addHotelsToFilter, s.addRestaurantsToFilter, s.addMarketsToFilter, s.addMobileToFilter === true) {
-      //    this.setState({addAllToFilter: false})
-      // }
       const pubs = this.state.addPubsToFilter ? "Pub/bar/nightclub" : "";
       const caringPrems = this.state.addCaringPremsToFilter ? "Caring Premises" : "";
       const takeaways = this.state.addTakeawaysToFilter ? "Takeaway/sandwich shop" : "";
@@ -141,8 +136,9 @@ export default class Home extends React.Component {
          supermarkets === "" &&
          restaurants === "" &&
          !establishmentID
-      )
-         return this.filteredEstabsByName(this.state.filter);
+      ) { 
+         return this.filteredEstabsByName(this.state.filter) 
+      };
 
       return this.filteredEstabsByName(this.state.filter)?.filter(estab => {
          return (

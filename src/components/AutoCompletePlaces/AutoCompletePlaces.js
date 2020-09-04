@@ -1,9 +1,6 @@
 import React from "react";
 import "./AutoCompletePlaces-style.css";
-import PlacesAutocomplete, {
-   geocodeByAddress,
-   getLatLng,
-} from 'react-places-autocomplete';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 
 export default class AutoCompletePlaces extends React.Component {
    constructor(props) {
@@ -13,17 +10,16 @@ export default class AutoCompletePlaces extends React.Component {
 
    handleSelect = address => {
       geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => this.props.handleSubmit(address, latLng))
-      .then(latLng => this.props.fetchFromFSA(latLng))
-      .catch(error => console.error("Error", error));
+         .then(results => getLatLng(results[0]))
+         .then(latLng => this.props.handleSubmit(address, latLng))
+         .then(latLng => this.props.fetchFromFSA(latLng))
+         .catch(error => console.error("Error", error));
    };
 
-  
    render() {
       const searchOptions = {
-         componentRestrictions: { country: ['uk'] },
-      }
+         componentRestrictions: { country: ["uk"] },
+      };
       return (
          <PlacesAutocomplete
             value={this.props.value}
@@ -33,7 +29,8 @@ export default class AutoCompletePlaces extends React.Component {
             onSelect={this.handleSelect}>
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                <div>
-                  <input className="location-search-input"
+                  <input
+                     className='location-search-input'
                      {...getInputProps({
                         placeholder: "Search Places ...",
                      })}
@@ -44,7 +41,7 @@ export default class AutoCompletePlaces extends React.Component {
                         const className = suggestion.active ? "suggestion-item--active" : "suggestion-item";
 
                         const style = suggestion.active
-                           ? { backgroundColor: "rgb(19, 19, 19)", cursor: "pointer", color: "white"}
+                           ? { backgroundColor: "rgb(19, 19, 19)", cursor: "pointer", color: "white" }
                            : { backgroundColor: "rgb(19, 19, 19)", cursor: "pointer", color: "white" };
                         return (
                            <div

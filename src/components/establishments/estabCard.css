@@ -1,3 +1,7 @@
+.card-wrapper * {
+  cursor: pointer;
+}
+
 .card-wrapper {
   height: 10vh;
   margin: 1%;
