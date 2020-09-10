@@ -272,6 +272,7 @@ export default class Home extends React.Component {
             {this.state.youAreHereMsgDisplay && <div className='youAreHereMsg-container'>TEST</div>}
             <div className='hygenik-title-bar'>
                <span></span>Hygenik<span>.</span>com
+               {/* by Chris Kennedy */}
             </div>
 
             <img src={helpIcon} onClick={this.shaderClick} alt='About Hygenik' className='help-icon' />
