@@ -328,7 +328,7 @@ export default class Home extends React.Component {
                            className='clear-search-button'
                            title='Clear Filter'
                            onClick={this.clearFilterWithClick}>
-                           Return to All Results
+                           Return to Results 
                         </div>
                      )}
                   </div>
