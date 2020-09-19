@@ -200,8 +200,8 @@ const getEstabsFromEnteredPlaceName = latLongObj => {
       .then(handleErrors)
       .then(response => response.json())
       .then(data => {
-         if (data === null) return null
-         if(!data.FHRSEstablishment) return null
+         if (data === null) return null;
+         if (!data.FHRSEstablishment) return null;
          if (data.FHRSEstablishment.Header.ItemCount === "1") {
             const obj = data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail;
             return [
@@ -227,31 +227,31 @@ const getEstabsFromEnteredPlaceName = latLongObj => {
             ];
          }
          if (data.FHRSEstablishment.EstablishmentCollection) {
-          return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
-             return {
-                id: obj.LocalAuthorityBusinessID,
-                name: obj.BusinessName,
-                type_of: obj.BusinessType,
-                ratingValue: obj.RatingValue.toString(),
-                ratingDate: obj.RatingDate,
-                hygieneRating: obj.Scores.Hygiene,
-                structuralRating: obj.Scores.Structural,
-                confidenceInManagement: obj.Scores.ConfidenceInManagement,
-                latitude: obj.Geocode.Latitude.toString(8),
-                longitude: obj.Geocode.Longitude.toString(8),
-                localAuth: obj.LocalAuthorityName,
-                addressLine1: obj.AddressLine1,
-                addressLine2: obj.AddressLine2,
-                addressLine3: obj.AddressLine3,
-                postcode: obj.PostCode,
-                localAuthEmail: obj.LocalAuthorityEmailAddress,
-                FSAid: obj.FHRSID,
-             };
-          });
-       }
+            return data.FHRSEstablishment.EstablishmentCollection.EstablishmentDetail.map(obj => {
+               return {
+                  id: obj.LocalAuthorityBusinessID,
+                  name: obj.BusinessName,
+                  type_of: obj.BusinessType,
+                  ratingValue: obj.RatingValue.toString(),
+                  ratingDate: obj.RatingDate,
+                  hygieneRating: obj.Scores.Hygiene,
+                  structuralRating: obj.Scores.Structural,
+                  confidenceInManagement: obj.Scores.ConfidenceInManagement,
+                  latitude: obj.Geocode.Latitude.toString(8),
+                  longitude: obj.Geocode.Longitude.toString(8),
+                  localAuth: obj.LocalAuthorityName,
+                  addressLine1: obj.AddressLine1,
+                  addressLine2: obj.AddressLine2,
+                  addressLine3: obj.AddressLine3,
+                  postcode: obj.PostCode,
+                  localAuthEmail: obj.LocalAuthorityEmailAddress,
+                  FSAid: obj.FHRSID,
+               };
+            });
+         }
       })
       .catch(errors => {
-         console.log(errors)
+         console.log(errors);
       });
 };
 
